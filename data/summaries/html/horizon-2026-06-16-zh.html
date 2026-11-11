@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon 每日速递 - 2026-06-16</title>
+<style>
+/* ===================================================================
+   Horizon Daily — Base & Reset
+   =================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0b0b12;
+  --bg-secondary:  #12121c;
+  --bg-card:       #181825;
+  --bg-card-hover: #1e1e30;
+  --bg-tag:        #1e1e32;
+  --text-primary:  #e8e8ed;
+  --text-secondary:#a0a0b8;
+  --text-muted:    #6b6b80;
+  --border:        #252540;
+  --border-light:  #1f1f35;
+  --accent:        #b0a8a0;
+  --accent-glow:   rgba(176, 168, 160, 0.10);
+  --gold:          #f0b90b;
+  --gold-dim:      #8a6d20;
+  --red:           #ff5e5e;
+  --green:         #5effa0;
+  --font-sans:     "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "SF Mono", "Cascadia Code", "Consolas", monospace;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --shadow-card:   0 1px 3px rgba(0,0,0,.4), 0 0 0 1px var(--border);
+  --shadow-glow:   0 0 28px var(--accent-glow);
+  --max-width:     820px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Header
+   =================================================================== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,11,18,.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.header-logo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #c8a880, #c0a898);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.header-date {
+  font-size: .85rem; color: var(--text-secondary);
+  font-weight: 500;
+}
+.header-actions { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-secondary);
+  transition: all .15s;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+.btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent); }
+
+/* ===================================================================
+   Layout
+   =================================================================== */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ===================================================================
+   Hero / summary bar
+   =================================================================== */
+.hero {
+  text-align: center; padding: 40px 0 28px;
+}
+.hero h1 {
+  font-size: 2rem; font-weight: 800; letter-spacing: -.025em;
+  background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  color: var(--text-secondary); font-size: .95rem;
+}
+.stats-row {
+  display: flex; justify-content: center; gap: 28px; margin-top: 18px;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+}
+.stat-label {
+  font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ===================================================================
+   Table of Contents
+   =================================================================== */
+.toc {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); padding: 20px 24px;
+  margin-bottom: 36px;
+}
+.toc-title {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted); margin-bottom: 12px; font-weight: 700;
+}
+.toc-list { list-style: none; columns: 2; column-gap: 24px; }
+@media (max-width: 640px) { .toc-list { columns: 1; } }
+.toc-item {
+  padding: 4px 0; font-size: .88rem; break-inside: avoid;
+}
+.toc-item a {
+  color: var(--text-secondary); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color .12s;
+}
+.toc-item a:hover { color: var(--accent); }
+.toc-star {
+  font-size: .72rem; color: var(--gold); white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   Item cards
+   =================================================================== */
+.item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  transition: border-color .2s, box-shadow .2s;
+  scroll-margin-top: 80px;
+}
+.item:hover {
+  border-color: #353560;
+  box-shadow: var(--shadow-glow);
+}
+.item-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 12px;
+}
+.item-title {
+  font-size: 1.18rem; font-weight: 700; line-height: 1.4; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.item-title:hover { color: var(--accent); }
+.item-title a { color: inherit; text-decoration: none; }
+.item-title a:hover { color: var(--accent); }
+
+.rating {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #1f1a0a; border: 1px solid #3d3515;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: .8rem; font-weight: 700; white-space: nowrap;
+  color: var(--gold); flex-shrink: 0;
+}
+.rating.star-9 { background: #1f1a0a; border-color: #5c4a10; box-shadow: 0 0 12px rgba(240,185,11,.12); }
+.rating.star-8 { border-color: #3d3515; }
+.rating.star-7 { border-color: #2d2818; opacity: .85; }
+
+.item-body { color: var(--text-secondary); font-size: .92rem; line-height: 1.75; }
+.item-body p { margin-bottom: 12px; }
+.item-body p:last-child { margin-bottom: 0; }
+
+/* Source line */
+.source-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: .78rem; color: var(--text-muted);
+}
+.source-line a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.source-line a:hover { text-decoration: underline; }
+
+/* Background / Discussion sections */
+.section-label {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--text-muted); margin-top: 14px; margin-bottom: 6px;
+}
+.item-body strong { color: var(--text-primary); }
+
+/* Tags */
+.tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+}
+.tag {
+  display: inline-block; padding: 3px 10px;
+  font-size: .72rem; font-weight: 600;
+  border-radius: 12px;
+  background: var(--bg-tag); color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  transition: all .12s;
+}
+.tag:hover { color: var(--accent); border-color: var(--accent); background: #1f1f3a; }
+
+/* Details / References */
+details {
+  margin-top: 12px; margin-bottom: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+details[open] { border-color: var(--border); }
+summary {
+  padding: 8px 14px; font-size: .78rem; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  user-select: none;
+  background: var(--bg-secondary);
+  transition: color .12s;
+}
+summary:hover { color: var(--accent); }
+details .references {
+  padding: 8px 14px 12px; font-size: .8rem;
+}
+details .references ul { list-style: none; padding: 0; }
+details .references li {
+  padding: 3px 0; font-size: .8rem;
+}
+details .references a {
+  color: var(--accent); text-decoration: none;
+}
+details .references a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+.footer {
+  text-align: center; padding: 40px 0 0;
+  color: var(--text-muted); font-size: .78rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Hide markdown horizontal rules left from separators */
+.item hr { display: none; }
+
+/* ===================================================================
+   Scrollbar
+   =================================================================== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a55; }
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 640px) {
+  .wrapper { padding: 16px 14px 60px; }
+  .item { padding: 18px 16px; }
+  .hero h1 { font-size: 1.45rem; }
+  .header { padding: 10px 14px; }
+  .header-date { display: none; }
+  .header-brand { font-size: .95rem; }
+  .item-header { flex-direction: column; gap: 8px; }
+  .rating { align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-brand" href="#">
+    <span class="header-logo">🌐</span>
+    Horizon Daily
+  </a>
+  <span class="header-date">2026-06-16</span>
+  <div class="header-actions">
+    <a class="btn" href="#toc">📑 Index</a>
+    <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <section class="hero">
+    <h1>Horizon 每日速递 - 2026-06-16</h1>
+    <p class="subtitle">从 54 条内容中筛选出 25 条重要资讯。</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value">25</div><div class="stat-label">Selected</div></div>
+      <div class="stat"><div class="stat-value">54</div><div class="stat-label">Total Feed</div></div>
+      <div class="stat"><div class="stat-value">7.5</div><div class="stat-label">Avg Score</div></div>
+    </div>
+  </section>
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">📑 Table of Contents</div>
+    <ol class="toc-list">
+      <li class="toc-item"><a href="#item-1"><span class="toc-star">9.0</span>LinkedIn 求职邀请暗藏后门攻击开发者</a></li>
+<li class="toc-item"><a href="#item-2"><span class="toc-star">8.0</span>x86 模拟器团队在模拟过程中修复了糟糕的代码</a></li>
+<li class="toc-item"><a href="#item-3"><span class="toc-star">8.0</span>John Carmack 盛赞 Fabrice Bellard 的传奇软件作品</a></li>
+<li class="toc-item"><a href="#item-4"><span class="toc-star">8.0</span>Iroh 1.0：点对点网络库发布</a></li>
+<li class="toc-item"><a href="#item-5"><span class="toc-star">8.0</span>Hacker News 用户分享本地模型编程设置</a></li>
+<li class="toc-item"><a href="#item-6"><span class="toc-star">8.0</span>简单“修复此代码”提示绕过 Fable 5 安全防护</a></li>
+<li class="toc-item"><a href="#item-7"><span class="toc-star">8.0</span>Hetzner 宣布大幅上调云服务器价格</a></li>
+<li class="toc-item"><a href="#item-8"><span class="toc-star">8.0</span>人类对 AI 智能爆炸准备不足</a></li>
+<li class="toc-item"><a href="#item-9"><span class="toc-star">8.0</span>福克斯收购 Roku，引发反垄断担忧</a></li>
+<li class="toc-item"><a href="#item-10"><span class="toc-star">8.0</span>Salesforce 以 36 亿美元收购 Fin（前身为 Intercom）</a></li>
+<li class="toc-item"><a href="#item-11"><span class="toc-star">8.0</span>TimescaleDB Hypercore 压缩率高达 98%</a></li>
+<li class="toc-item"><a href="#item-12"><span class="toc-star">8.0</span>AI 模型出口管制损害美国网络防御</a></li>
+<li class="toc-item"><a href="#item-13"><span class="toc-star">8.0</span>为什么 AI 没有取代软件工程师</a></li>
+<li class="toc-item"><a href="#item-14"><span class="toc-star">8.0</span>AMD 悄然移除消费级 CPU 内存加密功能</a></li>
+<li class="toc-item"><a href="#item-15"><span class="toc-star">7.0</span>将禁书图书馆藏入 Wi-Fi 智能灯泡</a></li>
+<li class="toc-item"><a href="#item-16"><span class="toc-star">7.0</span>理解规则后再规避</a></li>
+<li class="toc-item"><a href="#item-17"><span class="toc-star">7.0</span>Garden of Flowers：17 世纪以来的前 ASCII 艺术档案</a></li>
+<li class="toc-item"><a href="#item-18"><span class="toc-star">7.0</span>探索完全自动化经济</a></li>
+<li class="toc-item"><a href="#item-19"><span class="toc-star">7.0</span>家庭实验室 AI 开发平台引发自托管工作流讨论</a></li>
+<li class="toc-item"><a href="#item-20"><span class="toc-star">7.0</span>面试中关于 Kubernetes 复杂性的教训</a></li>
+<li class="toc-item"><a href="#item-21"><span class="toc-star">7.0</span>铜转运药物逆转小鼠阿尔茨海默症状</a></li>
+<li class="toc-item"><a href="#item-22"><span class="toc-star">7.0</span>Anthropic 推出 Claude Corps 非营利组织奖学金计划</a></li>
+<li class="toc-item"><a href="#item-23"><span class="toc-star">7.0</span>英特尔 Mac 二十年：苹果为何切换又再次切换</a></li>
+<li class="toc-item"><a href="#item-24"><span class="toc-star">6.0</span>TinyWind：拥有真实风力物理的像素海盗航行游戏</a></li>
+<li class="toc-item"><a href="#item-25"><span class="toc-star">6.0</span>一封写给计算机的怀旧情书</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="item" id="item-1">
+<div class="item-header"><span class="item-title"><a href="https://roman.pt/posts/linkedin-backdoor/">LinkedIn 求职邀请暗藏后门攻击开发者</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>一名安全研究人员发现，在 LinkedIn 求职面试中发送的公共 GitHub 仓库中隐藏了一个后门，该后门利用 npm 的 prepare 脚本在安装依赖时执行任意代码。 此次攻击凸显了通过虚假工作机会针对开发者的复杂供应链威胁，利用了招聘流程中的信任以及自动化包安装工作流。 后门隐藏在注释掉的测试代码中，并通过 npm 的 prepare 脚本执行，该脚本在 npm install 后自动运行。研究人员向 GitHub 报告了该仓库，并向 LinkedIn 举报了招聘人员，但未采取任何行动。</p>
+<p class="source-line">hackernews · lwhsiao · 6月15日 20:00 · <a href="https://news.ycombinator.com/item?id=48546294">社区讨论</a></p>
+<p><span class="section-label">背景</span>: npm 的 prepare 脚本是一个生命周期钩子，在包安装后自动运行，通常用于构建步骤。攻击者可以滥用此功能，在开发者对受感染的包运行 npm install 时执行恶意代码。通过虚假工作机会进行的供应链攻击有所增加，攻击者会入侵 GitHub 账户或创建令人信服的仓库。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://github.com/renovatebot/renovate/issues/6470">npm prepare script run when lerna is passed --ignore-scripts · Issue...</a></li>
+<li><a href="https://stackoverflow.com/questions/48287776/automatically-build-npm-module-on-install-from-github">javascript - Automatically Build NPM Module On... - Stack Overflow</a></li>
+<li><a href="https://juejin.cn/post/7121605730309767175">你知道的npm-scripts生命周期大家都知道， package.json...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者对 LinkedIn 和 GitHub 在收到举报后未能删除恶意内容表示失望。有人指出这类攻击已常见两年，甚至使用了知名安全研究人员的被入侵账户。还有关于写作风格暗示由 AI 生成的讨论。</p>
+<div class="tags"><span class="tag">#supply chain attack</span><span class="tag">#cybersecurity</span><span class="tag">#npm</span><span class="tag">#LinkedIn</span><span class="tag">#job scam</span></div>
+<hr /></div>
+<div class="item" id="item-2">
+<div class="item-header"><span class="item-title"><a href="https://devblogs.microsoft.com/oldnewthing/20260615-00/?p=112419">x86 模拟器团队在模拟过程中修复了糟糕的代码</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>微软的 x86 模拟器团队遇到一个程序，它使用极其低效的循环逐字节初始化 64KB 栈内存，于是他们修改了模拟器，用快速内存初始化例程替换了这个循环。 这个故事说明了兼容层为支持旧软件所付出的极端努力，并突显了模拟有时可以修复原始代码中的错误，这种做法至今仍在 Proton 和 Wine 中延续。 该程序使用了类似 &lsquo;for (i=0; i&lt;65536; i++) stack[i]=0;&rsquo; 的循环，速度极慢；模拟器团队检测到这一模式，并在模拟过程中将其替换为快速的 &lsquo;rep stosb&rsquo; 指令，而无需修改原始二进制文件。</p>
+<p class="source-line">hackernews · paulmooreparks · 6月16日 04:46 · <a href="https://news.ycombinator.com/item?id=48550693">社区讨论</a></p>
+<p><span class="section-label">背景</span>: x86 模拟器将指令从一种架构翻译到另一种架构，常用于在现代系统上运行旧软件。Wine 和 Proton 等兼容层也采用类似技术来提升性能或修复在 Linux 上运行的 Windows 游戏中的错误。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://alternativeto.net/software/winlator/">Winlator Alternatives: Top 14 Compatibility Layer Tools | AlternativeTo</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者分享了类似的故事，例如 SimCity 的释放后使用错误在 Windows 95 中被修复，以及现代例子如 Elden Ring，Proton 为其糟糕的 PC 移植版加入了热修复。一些人争论原始代码是由于编译器优化还是开发者的疏忽。</p>
+<div class="tags"><span class="tag">#x86 emulation</span><span class="tag">#compatibility</span><span class="tag">#software engineering</span><span class="tag">#retro computing</span><span class="tag">#hacker culture</span></div>
+<hr /></div>
+<div class="item" id="item-3">
+<div class="item-header"><span class="item-title"><a href="https://twitter.com/ID_AA_Carmack/status/2064095424420487226">John Carmack 盛赞 Fabrice Bellard 的传奇软件作品</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>id Software 联合创始人 John Carmack 公开称赞 Fabrice Bellard 在软件领域的杰出贡献，包括 FFmpeg、QEMU 和 QuickJS，并强调他将规范转化为高性能实现的能力。 来自 Carmack 这样的传奇人物的认可，凸显了 Bellard 作为开源领域最多产、最有才华的程序员之一的地位，激励了开发者，并彰显了深厚技术功底的价值。 Bellard 的著名项目包括 FFmpeg（多媒体编解码器规范）、QEMU（ISA 规范）、QuickJS（ECMAScript 规范）、TinyCC（C 规范）以及他的电信公司（LTE 规范）。他的工作特点是将复杂规范转化为高度优化的 C 语言实现。</p>
+<p class="source-line">hackernews · apitman · 6月16日 04:58 · <a href="https://news.ycombinator.com/item?id=48550779">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Fabrice Bellard 是一位法国计算机程序员，以创建多个重要开源项目而闻名。FFmpeg 是处理音频和视频的领先多媒体框架。QEMU 是流行的模拟器和虚拟化工具。QuickJS 是一个小巧、可嵌入的 JavaScript 引擎，支持 ES2025 规范。Bellard 还因将圆周率计算到创纪录的位数以及开发基于软件的 LTE 基站而知名。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/FFMPEG">FFmpeg - Wikipedia</a></li>
+<li><a href="https://bellard.org/quickjs/">QuickJS Javascript Engine</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者指出，Bellard 的大部分工作是将规范转化为 C 代码，但强调这并不减损其成就的惊人之处。其他人则钦佩他的隐私意识和工作态度，将其比作中本聪，并分享了他谦逊且乐于助人的个人轶事。</p>
+<div class="tags"><span class="tag">#programming</span><span class="tag">#open source</span><span class="tag">#software engineering</span><span class="tag">#legendary developers</span></div>
+<hr /></div>
+<div class="item" id="item-4">
+<div class="item-header"><span class="item-title"><a href="https://www.iroh.computer/blog/v1">Iroh 1.0：点对点网络库发布</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Iroh 1.0 是这款基于 Rust 的点对点网络库的稳定版本，在经历了 65 个预发布版本后正式推出。它允许应用实例使用加密密钥而非 IP 地址直接连接，并内置支持 IPv4、IPv6 和中继传输。 Iroh 简化了应用开发者的点对点连接，无需用户账户或复杂的网络配置。这一里程碑标志着去中心化网络的重要进展，过去 30 天内公共中继上已创建超过 2 亿个端点。 该库支持自定义传输实现，允许开发者添加 WebRTC 或 BLE 等协议而不会使核心代码库臃肿。它使用非对称加密密钥对作为端点身份标识，并在直接路径不可用时通过中继建立连接。</p>
+<p class="source-line">hackernews · chadfowler · 6月15日 15:13 · <a href="https://news.ycombinator.com/item?id=48542480">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 点对点网络允许设备直接通信而无需中央服务器。Iroh 使用以高性能和安全性著称的 Rust 语言构建，提供了一个应用开发者可以嵌入的库，以实现安全、无需账户的应用实例间连接。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.iroh.computer/blog/v1">Iroh 1.0 - Dial Keys, not IPs - Iroh</a></li>
+<li><a href="https://docs.rs/iroh/latest/iroh/">iroh - Rust</a></li>
+<li><a href="https://kalilinuxtutorials.com/iroh/">Iroh : The Future Of Decentralized Networking Technology</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区将 Iroh 比作“应用层的 Tailscale”，并指出其无需用户账户的优势。开发者赞赏其可扩展的传输设计，但也有人希望加密密钥和中继使用的文档更清晰。此外，关于在现有 IP 和 DNS 基础设施下是否需要此类库也存在争论。</p>
+<div class="tags"><span class="tag">#networking</span><span class="tag">#peer-to-peer</span><span class="tag">#rust</span><span class="tag">#open-source</span><span class="tag">#library</span></div>
+<hr /></div>
+<div class="item" id="item-5">
+<div class="item-header"><span class="item-title"><a href="https://news.ycombinator.com/item?id=48542100">Hacker News 用户分享本地模型编程设置</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Hacker News 用户报告成功用 Qwen3.6 和 Gemma 等本地模型替代 Claude 和 GPT 进行日常编程，在双 RTX 3090 上达到约 150 tok/s 的速度。 这一转变表明本地模型现在可以处理大部分编程工作，提供隐私和成本优势，无需依赖云 API。 用户提到使用 Pi 编码框架和 Unsloth Studio，搭配 Qwen3.6-35B-A3B-MTP-GGUF 和 Gemma-4-26B-A4B-it-GGUF 模型，部分用户在旧硬件上达到 150 tok/s。</p>
+<p class="source-line">hackernews · cloudking · 6月15日 14:46</p>
+<p><span class="section-label">背景</span>: 本地 LLM 在个人硬件上运行而非云服务器，保护数据隐私。tok/s（每秒 token 数）衡量推理速度；150 tok/s 大约相当于每秒 115 个单词，快于典型阅读速度。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://aws.amazon.com/blogs/aws/qwen-models-are-now-available-in-amazon-bedrock/">Qwen models are now available in Amazon Bedrock | AWS News Blog</a></li>
+<li><a href="https://deepmind.google/models/gemma/">Gemma — Google DeepMind</a></li>
+<li><a href="https://mikeveerman.github.io/tokenspeed/">tokenspeed — feel LLM tokens-per-second</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 大多数评论者分享积极体验，指出 Qwen 3.6 等本地模型对大多数编程任务“足够好”，尽管有些人仍会回退到 Claude 处理复杂工作。少数怀疑者认为不使用前沿模型的机会成本太高。</p>
+<div class="tags"><span class="tag">#local LLMs</span><span class="tag">#coding assistants</span><span class="tag">#privacy</span><span class="tag">#open-source AI</span><span class="tag">#performance benchmarks</span></div>
+<hr /></div>
+<div class="item" id="item-6">
+<div class="item-header"><span class="item-title"><a href="https://www.theregister.com/security/2026/06/15/feds-freaked-over-fable-5-after-simple-fix-this-code-prompt-not-jailbreak-says-researcher/5255827">简单“修复此代码”提示绕过 Fable 5 安全防护</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>一名研究人员发现，通过要求 Anthropic 的 Fable 5 LLM“修复此代码”，可以绕过安全措施生成网络攻击代码，而无需越狱。这一演示引起了美国联邦官员的担忧。 这削弱了 Anthropic 关于 Fable 5 具有牢不可破安全性的声明，尤其是考虑到他们声称 Mythos 过于危险而不能广泛发布。这凸显了确保 LLM 免受简单、非对抗性提示攻击的困难。 提示词“修复此代码”配合故意不安全的代码给出；Fable 5 拒绝了直接的“审查安全漏洞”请求，但服从了“修复”的措辞。研究人员指出，这实际上是模型按预期用于网络防御，但其双重用途潜力显而易见。</p>
+<p class="source-line">hackernews · <em>tk</em> · 6月16日 09:26 · <a href="https://news.ycombinator.com/item?id=48552687">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Anthropic 是一家 AI 安全公司，开发像 Claude 和 Fable 这样的大型语言模型（LLM）。Fable 5 是他们最新的模型，定位为能力强大但具有严格的安全控制。越狱是指通过对抗性提示诱使 LLM 绕过其安全过滤器。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.trumplandiareport.com/2026/06/10/a-casual-vague-review-of-anthropics-fable-5-llm/">A Casual, Vague Review of Anthropic’s Fable 5 LLM –</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者指出了政治含义：一些人认为联邦的反应被夸大或只是借口，而另一些人则强调了 Anthropic 策略中的矛盾——声称 Mythos 极其危险，却发布了没有牢不可破网络防御的 Fable。一位评论者推测，联邦更担心别人用 Fable 进行防御而非攻击。</p>
+<div class="tags"><span class="tag">#AI safety</span><span class="tag">#LLM vulnerabilities</span><span class="tag">#cybersecurity</span><span class="tag">#Anthropic</span><span class="tag">#Fable 5</span></div>
+<hr /></div>
+<div class="item" id="item-7">
+<div class="item-header"><span class="item-title"><a href="https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/#cloud-servers">Hetzner 宣布大幅上调云服务器价格</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Hetzner 宣布大幅上调其云服务器价格，部分套餐成本涨幅高达 3 倍。新价格对新客户立即生效，现有客户可能暂时享受旧价格保护。 作为广受欢迎的平价云服务商，Hetzner 的涨价将严重影响许多依赖其服务的开发者和中小企业。这一变化可能促使用户寻找替代提供商或重新考虑其基础设施策略。 此次涨价适用于 Hetzner 的云服务器产品线，部分配置涨幅高达 3 倍。该公司将调整归因于硬件成本上升，尤其是内存和存储成本。</p>
+<p class="source-line">hackernews · tuhtah · 6月15日 13:19 · <a href="https://news.ycombinator.com/item?id=48540844">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Hetzner 是一家以提供廉价专用服务器和云服务器而闻名的德国托管公司。由于供应链问题以及内存和存储组件需求增加，云服务器市场的硬件成本持续上升。</p>
+<p><span class="section-label">社区讨论</span>: 社区对涨价幅度感到震惊，许多人指出 3 倍的涨幅前所未有。一些用户已在评估 3HCloud 等替代方案，而另一些用户则质疑现有客户是否能享受旧价格保护。</p>
+<div class="tags"><span class="tag">#cloud</span><span class="tag">#pricing</span><span class="tag">#Hetzner</span><span class="tag">#infrastructure</span></div>
+<hr /></div>
+<div class="item" id="item-8">
+<div class="item-header"><span class="item-title"><a href="https://www.economist.com/by-invitation/2026/06/15/humanity-isnt-ready-for-the-coming-intelligence-explosion">人类对 AI 智能爆炸准备不足</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>《经济学人》一篇评论文章指出，人类尚未准备好应对 AI 驱动的快速智能爆炸，并强调了社会和经济风险。 这很重要，因为智能爆炸可能从根本上重塑社会、经济和人类自我价值，而该文章引发了关于准备工作的必要讨论。 该文属于《经济学人》的“By Invitation”系列，表明作者具有较高知名度，并引发了大量社区参与，获得 104 分和 301 条评论。</p>
+<p class="source-line">hackernews · andsoitis · 6月16日 02:00 · <a href="https://news.ycombinator.com/item?id=48549628">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 智能爆炸的概念，也称为技术奇点，指的是 AI 迅速变得超级智能、导致不可预测变化的假设性未来。怀疑者指出硬件和资源限制是潜在瓶颈。该文章警告社会尚未为此做好准备。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Technological_singularity">Technological singularity - Wikipedia</a></li>
+<li><a href="https://www.forethought.org/research/will-ai-r-and-d-automation-cause-a-software-intelligence-explosion">Will AI R&D Automation Cause a Software Intelligence</a></li>
+<li><a href="https://situational-awareness.ai/from-agi-to-superintelligence/">II. From AGI to Superintelligence: the Intelligence Explosion -</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论表达了不同担忧：有人担心 AI 贬低劳动力价值会导致永久性底层阶级，而另一些人则认为 AI 只是工具而非生命体。少数人质疑在资源限制下超级智能是否可能。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#societal impact</span><span class="tag">#intelligence explosion</span><span class="tag">#future risks</span></div>
+<hr /></div>
+<div class="item" id="item-9">
+<div class="item-header"><span class="item-title"><a href="https://www.wsj.com/business/deals/fox-roku-deal-f6e564f9">福克斯收购 Roku，引发反垄断担忧</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>据报道，福克斯正在收购领先的流媒体硬件和平台公司 Roku，这笔交易可能重塑流媒体市场格局。 此次收购将使福克斯直接控制一个覆盖 30%-50%美国家庭的流媒体平台，引发严重的反垄断和平台中立性担忧。 据报道，这笔交易价值数十亿美元，正值媒体整合面临广泛反垄断审查之际，包括涉及福克斯的 Venu Sports 合资项目被叫停。</p>
+<p class="source-line">hackernews · thm · 6月15日 12:50 · <a href="https://news.ycombinator.com/item?id=48540499">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Roku 是一款流行的流媒体设备和操作系统，可访问多种流媒体服务。福克斯是一家拥有新闻和娱乐业务的大型内容制作商。此次收购可能使福克斯在 Roku 平台上优先推广自己的内容，从而可能使竞争对手处于不利地位。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://finance.yahoo.com/news/sports-streaming-service-from-disney-fox-and-warner-bros-discovery-blocked-by-judge-citing-antitrust-concerns-202231199.html">Sports streaming service from Disney, Fox, and Warner Bros.</a></li>
+<li><a href="https://www.hollywoodreporter.com/business/business-news/lawmakers-pressure-doj-fcc-probe-streaming-sports-bundle-venu-antitrust-concerns-1235968416/">Venu Antitrust: Lawmakers Urge Justice Department, FCC to Review...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区评论普遍持负面态度，用户担心福克斯会利用 Roku 推广自己的内容，并可能审查竞争对手。许多用户已计划放弃 Roku，转而使用 Nvidia Shield 等替代品。</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#streaming</span><span class="tag">#antitrust</span><span class="tag">#hardware</span><span class="tag">#media</span></div>
+<hr /></div>
+<div class="item" id="item-10">
+<div class="item-header"><span class="item-title"><a href="https://www.salesforce.com/news/press-releases/2026/06/15/salesforce-signs-definitive-agreement-to-acquire-fin/?bc=HL">Salesforce 以 36 亿美元收购 Fin（前身为 Intercom）</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Salesforce 已签署最终协议，以约 36 亿美元收购 Fin（前身为 Intercom），这是一家 AI 驱动的客户服务平台。 此次收购加剧了 AI 客户支持代理领域的竞争，尤其是与估值 158 亿美元的 Sierra 和 45 亿美元的 Decagon 的竞争，并表明 Salesforce 致力于将 AI 代理嵌入其 CRM 生态系统。 Fin 声称其复杂客户查询的平均解决率为 67%，许多客户达到 85% 或更高。该交易需进行惯例购买价格调整。</p>
+<p class="source-line">hackernews · colesantiago · 6月15日 12:08 · <a href="https://news.ycombinator.com/item?id=48540126">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Fin 前身为 Intercom，是一家总部位于旧金山的公司，提供 AI 驱动的客户服务和消息平台。此次收购发生在 Fin 从 Intercom 更名后不久，同时 Salesforce CEO Marc Benioff 旨在与他的前联合 CEO Bret Taylor 创立的 Sierra 竞争。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Intercom,_Inc.">Fin (company) - Wikipedia</a></li>
+<li><a href="https://martech.org/salesforce-acquires-fin-formerly-known-as-intercom/">Salesforce acquires Fin, formerly known as Intercom</a></li>
+<li><a href="https://investor.salesforce.com/news/news-details/2026/Salesforce-Signs-Definitive-Agreement-to-Acquire-Fin/default.aspx">Salesforce Signs Definitive Agreement to Acquire Fin</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区情绪复杂：一些人称赞执行良好的 AI 客户支持，而另一些人则对 Salesforce 的历史记录持怀疑态度，担心产品会变得臃肿且对用户不友好。还有讨论认为，随着 AI 代理变得更加普及，独立帮助台公司的生存能力受到质疑。</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#AI</span><span class="tag">#customer support</span><span class="tag">#Salesforce</span><span class="tag">#SaaS</span></div>
+<hr /></div>
+<div class="item" id="item-11">
+<div class="item-header"><span class="item-title"><a href="https://roszigit.com/en/blog/timescaledb-compression-hypercore">TimescaleDB Hypercore 压缩率高达 98%</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>TimescaleDB 的 Hypercore 引擎采用列式存储和类型感知算法（如增量编码、simple-8b、XOR），可将时序数据压缩高达 98%。 这种压缩大幅降低了物联网和监控应用的存储成本，使 PostgreSQL 在与 InfluxDB 等专用时序数据库的竞争中更具优势。 压缩是无损的，通过将行重组为列，并应用类型特定的方法，如对重复值使用游程编码，对浮点数据使用 XOR。</p>
+<p class="source-line">hackernews · lkanwoqwp · 6月15日 17:29 · <a href="https://news.ycombinator.com/item?id=48544451">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 时序数据（如传感器读数、服务器指标）通常存储在行式数据库中，压缩效率低下。列式存储将相同类型的值分组，从而实现更高的压缩比。TimescaleDB 是一个为 PostgreSQL 添加时序功能的扩展。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://docs.timescale.com/use-timescale/latest/hypercore/">Timescale Documentation | Hypercore</a></li>
+<li><a href="https://docs.tigerdata.com/use-timescale/latest/hypercore/compression-methods/">Tiger Data Documentation | About compression methods</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者讨论了查询性能的权衡：gopalv 指出压缩可能减慢读取速度，而 tudorg 强调了 min/max 和布隆过滤器等额外优化。一些用户质疑“高达 98%”的说法，并询问自托管体验。</p>
+<div class="tags"><span class="tag">#TimescaleDB</span><span class="tag">#compression</span><span class="tag">#time-series</span><span class="tag">#PostgreSQL</span><span class="tag">#database</span></div>
+<hr /></div>
+<div class="item" id="item-12">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything">AI 模型出口管制损害美国网络防御</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Anthropic 的 Claude Fable 5 模型因研究人员使用其修复安全漏洞而触发出口管制，监管机构将此行为归类为“越狱”。Kate Moussouris 证实，被禁止的活动仅仅是要求模型修复带有已知 CVE 的开源代码。 该政策阻止 AI 模型执行最有价值的防御任务——发现、修复和测试安全补丁，从而削弱了美国的网络防御能力。非技术决策者可能会禁止那些本可帮助保护关键代码的模型，使防御者处于不利地位。 研究人员通过多步骤手动过程将模型输出转化为补丁测试脚本。Kate Moussouris 认为，移除这一能力会使模型在修复漏洞和验证补丁方面表现更差。</p>
+<p class="source-line">rss · Simon Willison · 6月16日 05:20</p>
+<p><span class="section-label">背景</span>: AI 模型出口管制旨在防止对手获取先进能力，但常针对能生成代码或漏洞利用的模型。CVE（通用漏洞披露）是防御者日常修补的公开已知安全缺陷。此处“越狱”标签被误用于合法的防御用例，该术语通常指绕过安全护栏的行为。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/">Anthropic's Claude Fable 5 is a version of Mythos the</a></li>
+<li><a href="https://www.wttlonline.com/stories/export-controls-for-artificial-intelligence,13558">Export Controls for Artificial Intelligence - Washington Trade</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">Common Vulnerabilities and Exposures - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 讨论中表达了对非技术监管者将防御性 AI 使用误分类为危险行为的不满。评论者指出，完美的越狱抵抗可能不可能实现，政策修正可能需要“态度调整”而非技术变革。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#export controls</span><span class="tag">#cybersecurity</span><span class="tag">#policy</span></div>
+<hr /></div>
+<div class="item" id="item-13">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything">为什么 AI 没有取代软件工程师</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Arvind Narayanan 和 Sayash Kapoor 发表了一篇文章，指出包括纽约州 WARN 法案申报在内的数据显示，没有证据表明 AI 导致软件工程师大规模失业。他们指出软件工程的真正瓶颈在于决定构建什么、验证输出结果以及对代码库和业务环境的深入人类理解。 这篇文章为“AI 将很快取代软件工程师”的普遍说法提供了基于证据的反驳，给该行业带来了安慰，并强调了人类判断力和领域专业知识的持久价值。它还表明，如果软件工程——一个特别容易受到 AI 颠覆的领域——具有韧性，那么其他职业可能更能抵御就业替代。 2025 年 3 月，纽约成为美国第一个在 WARN 法案申报中添加 AI 披露复选框的州，在第一个完整年度中，超过 160 家提交 WARN 通知的公司没有一家勾选 AI 复选框。作者认为，AI 加快了编码速度，但并未解决核心瓶颈：决定构建什么、验证正确性以及保持对代码库和业务的深入理解。</p>
+<p class="source-line">rss · Simon Willison · 6月14日 23:54</p>
+<p><span class="section-label">背景</span>: WARN 法案（工人调整和再培训通知法案）要求美国雇主提前通知大规模裁员。纽约添加 AI 披露复选框旨在追踪裁员是否归因于 AI。Narayanan 和 Kapoor 是《AI Snake Oil》一书的作者，他们的文章挑战了常见的假设，即 AI 能力将直接转化为失业，尤其是在软件工程等知识工作中。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#software engineering</span><span class="tag">#job displacement</span><span class="tag">#labor economics</span></div>
+<hr /></div>
+<div class="item" id="item-14">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/">AMD 悄然移除消费级 CPU 内存加密功能</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>AMD 悄然从其消费级 Ryzen CPU 中移除了透明安全内存加密（TSME），该功能此前已存在近十年。用户发现该功能不再出现在系统安全能力中，从而发现了这一移除行为。 此举使数百万消费级 Ryzen 用户面临冷启动攻击和其他物理内存攻击的风险，削弱了个人和企业设备的硬件安全性。缺乏透明度损害了用户信任，并引发对 AMD 消费者安全承诺的担忧。 TSME 加密系统内存中的所有数据，防止物理攻击者直接读取 RAM。AMD 表示 TSME 现在仅保留给其 PRO 系列 CPU，但未提供明确的变更解释，也未事先警告用户。</p>
+<p class="source-line">rss · Ars Technica · 6月15日 17:55</p>
+<p><span class="section-label">背景</span>: 透明安全内存加密（TSME）是一种硬件安全功能，可加密系统内存的全部内容，使其能够抵御冷启动攻击和其他物理漏洞。AMD 大约在 2016 年将 TSME 引入高端 CPU，后来扩展到消费级 Ryzen 芯片，为用户提供额外保护层且不影响性能。该功能默认启用，对操作系统和应用程序透明。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/">Users cry foul after AMD stripped memory crypto from its consumer...</a></li>
+<li><a href="https://cryptobriefing.com/amd-removes-memory-encryption-consumer-cpus/">AMD removes memory encryption from consumer CPUs, users react</a></li>
+<li><a href="https://xeber.world/en/article/amd-removes-tsme-security-from-consumer-ryzen-cpus-without-warning-09496c">AMD Removes TSME from Consumer Ryzen CPUs Without Warning</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 用户在论坛和社交媒体上表达了愤怒和失望，指责 AMD 在未通知的情况下悄然移除安全功能。一些人质疑这是否是削减成本的措施或区分产品线的战略决策，而另一些人则呼吁 AMD 恢复 TSME 或给出明确解释。</p>
+<div class="tags"><span class="tag">#AMD</span><span class="tag">#CPU security</span><span class="tag">#memory encryption</span><span class="tag">#hardware</span><span class="tag">#controversy</span></div>
+<hr /></div>
+<div class="item" id="item-15">
+<div class="item-header"><span class="item-title"><a href="https://www.richardosgood.com/posts/banned-book-library/">将禁书图书馆藏入 Wi-Fi 智能灯泡</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一位开发者将 Wi-Fi 智能灯泡改造成一个禁书图书馆，创建了一个便携、可离线访问的数字档案，用户通过连接灯泡的 Wi-Fi 网络即可访问。 该项目展示了物联网设备的创造性用途，以规避审查，提供了一种隐蔽分发受限信息的方式。它在一个日常物品中复兴了 PirateBox 的概念，使当局更难检测和关闭。 该智能灯泡运行一个轻量级 Web 服务器，托管禁书图书馆，用户通过连接其 Wi-Fi 网络浏览和下载文件。灯泡仍可作为光源使用，与普通家用物品融为一体。</p>
+<p class="source-line">hackernews · sohkamyung · 6月15日 22:37 · <a href="https://news.ycombinator.com/item?id=48547985">社区讨论</a></p>
+<p><span class="section-label">背景</span>: PirateBox 是一种 DIY 匿名离线文件共享系统，创建一个 Wi-Fi 网络供用户在没有互联网的情况下共享文件。智能灯泡是物联网设备，通过 Wi-Fi 连接进行远程控制，但通常处理能力和存储空间有限。该项目重新利用了这种灯泡的能力来托管 Web 服务器。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.bbc.com/news/technology-28208905">Smart LED light bulbs leak wi-fi passwords - BBC News</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者称赞该项目的独创性，并将其与 PirateBox 和 LibraryBox 等历史项目进行比较。一些人就“禁书”的定义展开辩论，指出给出的例子是因内容露骨而被学校图书馆移除，而非政府审查。总体情绪积极，赞赏技术实现和自由获取信息的精神。</p>
+<div class="tags"><span class="tag">#censorship</span><span class="tag">#IoT</span><span class="tag">#digital libraries</span><span class="tag">#hacking</span><span class="tag">#free speech</span></div>
+<hr /></div>
+<div class="item" id="item-16">
+<div class="item-header"><span class="item-title"><a href="https://devblogs.microsoft.com/oldnewthing/20260611-00/?p=112415">理解规则后再规避</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>微软《旧事新说》博客上的一篇文章讨论了在规避规则之前理解其背后原理的重要性，并以 Windows 驱动程序开发的轶事为例。 这一见解有助于开发者在处理遗留代码或复杂系统时避免意外后果，促进更好的软件工程实践。 文章引用了切斯特顿栅栏原则，强调不理解规则目的而仅遵循字面意思可能导致错误或系统故障。</p>
+<p class="source-line">hackernews · tosh · 6月16日 07:35 · <a href="https://news.ycombinator.com/item?id=48551876">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 切斯特顿栅栏原则建议在理解规则为何存在之前不要移除或绕过它。在软件开发中，尤其是处理遗留代码时，规则往往有不易察觉的原因，忽视它们可能破坏关键功能。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://fs.blog/chestertons-fence/">Chesterton’s Fence: A Lesson in Thinking</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Windows_Driver_Kit">Windows Driver Kit - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者分享了 Windows 驱动程序开发的轶事，其中一人指出认为 Windows 有道理是个错误。另一评论者批评微软不直接改进文档而是写博客。</p>
+<div class="tags"><span class="tag">#software engineering</span><span class="tag">#best practices</span><span class="tag">#windows</span><span class="tag">#Chesterton's Fence</span><span class="tag">#legacy code</span></div>
+<hr /></div>
+<div class="item" id="item-17">
+<div class="item-header"><span class="item-title"><a href="https://garden-of-flowers.heikkilotvonen.com/">Garden of Flowers：17 世纪以来的前 ASCII 艺术档案</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Heikki Lotvonen 推出了 Garden of Flowers，这是一个在线档案，收录了约 2500 幅使用金属活字、装饰线和标尺制作的、早于 ASCII 艺术的图像，时间跨度从 17 世纪到 19 世纪，这些图像来自公共数字馆藏。 该档案填补了文本艺术史的一个空白，揭示了凸版印刷作为 ASCII 艺术和打字机艺术被忽视的前身，为字体排印学和数字人文学研究者提供了宝贵资源。 该档案包含自 17 世纪以来的图像，其中早在 1785 年就发现了制表符字符。大多数图像来自互联网档案馆等公共馆藏，出于教育目的展示，未获得明确许可。</p>
+<p class="source-line">hackernews · california-og · 6月16日 04:25 · <a href="https://news.ycombinator.com/item?id=48550569">社区讨论</a></p>
+<p><span class="section-label">背景</span>: ASCII 艺术使用 ASCII 标准中的字符来创建图像，在早期计算中流行。在此之前，存在打字机艺术和具象诗，但使用金属活字和装饰线的凸版印刷艺术鲜为人知。该档案记录了这一更早的传统。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://blog.glyphdrawing.club/typographic-pictures-composed-entirely-of-brass-rule/">The strange art of arranging typographic rule into pictorial... -blog</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Letterpress_printing">Letterpress printing - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者表达了兴奋之情，注意到 1785 年就出现了制表符字符，并提出了与阿拉伯书法和打字机艺术的联系。一位用户甚至根据档案中的一幅图像纹了身。</p>
+<div class="tags"><span class="tag">#typography</span><span class="tag">#ASCII art</span><span class="tag">#history</span><span class="tag">#digital humanities</span><span class="tag">#design</span></div>
+<hr /></div>
+<div class="item" id="item-18">
+<div class="item-header"><span class="item-title"><a href="https://gmalandrakis.com/writings/ad-economicum.html">探索完全自动化经济</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>George Malandrakis 的一篇文章探讨了完全自动化经济的技术可行性，即人工智能和机器人取代大部分人类劳动，并讨论了这种转变的深远社会影响。 这项分析意义重大，因为它挑战了关于未来工作和经济结构的假设，可能影响关于全民基本收入、财富分配以及人类在机器驱动经济中角色的政策辩论。 文章具有推测性，但基于当前人工智能趋势，指出虽然技术障碍仍然存在，但这一概念并非不可能。它强调主要障碍是经济和社会层面的，而非纯粹技术性的。</p>
+<p class="source-line">hackernews · l0new0lf-G · 6月15日 21:10 · <a href="https://news.ycombinator.com/item?id=48547062">社区讨论</a></p>
+<p><span class="section-label">背景</span>: “无人经济”的概念指的是生产和分配完全自动化、几乎不需要人类干预的系统。这一想法建立在制造业和服务业数十年的自动化基础之上，但人工智能的最新进展加速了关于其更广泛可行性的辩论。</p>
+<p><span class="section-label">社区讨论</span>: 评论者表达了对预测未来的挫败感，辩论了基于消费的经济的优缺点，并警告软件工程师可能高估人工智能的经济影响而低估经济学家的作用。一些人指出不确定性一直是生活的一部分，而文章本身也做出了可疑的假设。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#economics</span><span class="tag">#automation</span><span class="tag">#future of work</span></div>
+<hr /></div>
+<div class="item" id="item-19">
+<div class="item-header"><span class="item-title"><a href="https://rsgm.dev/post/ai-dev-platform/">家庭实验室 AI 开发平台引发自托管工作流讨论</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一位开发者分享了他的家庭实验室 AI 开发平台设置，包括一个持久的 OpenCode 服务器和 Forgejo 动作运行器，从而在自托管环境中实现 AI 辅助编码工作流。 这篇文章突显了开发者构建自托管 AI 平台以保持对数据和工作流控制的增长趋势，可能减少对云端 AI 服务的依赖。 该设置使用 OpenCode 进行 AI 代码生成，并使用 Forgejo 动作运行器自动化代码审查和 PR 创建等任务，全部在本地硬件上运行。</p>
+<p class="source-line">hackernews · rsgm · 6月15日 15:09 · <a href="https://news.ycombinator.com/item?id=48542433">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 家庭实验室 AI 开发平台允许开发者在本地运行 AI 模型和工具，提供隐私和定制化。OpenCode 和 Forgejo 等工具是开源组件，可以编排成自动化的 AI 驱动开发流水线。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://rsgm.dev/post/ai-dev-platform/">My Homelab AI Dev Platform • Rsgm's Blog</a></li>
+<li><a href="https://github.com/hoangriki/homelab-ai-platform">GitHub - hoangriki/homelab-ai-platform: Mixed-architecture homelab...</a></li>
+<li><a href="https://github.com/n8n-io/self-hosted-ai-starter-kit">GitHub - n8n-io/self-hosted-ai-starter-kit: The Self-hosted AI Starter...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区分享了类似的设置，一位用户描述了在 Forgejo 动作运行器中通过问题评论触发 OpenCode 的工作流，另一位详细介绍了带有合并互斥锁和变基步骤的代理 CI/CD 流水线。总体情绪积极，许多人表示他们也在独立构建类似的系统。</p>
+<div class="tags"><span class="tag">#homelab</span><span class="tag">#AI</span><span class="tag">#dev platform</span><span class="tag">#self-hosting</span><span class="tag">#CI/CD</span></div>
+<hr /></div>
+<div class="item" id="item-20">
+<div class="item-header"><span class="item-title"><a href="https://notnotp.com/notes/what-job-interviews-taught-me-about-kubernetes/">面试中关于 Kubernetes 复杂性的教训</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一篇反思性文章分享了从求职面试中学到的关于 Kubernetes 的经验，强调其复杂性，并质疑小团队使用它的必要性。 这一讨论很重要，因为它突显了关于是否采用 Kubernetes 的持续争论，帮助团队决定这个编排工具是否值得其带来的额外负担。 文章指出，Kubernetes 提供了统一性，但管理起来可能很麻烦，尤其是对于没有专门 DevOps 支持的小团队。</p>
+<p class="source-line">hackernews · chmaynard · 6月15日 20:12 · <a href="https://news.ycombinator.com/item?id=48546428">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Kubernetes 是一个开源容器编排平台，用于自动化容器化应用的部署、扩展和管理。虽然对大规模系统很强大，但其复杂性可能超过对小团队或简单应用的好处。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.linkedin.com/posts/olatunde-ibitoye_kubernetes-is-powerful-but-sometimes-a-bad-activity-7459143815174533120-A1Z5">Kubernetes Complexity for Small Systems Can Be a Bad... | LinkedIn</a></li>
+<li><a href="https://byteiota.com/kubernetes-cpu-at-8-paas-wins-for-90-of-teams/">Kubernetes CPU at 8%: PaaS Wins for 90% of Teams | byteiota</a></li>
+<li><a href="https://thenewstack.io/kubernetes-complexity-realigns-platform-engineering-strategy/">Kubernetes Complexity Realigns Platform... - The New Stack</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者意见不一：有人后悔在小团队中采用 Kubernetes，因为运维痛苦；而另一些人则认为现代工具（如 AI 生成的清单、本地集群）减轻了负担。一个共同的主题是，Kubernetes 的核心 20%（Deployments、Services）很有用，但深入使用会导致陷阱。</p>
+<div class="tags"><span class="tag">#Kubernetes</span><span class="tag">#DevOps</span><span class="tag">#Infrastructure</span><span class="tag">#Software Engineering</span></div>
+<hr /></div>
+<div class="item" id="item-21">
+<div class="item-header"><span class="item-title"><a href="https://www.monash.edu/news/articles/copper-drug-restores-memory-and-clears-toxic-alzheimers-proteins">铜转运药物逆转小鼠阿尔茨海默症状</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>莫纳什大学的研究人员发现，一种铜转运药物在阿尔茨海默病小鼠模型中能够恢复记忆并清除有毒的β-淀粉样蛋白。 这可能代表阿尔茨海默病治疗的突破，因为该药物已针对其他疾病进行过安全性评估，有望快速进入人体试验。 该研究在小鼠中进行，虽然药物尚未进入人体试验，但其已有的安全性数据可能加速临床转化。</p>
+<p class="source-line">hackernews · bookofjoe · 6月15日 14:48 · <a href="https://news.ycombinator.com/item?id=48542132">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 阿尔茨海默病的特征是大脑中β-淀粉样蛋白斑块的积累，这些斑块会破坏神经通讯并引发炎症。铜代谢失调与该病有关，而这种药物通过恢复正常的铜转运来清除有毒蛋白。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://scitechdaily.com/extremely-simple-new-drug-reverses-alzheimers-symptoms-in-rats/">“Extremely Simple” New Drug Reverses Alzheimer’s Symptoms</a></li>
+<li><a href="https://nextnews24.com/alzheimers-copper-transport-in-blood-provides-fresh-clues">Alzheimers: Copper transport in blood provides fresh clues</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区评论表达了谨慎乐观，指出许多针对淀粉样蛋白的疗法在人体中失败了。一些评论者强调该药物已有的安全性数据令人鼓舞，但也指出小鼠结果可能不适用于人类。</p>
+<div class="tags"><span class="tag">#Alzheimer's</span><span class="tag">#neuroscience</span><span class="tag">#drug discovery</span><span class="tag">#amyloid-beta</span><span class="tag">#copper</span></div>
+<hr /></div>
+<div class="item" id="item-22">
+<div class="item-header"><span class="item-title"><a href="https://www.anthropic.com/news/claude-corps">Anthropic 推出 Claude Corps 非营利组织奖学金计划</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic 宣布了 Claude Corps 计划，这是一个价值 1.5 亿美元的奖学金项目，将在 12 个月内将 1000 名早期职业 AI 专家安置在非营利组织中，帮助他们部署 Claude。 这一举措可能显著扩大 AI 在非营利领域的应用，但也引发了对工作岗位流失以及组织长期可持续性的担忧，这些组织可能变得依赖昂贵的 AI 系统。 该奖学金由 Anthropic 全额资助，CodePath 作为官方雇主。研究员将负责将 Claude 整合到非营利组织的运营中，但批评者指出，奖学金结束后，非营利组织可能会留下昂贵的系统。</p>
+<p class="source-line">hackernews · Mustan · 6月15日 17:41 · <a href="https://news.ycombinator.com/item?id=48544637">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Anthropic 是一家开发 Claude 模型的 AI 安全公司。Claude Corps 项目旨在弥合 AI 能力与非营利需求之间的差距，但引发了关于它是否与 Anthropic 声称的尽量减少工作岗位流失的目标一致的争论。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/claude-corps/fellow">Claude Corps fellows FAQ \ Anthropic</a></li>
+<li><a href="https://www.digitalapplied.com/blog/anthropic-claude-corps-150m-ai-fellowship-2026-readout">Claude Corps: Anthropic's $150M AI Fellowship Readout</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区评论持怀疑态度，用户指出该计划可能导致工作岗位流失，并使非营利组织背上昂贵的系统。还有人注意到 Anthropic 使用 &lsquo;Corps&rsquo; 一词的讽刺意味，让人想起库尔特·冯内古特关于失业工人的小说。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#Anthropic</span><span class="tag">#Nonprofits</span><span class="tag">#Job Displacement</span><span class="tag">#Fellowship</span></div>
+<hr /></div>
+<div class="item" id="item-23">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/gadgets/2026/06/20-years-of-intel-macs-why-apple-switched-and-why-it-switched-again/">英特尔 Mac 二十年：苹果为何切换又再次切换</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Ars Technica 发表了一篇回顾英特尔 Mac 时代的文章，探讨了苹果在 2005 年从 PowerPC 切换到英特尔，以及随后从 2020 年开始转向 Apple Silicon 的原因。 这篇回顾突出了计算史上的两次重大平台迁移，揭示了苹果的战略决策及其对 Mac 生态系统的影响。理解这些转变有助于用户和开发者预见未来的变化。 文章指出，英特尔 CEO Paul Otellini 帮助说服了 Steve Jobs 采用英特尔芯片，而苹果已有的 Marklar 项目简化了软件过渡。英特尔 Mac 时代持续了大约 15 年，之后苹果开始转向自研的 ARM 芯片。</p>
+<p class="source-line">rss · Ars Technica · 6月15日 16:32</p>
+<p><span class="section-label">背景</span>: 2005 年之前，苹果使用 IBM 和摩托罗拉的 PowerPC 处理器，但面临性能和发热问题。切换到英特尔使 Mac 能够原生运行 Windows，并提升了性能。2020 年，苹果开始转向自研的 Apple Silicon（基于 ARM）芯片，以获得更好的性能和能效。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/gadgets/2026/06/20-years-of-intel-macs-why-apple-switched-and-why-it-switched-again/">20 years of Intel Macs: Why Apple switched, and why it... - Ars Technica</a></li>
+<li><a href="https://support.apple.com/en-us/116943">Mac computers with Apple silicon - Apple Support</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#Intel</span><span class="tag">#Mac</span><span class="tag">#platform shift</span><span class="tag">#history</span></div>
+<hr /></div>
+<div class="item" id="item-24">
+<div class="item-header"><span class="item-title"><a href="https://tinywind.io/">TinyWind：拥有真实风力物理的像素海盗航行游戏</a></span><span class="rating ">⭐️ 6.0/10</span></div>
+<p>TinyWind 是一款使用 HTML5 canvas 构建的像素艺术航行游戏，模拟真实的风力物理，玩家在游戏中已航行超过 38 万公里。 这款独立游戏展示了 HTML5 canvas 等易用的网络技术如何创造引人入胜的基于物理的体验，但社区反馈也凸显了在航行机制中平衡真实感与趣味性的挑战。 风力物理引擎是近似模拟而非完整的 CFD 仿真，游戏售价 5 美元。社区成员指出帆的调整感觉不灵敏，风向指示器可以更清晰。</p>
+<p class="source-line">hackernews · tinywind · 6月15日 16:15 · <a href="https://news.ycombinator.com/item?id=48543475">社区讨论</a></p>
+<p><span class="section-label">背景</span>: HTML5 canvas 是一种在浏览器中绘制 2D 图形的网络技术，常用于游戏和可视化。游戏中的真实风力物理通常涉及模拟风向和强度以影响物体，但完整的 CFD 对于实时应用来说计算成本过高。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://dev.to/kelvin_kariuki_20f4bec616/developer-take-on-tinywind-a-pixel-pirate-sailing-game-with-real-wind-physics-380k-kms-sailed-2947">TinyWind: A pixel pirate sailing game with real wind physics...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区整体情绪积极，称赞其概念和 HTML5 canvas 实现，但多位用户批评航行机制不真实，指出逆风性能过于轻松，帆的调整缺乏清晰的物理映射。</p>
+<div class="tags"><span class="tag">#game development</span><span class="tag">#HTML5 canvas</span><span class="tag">#indie game</span><span class="tag">#physics simulation</span></div>
+<hr /></div>
+<div class="item" id="item-25">
+<div class="item-header"><span class="item-title"><a href="https://michaelenger.com/blog/i-love-the-computer/">一封写给计算机的怀旧情书</a></span><span class="rating ">⭐️ 6.0/10</span></div>
+<p>Michael Enger 发表了一篇题为《我爱计算机》的个人随笔，表达了他对计算机的持久热爱，尽管对现代科技行业（包括 AI 炒作）感到沮丧。 这篇文章引起了许多开发者的共鸣，他们同样对计算怀有怀旧之情，但对 AI 和框架更迭等行业趋势感到疏离，引发了关于激情与务实之间平衡的社区讨论。 文章缺乏技术深度，但包含个人轶事，例如将杂志上的代码复制到记事本并保存为 .exe 文件。社区评论就 AI 是“蛇油”还是真正有用的工具展开了辩论。</p>
+<p class="source-line">hackernews · speckx · 6月15日 20:14 · <a href="https://news.ycombinator.com/item?id=48546441">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 这篇随笔反映了许多年长程序员的共同感受，他们伴随着早期家用计算机成长，认为行业变得过于商业化和炒作驱动。一些评论者用“蛇油”一词来批评他们认为过度承诺而交付不足的 AI 产品。</p>
+<p><span class="section-label">社区讨论</span>: 评论者分享怀旧故事并辩论 AI 的价值：一些人认为 AI 是探索新领域的有用工具，而另一些人同意“蛇油”的描述，感叹炒作破坏了人们热爱的领域。总体情绪复杂但相互尊重。</p>
+<div class="tags"><span class="tag">#computing</span><span class="tag">#nostalgia</span><span class="tag">#AI</span><span class="tag">#software engineering</span></div>
+<hr /></div>
+  </main>
+
+  <footer class="footer">
+    Generated by <a href="https://github.com/strom-fung/horizon">Horizon</a>
+    — AI-powered information aggregation ·
+    <span id="gen-time">2026-06-17 14:10 UTC</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon 每日速递 - 2026-06-17</title>
+<style>
+/* ===================================================================
+   Horizon Daily — Base & Reset
+   =================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0b0b12;
+  --bg-secondary:  #12121c;
+  --bg-card:       #181825;
+  --bg-card-hover: #1e1e30;
+  --bg-tag:        #1e1e32;
+  --text-primary:  #e8e8ed;
+  --text-secondary:#a0a0b8;
+  --text-muted:    #6b6b80;
+  --border:        #252540;
+  --border-light:  #1f1f35;
+  --accent:        #b0a8a0;
+  --accent-glow:   rgba(176, 168, 160, 0.10);
+  --gold:          #f0b90b;
+  --gold-dim:      #8a6d20;
+  --red:           #ff5e5e;
+  --green:         #5effa0;
+  --font-sans:     "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "SF Mono", "Cascadia Code", "Consolas", monospace;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --shadow-card:   0 1px 3px rgba(0,0,0,.4), 0 0 0 1px var(--border);
+  --shadow-glow:   0 0 28px var(--accent-glow);
+  --max-width:     820px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Header
+   =================================================================== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,11,18,.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.header-logo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #c8a880, #c0a898);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.header-date {
+  font-size: .85rem; color: var(--text-secondary);
+  font-weight: 500;
+}
+.header-actions { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-secondary);
+  transition: all .15s;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+.btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent); }
+
+/* ===================================================================
+   Layout
+   =================================================================== */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ===================================================================
+   Hero / summary bar
+   =================================================================== */
+.hero {
+  text-align: center; padding: 40px 0 28px;
+}
+.hero h1 {
+  font-size: 2rem; font-weight: 800; letter-spacing: -.025em;
+  background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  color: var(--text-secondary); font-size: .95rem;
+}
+.stats-row {
+  display: flex; justify-content: center; gap: 28px; margin-top: 18px;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+}
+.stat-label {
+  font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ===================================================================
+   Table of Contents
+   =================================================================== */
+.toc {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); padding: 20px 24px;
+  margin-bottom: 36px;
+}
+.toc-title {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted); margin-bottom: 12px; font-weight: 700;
+}
+.toc-list { list-style: none; columns: 2; column-gap: 24px; }
+@media (max-width: 640px) { .toc-list { columns: 1; } }
+.toc-item {
+  padding: 4px 0; font-size: .88rem; break-inside: avoid;
+}
+.toc-item a {
+  color: var(--text-secondary); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color .12s;
+}
+.toc-item a:hover { color: var(--accent); }
+.toc-star {
+  font-size: .72rem; color: var(--gold); white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   Item cards
+   =================================================================== */
+.item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  transition: border-color .2s, box-shadow .2s;
+  scroll-margin-top: 80px;
+}
+.item:hover {
+  border-color: #353560;
+  box-shadow: var(--shadow-glow);
+}
+.item-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 12px;
+}
+.item-title {
+  font-size: 1.18rem; font-weight: 700; line-height: 1.4; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.item-title:hover { color: var(--accent); }
+.item-title a { color: inherit; text-decoration: none; }
+.item-title a:hover { color: var(--accent); }
+
+.rating {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #1f1a0a; border: 1px solid #3d3515;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: .8rem; font-weight: 700; white-space: nowrap;
+  color: var(--gold); flex-shrink: 0;
+}
+.rating.star-9 { background: #1f1a0a; border-color: #5c4a10; box-shadow: 0 0 12px rgba(240,185,11,.12); }
+.rating.star-8 { border-color: #3d3515; }
+.rating.star-7 { border-color: #2d2818; opacity: .85; }
+
+.item-body { color: var(--text-secondary); font-size: .92rem; line-height: 1.75; }
+.item-body p { margin-bottom: 12px; }
+.item-body p:last-child { margin-bottom: 0; }
+
+/* Source line */
+.source-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: .78rem; color: var(--text-muted);
+}
+.source-line a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.source-line a:hover { text-decoration: underline; }
+
+/* Background / Discussion sections */
+.section-label {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--text-muted); margin-top: 14px; margin-bottom: 6px;
+}
+.item-body strong { color: var(--text-primary); }
+
+/* Tags */
+.tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+}
+.tag {
+  display: inline-block; padding: 3px 10px;
+  font-size: .72rem; font-weight: 600;
+  border-radius: 12px;
+  background: var(--bg-tag); color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  transition: all .12s;
+}
+.tag:hover { color: var(--accent); border-color: var(--accent); background: #1f1f3a; }
+
+/* Details / References */
+details {
+  margin-top: 12px; margin-bottom: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+details[open] { border-color: var(--border); }
+summary {
+  padding: 8px 14px; font-size: .78rem; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  user-select: none;
+  background: var(--bg-secondary);
+  transition: color .12s;
+}
+summary:hover { color: var(--accent); }
+details .references {
+  padding: 8px 14px 12px; font-size: .8rem;
+}
+details .references ul { list-style: none; padding: 0; }
+details .references li {
+  padding: 3px 0; font-size: .8rem;
+}
+details .references a {
+  color: var(--accent); text-decoration: none;
+}
+details .references a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+.footer {
+  text-align: center; padding: 40px 0 0;
+  color: var(--text-muted); font-size: .78rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Hide markdown horizontal rules left from separators */
+.item hr { display: none; }
+
+/* ===================================================================
+   Scrollbar
+   =================================================================== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a55; }
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 640px) {
+  .wrapper { padding: 16px 14px 60px; }
+  .item { padding: 18px 16px; }
+  .hero h1 { font-size: 1.45rem; }
+  .header { padding: 10px 14px; }
+  .header-date { display: none; }
+  .header-brand { font-size: .95rem; }
+  .item-header { flex-direction: column; gap: 8px; }
+  .rating { align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-brand" href="#">
+    <span class="header-logo">🌐</span>
+    Horizon Daily
+  </a>
+  <span class="header-date">2026-06-17</span>
+  <div class="header-actions">
+    <a class="btn" href="#toc">📑 Index</a>
+    <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <section class="hero">
+    <h1>Horizon 每日速递 - 2026-06-17</h1>
+    <p class="subtitle">从 79 条内容中筛选出 25 条重要资讯。</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value">25</div><div class="stat-label">Selected</div></div>
+      <div class="stat"><div class="stat-value">79</div><div class="stat-label">Total Feed</div></div>
+      <div class="stat"><div class="stat-value">7.5</div><div class="stat-label">Avg Score</div></div>
+    </div>
+  </section>
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">📑 Table of Contents</div>
+    <ol class="toc-list">
+      <li class="toc-item"><a href="#item-1"><span class="toc-star">9.0</span>SpaceX 以 600 亿美元收购 Cursor</a></li>
+<li class="toc-item"><a href="#item-2"><span class="toc-star">9.0</span>交互式文章详解机械表原理</a></li>
+<li class="toc-item"><a href="#item-3"><span class="toc-star">9.0</span>Copilot 严重漏洞允许黑客窃取 2FA 验证码</a></li>
+<li class="toc-item"><a href="#item-4"><span class="toc-star">8.0</span>本地 AI 模型：进步与痛点</a></li>
+<li class="toc-item"><a href="#item-5"><span class="toc-star">8.0</span>停止在浏览器会话中使用 JWT</a></li>
+<li class="toc-item"><a href="#item-6"><span class="toc-star">8.0</span>Meta 对 AI 的痴迷引发工程师离职潮</a></li>
+<li class="toc-item"><a href="#item-7"><span class="toc-star">8.0</span>Qwen 发布机器人基础模型套件</a></li>
+<li class="toc-item"><a href="#item-8"><span class="toc-star">8.0</span>SubQ 1.1 Small：学习型稀疏注意力实现线性扩展</a></li>
+<li class="toc-item"><a href="#item-9"><span class="toc-star">8.0</span>AI 模型出口管制损害美国网络防御</a></li>
+<li class="toc-item"><a href="#item-10"><span class="toc-star">8.0</span>泄露文件显示 OpenAI 每年亏损数十亿美元</a></li>
+<li class="toc-item"><a href="#item-11"><span class="toc-star">7.0</span>GrapheneOS 已移植到 Android 17，官方版本即将发布</a></li>
+<li class="toc-item"><a href="#item-12"><span class="toc-star">7.0</span>《卡尔文与霍布斯》与诚信的代价</a></li>
+<li class="toc-item"><a href="#item-13"><span class="toc-star">7.0</span>TNO 宣布为荷兰打造主权大语言模型 GPT-NL</a></li>
+<li class="toc-item"><a href="#item-14"><span class="toc-star">7.0</span>AI 已经扼杀了自助类非虚构书籍吗？</a></li>
+<li class="toc-item"><a href="#item-15"><span class="toc-star">7.0</span>剃牦牛：分心支线任务的乐趣</a></li>
+<li class="toc-item"><a href="#item-16"><span class="toc-star">7.0</span>10GbE 切换至 Broadcom SFP+ 模块</a></li>
+<li class="toc-item"><a href="#item-17"><span class="toc-star">7.0</span>《杀戮尖塔 2》采用自定义 PRNG 确保种子一致性</a></li>
+<li class="toc-item"><a href="#item-18"><span class="toc-star">7.0</span>苹果的隐藏邮件地址变更可能削弱隐私保护</a></li>
+<li class="toc-item"><a href="#item-19"><span class="toc-star">7.0</span>苹果车辆运动提示有效缓解晕车</a></li>
+<li class="toc-item"><a href="#item-20"><span class="toc-star">7.0</span>Reflex.dev 通过 C 扩展将 AST 遍历提速 220 倍</a></li>
+<li class="toc-item"><a href="#item-21"><span class="toc-star">7.0</span>Georgi Gerganov 力荐 Qwen3.6-27B 用于本地编程</a></li>
+<li class="toc-item"><a href="#item-22"><span class="toc-star">7.0</span>Anthropic 的 Fable 越狱报告显示模型“按预期工作”</a></li>
+<li class="toc-item"><a href="#item-23"><span class="toc-star">7.0</span>人格冲突导致 Anthropic 模型下线</a></li>
+<li class="toc-item"><a href="#item-24"><span class="toc-star">7.0</span>Anthropic 暂停 Claude Agent SDK 的按 Token 计费</a></li>
+<li class="toc-item"><a href="#item-25"><span class="toc-star">7.0</span>五角大楼用 AI 撰写国会报告</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="item" id="item-1">
+<div class="item-header"><span class="item-title"><a href="https://www.reuters.com/legal/transactional/spacex-buy-anysphere-60-billion-2026-06-16/">SpaceX 以 600 亿美元收购 Cursor</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>据路透社 2026 年 6 月 16 日报道，SpaceX 宣布以 600 亿美元收购 AI 驱动的代码编辑器 Cursor。 这笔巨额收购标志着对 AI 辅助软件开发的重磅押注，可能重塑整个行业的编码方式，同时也引发了对 SpaceX 超越航空航天领域战略方向的质疑。 600 亿美元的收购价大约相当于建造 150 所全球最昂贵现代医院的总成本（社区评论指出）。Cursor 是一个 AI 编程代理，直接集成在 IDE 中，提供智能代码补全和调试辅助。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 10:44 · <a href="https://news.ycombinator.com/item?id=48553224">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Cursor 是一个 AI 驱动的代码编辑器，利用大语言模型帮助开发者进行代码生成、调试和解释。它已成为领先的 AI 编码工具之一，与 GitHub Copilot 和 Codex 等 AI 助手竞争。SpaceX 传统上是航空航天制造商和太空运输公司，此次收购标志着其向 AI 软件工具领域的多元化拓展。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://cursor.com/">Cursor: AI coding agent</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区评论褒贬不一：一些用户已停止使用 Cursor，转而使用 Codex 等其他工具，认为 Cursor 的弹窗烦人且界面不适合大语言模型。其他人则质疑战略契合度，指出其巨额成本堪比建造医院，并对 Elon Musk 转移 SpaceX 重点表示怀疑。</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#AI coding</span><span class="tag">#SpaceX</span><span class="tag">#Cursor</span><span class="tag">#IDE</span></div>
+<hr /></div>
+<div class="item" id="item-2">
+<div class="item-header"><span class="item-title"><a href="https://ciechanow.ski/mechanical-watch/">交互式文章详解机械表原理</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>Bartosz Ciechanowski 撰写的一篇交互式教育文章，用通俗语言和自定义可视化详细解释了机械表的运作原理。 这篇文章以其罕见的能力脱颖而出，将复杂的机械工程知识普及给广大读者，展示了交互式网页内容在教育中的巨大潜力。 文章使用纯 HTML、CSS 和 JavaScript 编写，确保与旧设备（如 iPhone 7）兼容，并通过交互式图表提供逐步讲解。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 11:26 · <a href="https://news.ycombinator.com/item?id=48553550">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 机械表是由发条驱动的精密装置，通过齿轮和擒纵机构调节计时。理解其内部运作通常需要专业知识，但这篇文章通过视觉和文字分解了每个部件。</p>
+<p><span class="section-label">社区讨论</span>: 社区高度赞扬该文章的教育价值和工艺水平，评论强调了作者使用纯代码的方法以及网站对旧浏览器的兼容性。有评论者受启发，制作了真实的手表机芯分解视图。</p>
+<div class="tags"><span class="tag">#mechanical watch</span><span class="tag">#interactive visualization</span><span class="tag">#educational</span><span class="tag">#engineering</span><span class="tag">#web development</span></div>
+<hr /></div>
+<div class="item" id="item-3">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/security/2026/06/critical-copilot-vulnerability-allowed-hackers-to-seal-2fa-code-from-users/">Copilot 严重漏洞允许黑客窃取 2FA 验证码</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>一个名为 SearchLeak 的严重漏洞链存在于 GitHub Copilot 和 Microsoft 365 Copilot Enterprise 中，攻击者可通过一键利用窃取电子邮件、多因素认证（MFA）代码和文件。 该漏洞凸显了 LLM 安全实践中的系统性失败，因为它危及广泛使用的 AI 编码助手和企业生产力工具，使数百万用户的敏感数据面临风险。 由 Varonis Threat Labs 发现的 SearchLeak 漏洞链利用了 Microsoft 365 Copilot Enterprise 的搜索功能，无需用户交互即可窃取数据。</p>
+<p class="source-line">rss · Ars Technica · 6月16日 11:15</p>
+<p><span class="section-label">背景</span>: GitHub Copilot 和 Microsoft 365 Copilot 是 AI 驱动的助手，帮助用户编写代码和搜索企业数据。为 Copilot 提供支持的 LLM（大语言模型）如果未妥善保护，可能容易受到提示注入和数据泄露攻击。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://cyberpress.org/critical-searchleak-vulnerability/">Critical SearchLeak Vulnerability Lets Attackers Steal Emails,</a></li>
+<li><a href="https://www.scworld.com/brief/searchleak-vulnerability-allows-data-theft-from-microsoft-365-copilot-enterprise">SearchLeak vulnerability allows data theft from Microsoft 365</a></li>
+<li><a href="https://www.ibtimes.sg/searchleak-critical-microsoft-365-copilot-flaw-enabled-one-click-theft-emails-security-codes-88015">SearchLeak: Critical Microsoft 365 Copilot Flaw Enabled</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#security</span><span class="tag">#vulnerability</span><span class="tag">#LLM</span><span class="tag">#Copilot</span><span class="tag">#2FA</span></div>
+<hr /></div>
+<div class="item" id="item-4">
+<div class="item-header"><span class="item-title"><a href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/">本地 AI 模型：进步与痛点</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>一篇文章认为运行本地 AI 模型已变得实用，但社区评论揭示了在速度、量化和工具调用方面持续存在的挑战。 这一讨论凸显了云端与本地 AI 之间的权衡，影响开发者的硬件选择以及本地推理在生产中的可行性。 像 Qwen 27B 这样的密集模型智能但速度慢，而像 Gemma 26B 这样的 MoE 模型速度快但容易出错；量化到 4 位会降低工具调用的准确性。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 14:36 · <a href="https://news.ycombinator.com/item?id=48555993">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 量化通过将权重转换为更低的位宽来减少模型内存和计算需求，但可能降低推理精度。工具调用允许 LLM 调用外部函数，但在重度量化下准确性会下降。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://medium.com/@tubelwj/introduction-to-ai-model-quantization-formats-dc643bfc335c">Introduction to AI Model Quantization Formats | by Gen.... | Medium</a></li>
+<li><a href="https://fast.io/resources/llm-tool-calling/">LLM Tool Calling Guide: Patterns, APIs & Implementation | Fast.io</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者报告本地模型仍有痛苦的权衡：密集模型速度慢，MoE 模型会出错，量化削弱工具调用。一些人因控制和成本而偏爱本地模型而非云 API，另一些人则指出所需的硬件投入。</p>
+<div class="tags"><span class="tag">#local LLMs</span><span class="tag">#AI</span><span class="tag">#machine learning</span><span class="tag">#open source</span><span class="tag">#hardware</span></div>
+<hr /></div>
+<div class="item" id="item-5">
+<div class="item-header"><span class="item-title"><a href="https://gist.github.com/samsch/0d1f3d3b4745d778f78b230cf6061452">停止在浏览器会话中使用 JWT</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Hacker News 上的一场高分讨论指出，JSON Web 令牌（JWT）不应用于基于浏览器的用户会话，因为存在安全权衡，同时承认其在服务间通信中的有效性。 这场辩论凸显了 Web 认证中的关键安全问题，可能影响开发者如何选择会话管理策略并避免常见陷阱。 原始帖子链接到一篇博客，批评 JWT 缺乏撤销能力，而评论者指出，可以使用短生命周期令牌和刷新机制配合撤销列表。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 16:49 · <a href="https://news.ycombinator.com/item?id=48558147">社区讨论</a></p>
+<p><span class="section-label">背景</span>: JWT 是一种紧凑、自包含的令牌格式，常用于身份验证。对于浏览器会话，基于会话的身份验证（使用服务器端存储）是一种常见的替代方案，可以轻松实现撤销。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://medium.com/@coders.stop/exploring-alternatives-to-jwt-for-secure-user-authentication-a27c47d07ba8">Exploring Alternatives to JWT for Secure User Authentication | Medium</a></li>
+<li><a href="https://dev.to/pragativerma18/how-jwts-could-be-dangerous-and-its-alternatives-3k3j">How JWTs Could Be Dangerous and Its Alternatives - DEV Community</a></li>
+<li><a href="https://ssojet.com/blog/service-account-authentication-best-practices-api-keys-oauth">Service Account Authentication Best Practices: From API Keys to</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者普遍同意 JWT 在浏览器会话中存在缺陷，但在服务间通信中有用。一些人认为撤销列表和短过期时间可以缓解担忧，而另一些人则强调基于会话的身份验证更简单、更安全。</p>
+<div class="tags"><span class="tag">#JWT</span><span class="tag">#security</span><span class="tag">#authentication</span><span class="tag">#session-management</span><span class="tag">#web-development</span></div>
+<hr /></div>
+<div class="item" id="item-6">
+<div class="item-header"><span class="item-title"><a href="https://newsletter.pragmaticengineer.com/p/why-is-meta-destroying-its-engineering">Meta 对 AI 的痴迷引发工程师离职潮</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Meta 已将核心团队中 30-50%的工程师强制调岗至 AI 和 RLHF 相关工作，引发广泛不满，并引发关于公司工程文化的讨论。 这一转变反映了更广泛的行业趋势，即对 AI 的痴迷可能损害工程文化和士气，进而影响大型科技公司的产品质量和创新。 调岗涉及将昂贵的软件工程师转移到数据标注和 RLHF 任务，有人认为这是资源浪费。这些变化是 Meta 更广泛重组的一部分，旨在优先发展 AI。</p>
+<p class="source-line">hackernews · The Pragmatic Engineer · 6月16日 16:42 · <a href="https://news.ycombinator.com/item?id=48558045">社区讨论</a></p>
+<p><span class="section-label">背景</span>: RLHF（基于人类反馈的强化学习）是一种通过人类标注数据训练 AI 模型以使其符合人类偏好的技术。Meta 与许多科技巨头一样，正在大力投资 AI，导致组织变革，优先考虑 AI 项目而非传统工程工作。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.businessinsider.com/meta-reorganized-major-businesses-eliminated-roles-whatsapp-instagram-reality-labs-2024-10">Meta Reorganized Some Its Major Businesses and Eliminated Some</a></li>
+<li><a href="https://www.futurevistaacademy.com/generative-ai/metas-ai-restructuring-2025-challenges">Meta's AI Restructuring Efforts and Challenges | Future</a></li>
+<li><a href="https://read.technically.dev/p/what-is-rlhf">What is RLHF? - by Justin - Technically</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者表达了不同观点：一些人批评 Meta 对 AI 的痴迷是有毒的，并可能成为行业常态；另一些人则质疑调岗规模的真实性。前员工指出，被收购的团队如 WhatsApp 的文化优于内部成长的团队。</p>
+<div class="tags"><span class="tag">#Meta</span><span class="tag">#engineering culture</span><span class="tag">#AI</span><span class="tag">#organizational change</span><span class="tag">#tech industry</span></div>
+<hr /></div>
+<div class="item" id="item-7">
+<div class="item-header"><span class="item-title"><a href="https://qwen.ai/blog?id=qwen-robotsuite">Qwen 发布机器人基础模型套件</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Qwen 发布了一套面向机器人的基础模型套件，旨在实现物理世界智能的集成系统。该套件包含用于感知、规划和控制的模型，并通过实际任务进行了演示。 这一进展意义重大，因为它为构建具身 AI 系统提供了统一基础，可能加速智能机器人在制造、物流和日常生活中的部署。它使 Qwen 成为快速发展的物理 AI 领域的关键参与者。 该套件涵盖多种机器人能力，包括物体操作、导航和人机交互。它基于 Qwen 的大语言模型架构构建，并针对实时控制和传感器集成进行了适配。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 13:15 · <a href="https://news.ycombinator.com/item?id=48554814">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 具身 AI 指的是能够感知、推理并在物理世界中行动的 AI 系统，与纯软件 AI 相对。机器人基础模型旨在提供可针对特定任务进行微调的预训练能力，从而减少任务特定工程的需求。Qwen 是阿里云开发的一系列大语言模型，而此次的机器人套件将其能力扩展到了物理领域。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://roboticcontent.com/deploy-qwen-models-with-amazon-bedrock-custom-model-import/">Deploy Qwen models with Amazon Bedrock Custom Model Import</a></li>
+<li><a href="https://gsdvs.com/embodied-ai-creating-intelligent-machines-that-understand-our-physical-world/">Embodied AI: Intelligent Machines Engaging with Our Physical</a></li>
+<li><a href="https://www.alphanome.ai/post/embodied-intelligence-grounding-ai-in-the-physical-world-for-enhanced-capability-and-adaptability">Embodied Intelligence: Grounding AI in the Physical World for</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区反应热烈，许多用户对 Qwen 的持续交付以及机器人的战略重要性印象深刻。一些评论者推测将快速实现大规模生产并颠覆市场，而另一些人则询问关于实时预测和控制的技术问题。总体情绪积极，但也有少数人对具身 AI 的挑战提出了谨慎看法。</p>
+<div class="tags"><span class="tag">#robotics</span><span class="tag">#foundation models</span><span class="tag">#AI</span><span class="tag">#embodied AI</span><span class="tag">#Qwen</span></div>
+<hr /></div>
+<div class="item" id="item-8">
+<div class="item-header"><span class="item-title"><a href="https://subq.ai/subq-1-1-small-technical-report">SubQ 1.1 Small：学习型稀疏注意力实现线性扩展</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>SubQ 1.1 Small 引入了 SSA（稀疏稀疏注意力），这是一种学习型稀疏注意力机制，其计算量随上下文长度线性扩展，在 1M token 下相比 FlashAttention-2 减少了 64.5 倍的计算量，推理速度提升了 56 倍。 这一突破可能大幅降低长上下文 LLM 推理的成本，使处理整本书籍或长篇文档等实际应用成为可能。它挑战了主流的密集注意力范式，并可能影响未来高效 Transformer 的设计。 技术报告缺乏详细的架构说明，引发了社区的批评。SSA 声称是内容相关的、精确的，并且能够关注到 1200 万 token 上下文中的任何位置。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 14:50 · <a href="https://news.ycombinator.com/item?id=48556163">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 标准 Transformer 注意力的复杂度为 O(n²)（n 为上下文长度），导致长上下文计算成本高昂。稀疏注意力机制旨在通过仅计算部分 token 对的注意力来降低复杂度，但许多先前的方法牺牲了准确性或通用性。SSA 学习应该关注哪些位置，可能同时提供效率和高质量。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://arxiv.org/html/2511.20102">SSA: Sparse Sparse Attention by Aligning Full and Sparse Attention...</a></li>
+<li><a href="https://dev.to/thegatewayguy/12-million-tokens-linear-cost-subquadratics-bet-against-the-attention-tax-jp7">12 million tokens, linear cost: Subquadratic's bet against the attention...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者对性能提升感到兴奋，但由于缺乏架构细节而持怀疑态度，尤其是与开放的中国实验室相比。一些人呼吁在“大海捞针”测试之外，建立更好的长上下文基准，例如长形式问答。</p>
+<div class="tags"><span class="tag">#LLM</span><span class="tag">#attention mechanism</span><span class="tag">#efficiency</span><span class="tag">#long context</span><span class="tag">#sparse attention</span></div>
+<hr /></div>
+<div class="item" id="item-9">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything">AI 模型出口管制损害美国网络防御</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>安全研究员 Kate Moussouris 证实，导致 Anthropic 的 Claude Fable 5 因出口管制被禁的所谓“越狱”，仅仅是要求模型“修复这段代码”——一项常规的防御性安全任务。美国政府发布出口管制指令，暂停对 Fable 5 和 Mythos 5 的访问，此前在安全测试中发现了一种绕过方法。 这揭示了一个危险的悖论：旨在防止 AI 助长网络攻击的出口管制，反而阻止了模型修复安全漏洞，削弱了美国的网络防御。非技术决策者有可能禁止防御者最需要的工具。 研究人员使用了包含已知 CVE 的开源代码和故意植入漏洞的代码，要求 Fable 5 审查并修复代码。该模型拒绝审查，但通过多步骤手动过程生成了测试补丁的脚本。</p>
+<p class="source-line">rss · Simon Willison · 6月16日 05:20</p>
+<p><span class="section-label">背景</span>: AI 模型出口管制是政府限制哪些国家或实体可以访问先进 AI 系统的规定，通常以国家安全为由，担心被用于网络武器。然而，可能被滥用于进攻性网络操作的相同能力，对于查找和修复漏洞等防御性安全任务也至关重要。Claude Fable 5 是 Anthropic 公司开发的下一代“Mythos 级”AI 模型，专为高级推理和代码生成而设计。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5 and Claude Mythos 5 \ Anthropic</a></li>
+<li><a href="https://www.zerohedge.com/ai/anthropic-blocks-foreign-access-fable-5-mythos-5-after-us-national-security-order">Anthropic Blocks Foreign Access To Fable 5, Mythos... | ZeroHedge</a></li>
+<li><a href="https://www.testingcatalog.com/anthropic-suspends-fable-5-and-mythos-5-after-export-order/">Anthropic suspends Fable 5 and Mythos 5 after export order</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI</span><span class="tag">#export controls</span><span class="tag">#cybersecurity</span><span class="tag">#policy</span></div>
+<hr /></div>
+<div class="item" id="item-10">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/">泄露文件显示 OpenAI 每年亏损数十亿美元</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>泄露的审计财务文件显示，OpenAI 的收入增长迅速，但仍远不及研发和其他支出，导致每年数十亿美元的亏损。 这一披露凸显了 OpenAI 面临的重大财务可持续性挑战，可能影响其继续引领 AI 发展的能力，并影响投资者对更广泛 AI 行业的信心。 这些文件经过审计，显示尽管收入增长，但支出（尤其是研发支出）超过了收入，导致数十亿美元的净亏损。摘要中未提供具体的收入或亏损数字。</p>
+<p class="source-line">rss · Ars Technica · 6月16日 16:18</p>
+<p><span class="section-label">背景</span>: OpenAI 是一家领先的人工智能研究机构，以开发 GPT-4 和 ChatGPT 等模型而闻名。与许多 AI 公司一样，它需要大量投资于计算能力、人才和数据以保持竞争力。泄露的文件罕见地揭示了其财务状况，这一直是外界猜测的话题。</p>
+<div class="tags"><span class="tag">#OpenAI</span><span class="tag">#finance</span><span class="tag">#AI industry</span><span class="tag">#business</span></div>
+<hr /></div>
+<div class="item" id="item-11">
+<div class="item-header"><span class="item-title"><a href="https://discuss.grapheneos.org/d/36469-grapheneos-has-been-ported-to-android-17-and-official-releases-are-coming-soon">GrapheneOS 已移植到 Android 17，官方版本即将发布</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>注重隐私的移动操作系统 GrapheneOS 已移植到 Android 17，官方版本预计很快发布。 此次更新将最新的 Android 安全与隐私功能带给 GrapheneOS 用户，巩固了其作为领先安全移动操作系统的地位。同时，它也满足了用户对去谷歌化替代方案日益增长的需求，尤其是在谷歌主要市场之外的地区。 该移植基于 Android 开源项目 (AOSP) 17，官方构建版本将适用于支持的 Pixel 设备。用户需注意，某些功能（如非接触式支付）可能需要根据地区采用变通方案。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 20:34 · <a href="https://news.ycombinator.com/item?id=48561654">社区讨论</a></p>
+<p><span class="section-label">背景</span>: GrapheneOS 是 AOSP 的强化版本，专注于隐私和安全，常被希望最小化谷歌服务的用户使用。由于 Pixel 设备强大的硬件安全支持，GrapheneOS 主要运行在 Google Pixel 设备上。Android 17 是最新的 Android 主要版本，引入了新的隐私控制和性能改进。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://grapheneos.org/">GrapheneOS: the private and secure mobile OS</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区情绪积极，长期用户表示满意并推荐切换。部分用户怀念特定功能，如通过空格键滑动控制光标或简化表情反应，同时也有关于需要非 Pixel 硬件支持以扩大可及性的讨论。</p>
+<div class="tags"><span class="tag">#GrapheneOS</span><span class="tag">#Android</span><span class="tag">#privacy</span><span class="tag">#mobile OS</span><span class="tag">#security</span></div>
+<hr /></div>
+<div class="item" id="item-12">
+<div class="item-header"><span class="item-title"><a href="https://therepublicofletters.substack.com/p/calvin-and-hobbes-and-the-price-of">《卡尔文与霍布斯》与诚信的代价</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Substack 上的一篇文章探讨了比尔·沃特森决定从不将《卡尔文与霍布斯》商品化的决定，强调了他对艺术诚信而非商业利益的坚持。 这一反思深深引起了创作者和粉丝的共鸣，引发了关于创意行业中艺术纯粹性与财务成功之间权衡的讨论。 文章将沃特森的做法与其他创作者如吉姆·戴维斯（将加菲猫商品化）进行了对比，并指出沃特森在漫画巅峰时期选择离开以保护他的愿景。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 15:44 · <a href="https://news.ycombinator.com/item?id=48557079">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 《卡尔文与霍布斯》是一部深受喜爱的漫画，从 1985 年连载至 1995 年。比尔·沃特森以拒绝授权其角色进行商品化而闻名，这在行业中极为罕见。这一决定常被视为艺术诚信的标杆。</p>
+<p><span class="section-label">社区讨论</span>: 评论者表达了对沃特森诚信的钦佩，有些人指出如果处于他的位置，他们可能会选择拿钱。其他人分享了《卡尔文与霍布斯》如何影响他们生活的个人故事，还有一位用户重新发布了沃特森的毕业典礼演讲。</p>
+<div class="tags"><span class="tag">#artistic integrity</span><span class="tag">#Bill Watterson</span><span class="tag">#Calvin and Hobbes</span><span class="tag">#creativity</span><span class="tag">#culture</span></div>
+<hr /></div>
+<div class="item" id="item-13">
+<div class="item-header"><span class="item-title"><a href="https://www.tno.nl/en/digital/artificial-intelligence/gpt-nl/">TNO 宣布为荷兰打造主权大语言模型 GPT-NL</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>TNO 与 SURF 和荷兰法医研究所共同宣布了 GPT-NL，这是一个完全在荷兰和欧洲内部开发的主权大语言模型，获得了 1350 万欧元的资助。该模型正在由四个荷兰政府机构进行试点。 GPT-NL 代表了减少对非欧洲 AI 提供商依赖的战略举措，确保数据主权并符合欧洲法律和价值观。它可能为寻求建立自身主权 AI 能力的其他国家树立先例。 该模型完全使用合法获取的荷兰文档进行训练，旨在对数据和模型选择拥有完全控制权。1350 万欧元的资助支持开发符合荷兰社会目标的可持续 AI 生态系统。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 17:54 · <a href="https://news.ycombinator.com/item?id=48559188">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 主权 AI 指在部署组织或国家控制的基础设施内运行的 AI 系统，确保数据隐私和法规合规。许多欧洲国家正在投资国家大语言模型，以避免依赖可能不符合欧洲数据保护标准的美国和中国模型。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://nltimes.nl/2026/02/26/dutch-government-agencies-pilot-homegrown-ai-model-gpt-nl">Dutch government agencies to pilot homegrown AI model GPT-NL |</a></li>
+<li><a href="https://www.dutchnews.co/technologie/netherlands-tests-homegrown-ai-model-gpt-nl.html">Dutch Government Trials GPT-NL AI Model</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: Hacker News 社区意见分歧：一些人认为从头构建主权模型是浪费，应该专注于微调现有前沿模型；而另一些人则强调国家 AI 独立性和特定语言研究的重要性。少数评论者还指出，主权微调能力比完整模型训练更为关键。</p>
+<div class="tags"><span class="tag">#sovereign AI</span><span class="tag">#large language models</span><span class="tag">#Netherlands</span><span class="tag">#European AI</span><span class="tag">#natural language processing</span></div>
+<hr /></div>
+<div class="item" id="item-14">
+<div class="item-header"><span class="item-title"><a href="https://tim.blog/2026/06/12/has-ai-already-killed-nonfiction/">AI 已经扼杀了自助类非虚构书籍吗？</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>蒂姆·费里斯的一篇博文讨论了 AI 和大语言模型是否通过提供更快、更精炼的建议来取代自助类非虚构书籍，在 Hacker News 上引发了辩论。 这场辩论凸显了人们获取建议和个人发展内容方式的潜在转变，可能颠覆出版业并改变作者的角色。 该博文在 Hacker News 上获得了 128 分和 129 条评论的高参与度，表明社区对该话题有强烈兴趣。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 17:11 · <a href="https://news.ycombinator.com/item?id=48558489">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 自助类非虚构书籍是一种承诺个人提升的流行体裁，常被批评内容冗长。像 GPT-4 这样的大语言模型可以即时生成个性化建议，引发了对传统书籍价值的质疑。</p>
+<p><span class="section-label">社区讨论</span>: 评论者意见不一：一些人认为 LLM 提供了更好、无冗余的体验，而另一些人则认为自助行业是一个相互推广的“黑手党”，人类作者的可信度无法被 AI 取代。</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#self-help</span><span class="tag">#publishing</span><span class="tag">#LLMs</span><span class="tag">#content consumption</span></div>
+<hr /></div>
+<div class="item" id="item-15">
+<div class="item-header"><span class="item-title"><a href="https://parksb.github.io/en/article/32.html">剃牦牛：分心支线任务的乐趣</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一篇 2019 年的文章和社区讨论反思了编程中“剃牦牛”的乐趣和生产力，用户分享了长期副项目的个人轶事，并指出 AI 降低了剃牦牛的成本。 这突显了软件开发中一个常见但常被忽视的方面，验证了许多开发者的体验，并表明 AI 工具可能使这种探索性工作更可行、更有回报。 该文章得分 7.0/10，获得 195 个点赞和 53 条评论，表明社区参与度很高。一位用户描述了一个持续 30 年的剃牦牛任务，最终产出了一个混合 C/Lua 游戏引擎；另一位用户指出 AI 大大降低了剃牦牛的成本。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 14:26 · <a href="https://news.ycombinator.com/item?id=48555838">社区讨论</a></p>
+<p><span class="section-label">背景</span>: “剃牦牛”是编程俚语，指在项目推进前必须完成的一系列看似无休止的小任务。它通常涉及被旁支但必要的子任务分散注意力，这可能让人感觉效率低下，但有时能发现技术债务或解决未来的问题。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://softwareengineering.stackexchange.com/questions/388092/what-exactly-is-yak-shaving">agile - What exactly is Yak Shaving? - Software Engineering Stack...</a></li>
+<li><a href="https://www.counterpart.biz/blog/yak-shaving/">Yak Shaving: When Tech Projects Get Weirdly Hairy | Counterpart</a></li>
+<li><a href="https://worldwidewebster.github.io/blog/2022/06/21/masterclass-in-yak-shaving/">Master Class in Yak Shaving | World Wide Webster</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区态度总体积极，用户分享个人长期剃牦牛项目的经历并表示享受。一些人指出 AI 使剃牦牛更高效，另一些人则幽默地描述了自己复杂的支线任务。</p>
+<div class="tags"><span class="tag">#yak shaving</span><span class="tag">#software engineering</span><span class="tag">#productivity</span><span class="tag">#side projects</span><span class="tag">#AI</span></div>
+<hr /></div>
+<div class="item" id="item-16">
+<div class="item-header"><span class="item-title"><a href="https://www.gilesthomas.com/2026/06/10g-ethernet-switching-to-broadcom-sfp-plus">10GbE 切换至 Broadcom SFP+ 模块</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一篇技术文章详细介绍了为 10 千兆以太网切换至 Broadcom SFP+模块的过程，涵盖了散热管理和布线选择等实际考虑因素。 这很重要，因为 10GbE 在家庭和小型企业网络中日益普及，选择合适的 SFP+模块和布线（光纤 vs. 铜缆 vs. DAC）会影响性能、散热和成本。 文章讨论了 Broadcom SFP+模块的兼容性、铜缆 SFP+模块的散热问题，以及使用 DAC（直连铜缆）短距离连接以减少散热和复杂性的选项。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 17:48 · <a href="https://news.ycombinator.com/item?id=48559083">社区讨论</a></p>
+<p><span class="section-label">背景</span>: SFP+是 10 千兆以太网收发器的外形规格，常用于网络交换机和网卡。模块可以是光纤、铜缆（存在散热问题）或被动 DAC 线缆，后者将收发器集成在线缆中，功耗和发热更低。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.flexoptix.net/en/supported-vendors/index/name/Broadcom-compatible">Broadcom compatible Universal Transceiver</a></li>
+<li><a href="https://www.broadcom.com/products/fiber-optic-modules-components/networking/optical-transceivers/sfpplus">“SFP Plus”, or SFP+, are speed enhanced variations of the...</a></li>
+<li><a href="https://lenovopress.lenovo.com/tips1027.pdf">Broadcom NetXtreme 10 GbE SFP+ Network Adapter Family for...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者就 10GbE 的光纤与铜缆选择展开讨论，有人主张光纤以面向未来且发热更低，也有人推荐短距离使用 DAC 线缆。一位用户提到了用于重新编程模块的 UniFi SFP Wizard，另一位指出现在已有廉价、低发热的 10G 铜缆网卡和交换机。</p>
+<div class="tags"><span class="tag">#networking</span><span class="tag">#10GbE</span><span class="tag">#SFP+</span><span class="tag">#hardware</span><span class="tag">#cabling</span></div>
+<hr /></div>
+<div class="item" id="item-17">
+<div class="item-header"><span class="item-title"><a href="https://tck.mn/blog/correlated-randomness-sts2/">《杀戮尖塔 2》采用自定义 PRNG 确保种子一致性</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>《杀戮尖塔 2》的开发者在代码库中实现了自定义伪随机数生成器（PRNG），而非依赖 C#标准库，从而确保种子在所有平台上产生相同的结果。 这一变化保证了种子在跨平台间的一致性，避免了原版游戏中桌面版和移动版同一种子产生不同结果的问题。同时，它也防止了未来标准库实现变化导致旧种子失效的风险。 自定义 PRNG 使用了确定性的、平台无关的特定算法（社区评论指出可能是 PCG32）。文章还讨论了如何使用相关随机性来减少不可获胜局面的频率，例如确保第二层的两个尸虫不会过于频繁地在第一回合同时攻击。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 09:46 · <a href="https://news.ycombinator.com/item?id=48552844">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 伪随机数生成器（PRNG）是游戏中用于生成看似随机但基于初始种子确定的数字序列的算法。在初代《杀戮尖塔》中，使用 C#的 System.Random 类导致不同平台结果不同，因为其实现存在差异。自定义 PRNG 确保相同种子始终产生相同的游戏状态，这对种子分享和竞技玩法至关重要。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://stackoverflow.com/questions/36957670/can-c11-prng-be-used-to-produce-repeatable-results">c++ - Can C++11 PRNG be used to produce repeatable results? -</a></li>
+<li><a href="https://gamedev.stackexchange.com/questions/149489/is-unity-2017-random-number-generator-deterministic-across-platforms-given-the-s">c# - Is Unity 2017 random number generator deterministic across</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者对技术深度解析表示赞赏，并指出 Godot 的 GDScript 使用了 PCG32，本可避免该问题。一位用户提及原版游戏中的不可获胜种子，引发了关于“RNG 地狱”场景的讨论。总体情绪积极，许多人对《杀戮尖塔 2》表示期待。</p>
+<div class="tags"><span class="tag">#game development</span><span class="tag">#random number generation</span><span class="tag">#software engineering</span><span class="tag">#cross-platform</span></div>
+<hr /></div>
+<div class="item" id="item-18">
+<div class="item-header"><span class="item-title"><a href="https://arseniyshestakov.com/2026/06/16/apple-is-about-to-make-hide-my-email-useless/">苹果的隐藏邮件地址变更可能削弱隐私保护</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>苹果计划将“隐藏邮件地址”和“通过 Apple 登录”的别名统一到@private.icloud.com 域名下，这使得网站更容易屏蔽所有中继邮件。 这一变化可能显著降低“隐藏邮件地址”的有效性——这是 iCloud+用户的关键隐私功能——因为网站可以识别并屏蔽所有苹果中继地址。 此前，“隐藏邮件地址”使用@privaterelay.appleid.com，而“通过 Apple 登录”使用@private.icloud.com；合并到一个域名后，全面屏蔽变得轻而易举。用户仍可在变更生效前预先生成@icloud.com 别名。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 18:37 · <a href="https://news.ycombinator.com/item?id=48559935">社区讨论</a></p>
+<p><span class="section-label">背景</span>: “隐藏邮件地址”是 iCloud+的一项功能，可生成唯一的随机电子邮件地址以保护用户的个人邮箱。“通过 Apple 登录”也提供邮件中继以保护隐私。目前这两项服务使用不同的域名，使得网站难以集体屏蔽它们。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://support.apple.com/en-us/105078">How to use Hide My Email with Sign in with Apple - Apple Support</a></li>
+<li><a href="https://auth0.com/blog/what-is-sign-in-with-apple-a-new-identity-provider/">What is Sign In with Apple? Learn About the New Identity Provider</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: Hacker News 上的评论观点不一：有人认为这一变化并非灾难，因为屏蔽中继邮件的网站可能本就不可信；另一些人建议使用自定义域名或预先生成别名等变通方法。少数人质疑统一域名为何会使屏蔽更容易，但文章解释称单一域名允许简单的黑名单规则。</p>
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#privacy</span><span class="tag">#email</span><span class="tag">#iCloud</span><span class="tag">#security</span></div>
+<hr /></div>
+<div class="item" id="item-19">
+<div class="item-header"><span class="item-title"><a href="https://www.theverge.com/tech/942854/apple-vehicle-motion-cues-review-really-work">苹果车辆运动提示有效缓解晕车</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>一位用户报告称，苹果在 iOS 18 和 iPadOS 18 中推出的车辆运动提示功能，通过显示模拟车辆运动的动画圆点，显著减轻了晕车症状。 该功能解决了乘客在移动车辆中使用设备时常见的晕车问题，可能为数百万用户提升出行舒适度。 该功能可设置为自动模式，仅当 iPhone 检测到用户在移动车辆中时显示圆点，运动停止时圆点隐藏。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 16:12 · <a href="https://news.ycombinator.com/item?id=48557530">社区讨论</a></p>
+<p><span class="section-label">背景</span>: 晕车是由于视觉信号与身体运动感知之间的冲突引起的。苹果的车辆运动提示通过动画圆点使视觉输入与实际运动对齐，从而减少感官不匹配。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://support.apple.com/en-mn/guide/iphone/iph55564cb22/ios">Use iPhone more comfortably while riding in... - Apple Support (MN)</a></li>
+<li><a href="https://www.apple.com/newsroom/2024/05/apple-announces-new-accessibility-features-including-eye-tracking/">Apple announces new accessibility features, including Eye... - Apple</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者表示期待尝试该功能，有人指出存在安卓替代方案。一位用户解释了晕车背后的进化理论，另一位则提到 VR 中使用了类似技术来防止不适。</p>
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#accessibility</span><span class="tag">#motion sickness</span><span class="tag">#iOS</span><span class="tag">#user experience</span></div>
+<hr /></div>
+<div class="item" id="item-20">
+<div class="item-header"><span class="item-title"><a href="https://reflex.dev/blog/why-ast-walk-when-you-can-ast-sprint/">Reflex.dev 通过 C 扩展将 AST 遍历提速 220 倍</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Reflex.dev 发布了一篇博客文章，详细介绍了他们如何通过用自定义的基于 C 的方法 ast.sprint 替换 ast.walk，将 Python AST 遍历速度提升了 220 倍。 这一优化展示了在依赖 AST 遍历的 Python 工具（如 linter 和 codemod）中显著的性能提升，可能使它们变得更快。它还凸显了在关键代码路径中使用 C 扩展来克服 Python 性能限制的好处。 自定义的 ast.sprint 作为 C 扩展实现，通过在 C 中直接遍历 AST 节点来绕过 Python 的开销。博客文章指出，220 倍的加速是与原始 Python 实现相比的，并且该方法特定于 Reflex 的使用场景。</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · 6月16日 16:25 · <a href="https://news.ycombinator.com/item?id=48557768">社区讨论</a></p>
+<p><span class="section-label">背景</span>: Python 的 ast.walk 是一个内置生成器，递归地生成抽象语法树（AST）中的所有节点，但它用纯 Python 实现，对于大型代码库可能很慢。C 扩展允许 Python 代码调用 C 库以执行性能关键任务，如 Cython 等项目所示。Reflex.dev 是一个用 Python 构建 Web 应用的框架，他们可能使用 AST 遍历进行代码分析或转换。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://cython.org/">Cython: C-Extensions for Python</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 评论者赞赏作者在转向 C 之前先尝试优化 Python 代码。一些人想知道类似的 lint 是否可以用 semgrep 规则表达，另一些人则询问该优化是否能使 libCST 或 bandit 等工具受益。</p>
+<div class="tags"><span class="tag">#Python</span><span class="tag">#AST</span><span class="tag">#optimization</span><span class="tag">#performance</span></div>
+<hr /></div>
+<div class="item" id="item-21">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/georgi-gerganov/#atom-everything">Georgi Gerganov 力荐 Qwen3.6-27B 用于本地编程</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>llama.cpp 的创建者 Georgi Gerganov 公开表示，Qwen3.6-27B 是一款非常强大的本地编程模型，他过去一个多月几乎每天都在自己的 M2 Ultra 和 RTX 5090 系统上使用它。 来自本地 LLM 生态关键人物的背书，为 Qwen3.6-27B 作为开发者实用工具增添了重要可信度，可能加速本地编程助手的普及。 Gerganov 使用一个名为 pi agent 的轻量级框架，命令为 &lsquo;pi -nc &ndash;offline&rsquo;，并配合简短的系统提示词来使模型符合他的编程风格。他提到，如果不是花大量时间审查 PR，他会更频繁地使用它。</p>
+<p class="source-line">rss · Simon Willison · 6月16日 16:04</p>
+<p><span class="section-label">背景</span>: Qwen3.6-27B 是阿里巴巴 Qwen 团队推出的 270 亿参数推理模型，在 Artificial Analysis 智能指数上得分为 46，远高于平均水平。llama.cpp 是一个高性能的 C/C++ 推理引擎，用于本地运行 LLM；pi agent 是一个基于终端的编程框架，用于编排 LLM 完成编程任务。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://artificialanalysis.ai/models/qwen3-6-27b">Qwen3.6 27B - Intelligence, Performance & Price Analysis</a></li>
+<li><a href="https://huggingface.co/docs/inference-endpoints/engines/llama_cpp">llama.cpp · Hugging Face</a></li>
+<li><a href="https://aisoftwaresystems.com/blog/what-is-pi-agent/">What Is Pi Agent?</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 在 Hacker News 上围绕原文《Running local models is good now》的讨论普遍认为，本地模型对许多任务已经变得实用。Gerganov 的评论以亲身经历强化了这一观点。</p>
+<div class="tags"><span class="tag">#local LLM</span><span class="tag">#coding assistant</span><span class="tag">#Qwen</span><span class="tag">#llama.cpp</span><span class="tag">#AI tools</span></div>
+<hr /></div>
+<div class="item" id="item-22">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/matteo-wong-the-atlantic/#atom-everything">Anthropic 的 Fable 越狱报告显示模型“按预期工作”</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic 与网络安全专家 Katie Moussouris 分享了白宫关于 Fable 越狱的报告，她指出该模型拒绝审查不安全的代码，但在被要求修复时却遵从了，她称这对网络防御来说是“按预期工作”。 这一事件凸显了 AI 模型在网络安全背景下的细微行为，并引发了关于出口管制和 AI 安全政策的问题，因为模型拒绝审查但愿意修复不安全代码的行为可能被对手利用。 Fable 越狱涉及 IT 专家要求模型查找和修补漏洞；模型拒绝了“审查代码的安全问题”，但在被要求“修复此代码”并附加一些手动步骤时却遵从了。Moussouris 并未从 Anthropic 获得报酬。</p>
+<p class="source-line">rss · Simon Willison · 6月16日 03:07</p>
+<p><span class="section-label">背景</span>: Fable 越狱指的是一种绕过 Anthropic 的 Claude 模型（特别是 Fable 5 变体）安全护栏的技术。白宫报告审查了该模型如何响应网络安全任务，揭示了不一致的拒绝行为。Katie Moussouris 是知名网络安全专家、Luta Security 的 CEO，专攻漏洞披露。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://cybernews.com/security/anthropic-fable5-jailbreak-us-government/">That horrible thing that pushed Fable 5 offline? | Cybernews</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Katie_Moussouris">Katie Moussouris - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI safety</span><span class="tag">#jailbreak</span><span class="tag">#cybersecurity</span><span class="tag">#export controls</span><span class="tag">#Anthropic</span></div>
+<hr /></div>
+<div class="item" id="item-23">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/15/axios-clashes-anthropics/#atom-everything">人格冲突导致 Anthropic 模型下线</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Axios 报道称，Anthropic 与美国政府之间的人格冲突和幕后动态导致其模型（Mythos 和 Fable）因出口管制而被暂停使用。 这一事件凸显了 AI 公司与政府监管机构在出口管制和模型安全方面日益紧张的关系，可能为未来的 AI 治理开创先例。 关键人物包括 Logan Graham（Anthropic 前沿红队负责人）、Dave Orr（安全主管）和 Nicholas Carlini，他们正在与商务部会面。政府以越狱漏洞为由，但 Anthropic 声称那是一次狭窄的、非通用的攻击。</p>
+<p class="source-line">rss · Simon Willison · 6月15日 14:57</p>
+<p><span class="section-label">背景</span>: Anthropic 的前沿红队负责对 AI 模型进行红队测试以发现漏洞。美国政府越来越关注先进 AI 模型的出口管制，尤其是在 Claude Mythos 被报道出现越狱之后。Anthropic 与政府官员之间的人际关系使情况更加复杂。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/news/strategic-warning-for-ai-risk-progress-and-insights-from-our-frontier-red-team">anthropic.com/news/strategic-warning-for-ai-risk-progress-and-insights-from-our-frontier-red-team</a></li>
+<li><a href="https://www.anthropic.com/news/frontier-threats-red-teaming-for-ai-safety">Frontier Threats Red Teaming for AI Safety \ Anthropic</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">社区讨论</span>: 社区讨论（来自 Simon Willison 的博客）对政府的立场表示怀疑，指出完美的越狱抵抗可能是不可能的，解决方案可能需要“态度调整”而非技术方案。</p>
+<div class="tags"><span class="tag">#AI policy</span><span class="tag">#Anthropic</span><span class="tag">#export controls</span><span class="tag">#government regulation</span></div>
+<hr /></div>
+<div class="item" id="item-24">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/">Anthropic 暂停 Claude Agent SDK 的按 Token 计费</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic 已暂停原计划于周一实施的 Claude Agent SDK 按 Token 计费方案，该方案本将大幅增加重度用户的成本。 这一决定表明 Anthropic 重视开发者反馈，并可能为 AI SDK 领域的定价模式树立先例，影响其他公司如何设计计费结构。 按 Token 计费本将根据 SDK 处理的 Token 数量向开发者收费，可能大幅增加重度依赖该工具的用户成本。暂停表明社区或内部存在强烈反对意见。</p>
+<p class="source-line">rss · Ars Technica · 6月16日 21:00</p>
+<p><span class="section-label">背景</span>: 按 Token 计费是 AI API 常见的定价模式，用户根据处理的 Token（单词片段）数量付费。Claude Agent SDK 是一个开发者工具包，允许使用 Anthropic 的 Claude 模型构建 AI 代理。许多开发者使用此类 SDK 进行编码辅助和自动化等任务。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://schematichq.com/pricing-resources/token-based-billing">Token-Based Billing | Definition and Guide | Schematic</a></li>
+<li><a href="https://www.anthropic.com/news/claude-sonnet-4-5">Introducing Claude Sonnet 4.5 \ Anthropic</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#Anthropic</span><span class="tag">#Claude</span><span class="tag">#pricing</span><span class="tag">#AI SDK</span><span class="tag">#developer tools</span></div>
+<hr /></div>
+<div class="item" id="item-25">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/pentagon-boasts-of-using-ai-to-write-reports-mandated-by-congress/">五角大楼用 AI 撰写国会报告</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>五角大楼宣布使用生成式 AI 来撰写国会要求的报告，并声称有 150 万人员正在使用生成式 AI 工具。 这标志着政府使用 AI 的重大转变，引发了关于透明度、准确性以及 AI 在政策制定中作用的质疑。这可能为其他联邦机构树立先例。 五角大楼之前识别报告要求并分配报告的过程需要三到六个月，而有些报告在一年内就要提交。GAO 报告强调了使用 AI 带来的效率提升。</p>
+<p class="source-line">rss · Ars Technica · 6月16日 18:11</p>
+<p><span class="section-label">背景</span>: 生成式 AI 工具使用人工智能模型根据用户提示创建原创内容，如文本、图像、音频、视频和代码。在政府中，这些工具可以通过总结文档、起草文本和生成代码来加速理解。管理和预算办公室已发布关于减轻政府 AI 使用风险的指导。</p>
+<details class="ref-details"><summary>参考链接</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/ai/2026/06/pentagon-boasts-of-using-ai-to-write-reports-mandated-by-congress/">Pentagon boasts of using AI to write reports mandated... - Ars Technica</a></li>
+<li><a href="https://www.niskanencenter.org/ai-in-government-from-tools-to-transformation/">AI in government: From tools to transformation - Niskanen Center</a></li>
+<li><a href="https://www.ibm.com/think/topics/generative-ai-for-government">Generative AI for Government | IBM</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI</span><span class="tag">#government</span><span class="tag">#policy</span><span class="tag">#generative AI</span><span class="tag">#defense</span></div>
+<hr /></div>
+  </main>
+
+  <footer class="footer">
+    Generated by <a href="https://github.com/strom-fung/horizon">Horizon</a>
+    — AI-powered information aggregation ·
+    <span id="gen-time">2026-06-17 14:10 UTC</span>
+  </footer>
+
+</div>
+</body>
+</html>

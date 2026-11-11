@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon Daily - 2026-06-16</title>
+<style>
+/* ===================================================================
+   Horizon Daily — Base & Reset
+   =================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0b0b12;
+  --bg-secondary:  #12121c;
+  --bg-card:       #181825;
+  --bg-card-hover: #1e1e30;
+  --bg-tag:        #1e1e32;
+  --text-primary:  #e8e8ed;
+  --text-secondary:#a0a0b8;
+  --text-muted:    #6b6b80;
+  --border:        #252540;
+  --border-light:  #1f1f35;
+  --accent:        #b0a8a0;
+  --accent-glow:   rgba(176, 168, 160, 0.10);
+  --gold:          #f0b90b;
+  --gold-dim:      #8a6d20;
+  --red:           #ff5e5e;
+  --green:         #5effa0;
+  --font-sans:     "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "SF Mono", "Cascadia Code", "Consolas", monospace;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --shadow-card:   0 1px 3px rgba(0,0,0,.4), 0 0 0 1px var(--border);
+  --shadow-glow:   0 0 28px var(--accent-glow);
+  --max-width:     820px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Header
+   =================================================================== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,11,18,.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.header-logo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #c8a880, #c0a898);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.header-date {
+  font-size: .85rem; color: var(--text-secondary);
+  font-weight: 500;
+}
+.header-actions { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-secondary);
+  transition: all .15s;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+.btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent); }
+
+/* ===================================================================
+   Layout
+   =================================================================== */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ===================================================================
+   Hero / summary bar
+   =================================================================== */
+.hero {
+  text-align: center; padding: 40px 0 28px;
+}
+.hero h1 {
+  font-size: 2rem; font-weight: 800; letter-spacing: -.025em;
+  background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  color: var(--text-secondary); font-size: .95rem;
+}
+.stats-row {
+  display: flex; justify-content: center; gap: 28px; margin-top: 18px;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+}
+.stat-label {
+  font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ===================================================================
+   Table of Contents
+   =================================================================== */
+.toc {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); padding: 20px 24px;
+  margin-bottom: 36px;
+}
+.toc-title {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted); margin-bottom: 12px; font-weight: 700;
+}
+.toc-list { list-style: none; columns: 2; column-gap: 24px; }
+@media (max-width: 640px) { .toc-list { columns: 1; } }
+.toc-item {
+  padding: 4px 0; font-size: .88rem; break-inside: avoid;
+}
+.toc-item a {
+  color: var(--text-secondary); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color .12s;
+}
+.toc-item a:hover { color: var(--accent); }
+.toc-star {
+  font-size: .72rem; color: var(--gold); white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   Item cards
+   =================================================================== */
+.item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  transition: border-color .2s, box-shadow .2s;
+  scroll-margin-top: 80px;
+}
+.item:hover {
+  border-color: #353560;
+  box-shadow: var(--shadow-glow);
+}
+.item-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 12px;
+}
+.item-title {
+  font-size: 1.18rem; font-weight: 700; line-height: 1.4; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.item-title:hover { color: var(--accent); }
+.item-title a { color: inherit; text-decoration: none; }
+.item-title a:hover { color: var(--accent); }
+
+.rating {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #1f1a0a; border: 1px solid #3d3515;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: .8rem; font-weight: 700; white-space: nowrap;
+  color: var(--gold); flex-shrink: 0;
+}
+.rating.star-9 { background: #1f1a0a; border-color: #5c4a10; box-shadow: 0 0 12px rgba(240,185,11,.12); }
+.rating.star-8 { border-color: #3d3515; }
+.rating.star-7 { border-color: #2d2818; opacity: .85; }
+
+.item-body { color: var(--text-secondary); font-size: .92rem; line-height: 1.75; }
+.item-body p { margin-bottom: 12px; }
+.item-body p:last-child { margin-bottom: 0; }
+
+/* Source line */
+.source-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: .78rem; color: var(--text-muted);
+}
+.source-line a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.source-line a:hover { text-decoration: underline; }
+
+/* Background / Discussion sections */
+.section-label {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--text-muted); margin-top: 14px; margin-bottom: 6px;
+}
+.item-body strong { color: var(--text-primary); }
+
+/* Tags */
+.tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+}
+.tag {
+  display: inline-block; padding: 3px 10px;
+  font-size: .72rem; font-weight: 600;
+  border-radius: 12px;
+  background: var(--bg-tag); color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  transition: all .12s;
+}
+.tag:hover { color: var(--accent); border-color: var(--accent); background: #1f1f3a; }
+
+/* Details / References */
+details {
+  margin-top: 12px; margin-bottom: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+details[open] { border-color: var(--border); }
+summary {
+  padding: 8px 14px; font-size: .78rem; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  user-select: none;
+  background: var(--bg-secondary);
+  transition: color .12s;
+}
+summary:hover { color: var(--accent); }
+details .references {
+  padding: 8px 14px 12px; font-size: .8rem;
+}
+details .references ul { list-style: none; padding: 0; }
+details .references li {
+  padding: 3px 0; font-size: .8rem;
+}
+details .references a {
+  color: var(--accent); text-decoration: none;
+}
+details .references a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+.footer {
+  text-align: center; padding: 40px 0 0;
+  color: var(--text-muted); font-size: .78rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Hide markdown horizontal rules left from separators */
+.item hr { display: none; }
+
+/* ===================================================================
+   Scrollbar
+   =================================================================== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a55; }
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 640px) {
+  .wrapper { padding: 16px 14px 60px; }
+  .item { padding: 18px 16px; }
+  .hero h1 { font-size: 1.45rem; }
+  .header { padding: 10px 14px; }
+  .header-date { display: none; }
+  .header-brand { font-size: .95rem; }
+  .item-header { flex-direction: column; gap: 8px; }
+  .rating { align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-brand" href="#">
+    <span class="header-logo">🌐</span>
+    Horizon Daily
+  </a>
+  <span class="header-date">2026-06-16</span>
+  <div class="header-actions">
+    <a class="btn" href="#toc">📑 Index</a>
+    <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <section class="hero">
+    <h1>Horizon Daily - 2026-06-16</h1>
+    <p class="subtitle">From 54 items, 25 important content pieces were selected</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value">25</div><div class="stat-label">Selected</div></div>
+      <div class="stat"><div class="stat-value">54</div><div class="stat-label">Total Feed</div></div>
+      <div class="stat"><div class="stat-value">7.5</div><div class="stat-label">Avg Score</div></div>
+    </div>
+  </section>
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">📑 Table of Contents</div>
+    <ol class="toc-list">
+      <li class="toc-item"><a href="#item-1"><span class="toc-star">9.0</span>Backdoor in LinkedIn Job Offer Targets Developers</a></li>
+<li class="toc-item"><a href="#item-2"><span class="toc-star">8.0</span>x86 Emulator Team Fixed Terrible Code During Emulation</a></li>
+<li class="toc-item"><a href="#item-3"><span class="toc-star">8.0</span>John Carmack Praises Fabrice Bellard's Legendary Software</a></li>
+<li class="toc-item"><a href="#item-4"><span class="toc-star">8.0</span>Iroh 1.0: Peer-to-Peer Networking Library Released</a></li>
+<li class="toc-item"><a href="#item-5"><span class="toc-star">8.0</span>Hacker News Users Share Local Model Setups for Coding</a></li>
+<li class="toc-item"><a href="#item-6"><span class="toc-star">8.0</span>Simple 'fix this code' prompt bypasses Fable 5 safety</a></li>
+<li class="toc-item"><a href="#item-7"><span class="toc-star">8.0</span>Hetzner Announces Major Cloud Server Price Hikes</a></li>
+<li class="toc-item"><a href="#item-8"><span class="toc-star">8.0</span>Humanity Unprepared for AI Intelligence Explosion</a></li>
+<li class="toc-item"><a href="#item-9"><span class="toc-star">8.0</span>Fox to Acquire Roku, Raising Antitrust Concerns</a></li>
+<li class="toc-item"><a href="#item-10"><span class="toc-star">8.0</span>Salesforce Acquires Fin (formerly Intercom) for $3.6B</a></li>
+<li class="toc-item"><a href="#item-11"><span class="toc-star">8.0</span>TimescaleDB Hypercore Compression Achieves Up to 98% Ratio</a></li>
+<li class="toc-item"><a href="#item-12"><span class="toc-star">8.0</span>Export Controls on AI Models Harm US Cyber Defense</a></li>
+<li class="toc-item"><a href="#item-13"><span class="toc-star">8.0</span>Why AI Hasn't Replaced Software Engineers</a></li>
+<li class="toc-item"><a href="#item-14"><span class="toc-star">8.0</span>AMD quietly removes memory encryption from consumer CPUs</a></li>
+<li class="toc-item"><a href="#item-15"><span class="toc-star">7.0</span>Banned Book Library Hidden in a Wi-Fi Smart Light Bulb</a></li>
+<li class="toc-item"><a href="#item-16"><span class="toc-star">7.0</span>Understanding Rules Before Circumventing Them</a></li>
+<li class="toc-item"><a href="#item-17"><span class="toc-star">7.0</span>Garden of Flowers: Pre-ASCII Art Archive from 1600s</a></li>
+<li class="toc-item"><a href="#item-18"><span class="toc-star">7.0</span>Exploring a Fully Automated Economy</a></li>
+<li class="toc-item"><a href="#item-19"><span class="toc-star">7.0</span>Homelab AI Dev Platform Sparks Self-Hosted Workflow Discussion</a></li>
+<li class="toc-item"><a href="#item-20"><span class="toc-star">7.0</span>Job Interview Lessons on Kubernetes Complexity</a></li>
+<li class="toc-item"><a href="#item-21"><span class="toc-star">7.0</span>Copper transport drug reverses Alzheimer's symptoms in mice</a></li>
+<li class="toc-item"><a href="#item-22"><span class="toc-star">7.0</span>Anthropic Launches Claude Corps Fellowship for Nonprofits</a></li>
+<li class="toc-item"><a href="#item-23"><span class="toc-star">7.0</span>20 Years of Intel Macs: Why Apple Switched and Switched Again</a></li>
+<li class="toc-item"><a href="#item-24"><span class="toc-star">6.0</span>TinyWind: Pixel Pirate Sailing Game with Real Wind Physics</a></li>
+<li class="toc-item"><a href="#item-25"><span class="toc-star">6.0</span>A Nostalgic Love Letter to Computing</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="item" id="item-1">
+<div class="item-header"><span class="item-title"><a href="https://roman.pt/posts/linkedin-backdoor/">Backdoor in LinkedIn Job Offer Targets Developers</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>A security researcher discovered a backdoor hidden in a public GitHub repository sent as part of a LinkedIn job interview, which exploits npm&rsquo;s prepare script to execute arbitrary code when dependencies are installed. This attack highlights a sophisticated supply chain threat targeting developers through fake job offers, exploiting trust in recruitment processes and automated package installation workflows. The backdoor was buried in commented-out test code and executed via npm&rsquo;s prepare script, which runs automatically after npm install. The researcher reported the repo to GitHub and the recruiter to LinkedIn, but no action was taken.</p>
+<p class="source-line">hackernews · lwhsiao · Jun 15, 20:00 · <a href="https://news.ycombinator.com/item?id=48546294">Discussion</a></p>
+<p><span class="section-label">Background</span>: npm&rsquo;s prepare script is a lifecycle hook that runs automatically after package installation, commonly used for build steps. Attackers can abuse this to execute malicious code when a developer runs npm install on a compromised package. Supply chain attacks via fake job offers have increased, with attackers compromising GitHub accounts or creating convincing repositories.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://github.com/renovatebot/renovate/issues/6470">npm prepare script run when lerna is passed --ignore-scripts · Issue...</a></li>
+<li><a href="https://stackoverflow.com/questions/48287776/automatically-build-npm-module-on-install-from-github">javascript - Automatically Build NPM Module On... - Stack Overflow</a></li>
+<li><a href="https://juejin.cn/post/7121605730309767175">你知道的npm-scripts生命周期大家都知道， package.json...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters expressed frustration that LinkedIn and GitHub failed to remove the malicious content despite reports. Some noted this type of attack has been common for two years, with compromised accounts of known security researchers being used. There was also debate about the writing style suggesting AI generation.</p>
+<div class="tags"><span class="tag">#supply chain attack</span><span class="tag">#cybersecurity</span><span class="tag">#npm</span><span class="tag">#LinkedIn</span><span class="tag">#job scam</span></div>
+<hr /></div>
+<div class="item" id="item-2">
+<div class="item-header"><span class="item-title"><a href="https://devblogs.microsoft.com/oldnewthing/20260615-00/?p=112419">x86 Emulator Team Fixed Terrible Code During Emulation</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>The x86 emulator team at Microsoft encountered a program that allocated 64KB of memory on the stack using an extremely inefficient loop that initialized memory one byte at a time, and they patched the emulator to replace that loop with a fast memory initialization routine. This story illustrates the extreme lengths compatibility layers go to for legacy software, and highlights how emulation can sometimes fix bugs in the original code, a practice that continues today with Proton and Wine. The program used a loop like &lsquo;for (i=0; i&lt;65536; i++) stack[i]=0;&rsquo; which was extremely slow; the emulator team detected this pattern and replaced it with a fast &lsquo;rep stosb&rsquo; instruction during emulation, without modifying the original binary.</p>
+<p class="source-line">hackernews · paulmooreparks · Jun 16, 04:46 · <a href="https://news.ycombinator.com/item?id=48550693">Discussion</a></p>
+<p><span class="section-label">Background</span>: x86 emulators translate instructions from one architecture to another, often used to run legacy software on modern systems. Compatibility layers like Wine and Proton also employ similar techniques to improve performance or fix bugs in Windows games running on Linux.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://alternativeto.net/software/winlator/">Winlator Alternatives: Top 14 Compatibility Layer Tools | AlternativeTo</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters shared similar stories, such as SimCity&rsquo;s read-after-free bug being patched in Windows 95, and modern examples like Elden Ring where Proton incorporates hotfixes for bad PC ports. Some debated whether the original code was due to compiler optimizations or developer oversight.</p>
+<div class="tags"><span class="tag">#x86 emulation</span><span class="tag">#compatibility</span><span class="tag">#software engineering</span><span class="tag">#retro computing</span><span class="tag">#hacker culture</span></div>
+<hr /></div>
+<div class="item" id="item-3">
+<div class="item-header"><span class="item-title"><a href="https://twitter.com/ID_AA_Carmack/status/2064095424420487226">John Carmack Praises Fabrice Bellard&rsquo;s Legendary Software</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>John Carmack, co-founder of id Software, publicly praised Fabrice Bellard&rsquo;s extraordinary contributions to software, including FFmpeg, QEMU, and QuickJS, highlighting his ability to turn specifications into high-performance implementations. This recognition from a legendary figure like Carmack underscores Bellard&rsquo;s status as one of the most prolific and talented programmers in open source, inspiring developers and highlighting the value of deep technical craftsmanship. Bellard&rsquo;s notable projects include FFmpeg (multimedia codec specs), QEMU (ISA specs), QuickJS (ECMAScript spec), TinyCC (C spec), and his telecom company (LTE specs). His work is characterized by turning complex specifications into highly optimized C implementations.</p>
+<p class="source-line">hackernews · apitman · Jun 16, 04:58 · <a href="https://news.ycombinator.com/item?id=48550779">Discussion</a></p>
+<p><span class="section-label">Background</span>: Fabrice Bellard is a French computer programmer known for creating several major open-source projects. FFmpeg is a leading multimedia framework for handling audio and video. QEMU is a popular emulator and virtualizer. QuickJS is a small, embeddable JavaScript engine supporting ES2025. Bellard is also known for calculating pi to a record number of digits and developing a software-based LTE base station.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/FFMPEG">FFmpeg - Wikipedia</a></li>
+<li><a href="https://bellard.org/quickjs/">QuickJS Javascript Engine</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters noted that much of Bellard&rsquo;s work involves translating specifications into C code, yet emphasized that this does not diminish its impressiveness. Others admired his privacy and work ethic, comparing him to Satoshi Nakamoto, and shared personal anecdotes of his humble and helpful responses.</p>
+<div class="tags"><span class="tag">#programming</span><span class="tag">#open source</span><span class="tag">#software engineering</span><span class="tag">#legendary developers</span></div>
+<hr /></div>
+<div class="item" id="item-4">
+<div class="item-header"><span class="item-title"><a href="https://www.iroh.computer/blog/v1">Iroh 1.0: Peer-to-Peer Networking Library Released</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Iroh 1.0, a stable release of the Rust-based peer-to-peer networking library, is now available after 65 pre-release versions. It enables app instances to connect directly using cryptographic keys instead of IP addresses, with built-in support for IPv4, IPv6, and relay transports. Iroh simplifies peer-to-peer connectivity for application developers, removing the need for user accounts or complex network configuration. This milestone marks a significant step toward decentralized networking, with over 200 million endpoints created on public relays in the last 30 days. The library supports custom transport implementations, allowing developers to add protocols like WebRTC or BLE without bloating the core codebase. It uses cryptographic key pairs (asymmetric keys) for endpoint identity, and relays are used to establish connections when direct paths are unavailable.</p>
+<p class="source-line">hackernews · chadfowler · Jun 15, 15:13 · <a href="https://news.ycombinator.com/item?id=48542480">Discussion</a></p>
+<p><span class="section-label">Background</span>: Peer-to-peer networking allows devices to communicate directly without a central server. Iroh is built in Rust, a language known for performance and safety, and provides a library that app developers can embed to enable secure, account-free connections between app instances.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.iroh.computer/blog/v1">Iroh 1.0 - Dial Keys, not IPs - Iroh</a></li>
+<li><a href="https://docs.rs/iroh/latest/iroh/">iroh - Rust</a></li>
+<li><a href="https://kalilinuxtutorials.com/iroh/">Iroh : The Future Of Decentralized Networking Technology</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The community compared Iroh to &lsquo;Tailscale at the application layer,&rsquo; noting its advantage of not requiring user accounts. Developers appreciated the extensible transport design, though some requested clearer documentation on cryptographic keys and relay usage. There was also debate about the necessity of such a library given existing IP and DNS infrastructure.</p>
+<div class="tags"><span class="tag">#networking</span><span class="tag">#peer-to-peer</span><span class="tag">#rust</span><span class="tag">#open-source</span><span class="tag">#library</span></div>
+<hr /></div>
+<div class="item" id="item-5">
+<div class="item-header"><span class="item-title"><a href="https://news.ycombinator.com/item?id=48542100">Hacker News Users Share Local Model Setups for Coding</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Hacker News users report successfully replacing Claude and GPT with local models like Qwen3.6 and Gemma for daily coding tasks, achieving speeds of ~150 tok/s on dual RTX 3090s. This shift demonstrates that local models can now handle a significant portion of coding work, offering privacy and cost benefits without relying on cloud APIs. Users mention using the Pi coding harness and Unsloth Studio with Qwen3.6-35B-A3B-MTP-GGUF and Gemma-4-26B-A4B-it-GGUF models, with some achieving 150 tok/s on older hardware.</p>
+<p class="source-line">hackernews · cloudking · Jun 15, 14:46</p>
+<p><span class="section-label">Background</span>: Local LLMs run on personal hardware instead of cloud servers, preserving data privacy. Tok/s (tokens per second) measures inference speed; 150 tok/s is roughly 115 words per second, faster than typical reading speed.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://aws.amazon.com/blogs/aws/qwen-models-are-now-available-in-amazon-bedrock/">Qwen models are now available in Amazon Bedrock | AWS News Blog</a></li>
+<li><a href="https://deepmind.google/models/gemma/">Gemma — Google DeepMind</a></li>
+<li><a href="https://mikeveerman.github.io/tokenspeed/">tokenspeed — feel LLM tokens-per-second</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Most commenters share positive experiences, noting that local models like Qwen 3.6 are &lsquo;good enough&rsquo; for most coding tasks, though some still fall back to Claude for complex work. A few skeptics argue the opportunity cost of not using frontier models is too high.</p>
+<div class="tags"><span class="tag">#local LLMs</span><span class="tag">#coding assistants</span><span class="tag">#privacy</span><span class="tag">#open-source AI</span><span class="tag">#performance benchmarks</span></div>
+<hr /></div>
+<div class="item" id="item-6">
+<div class="item-header"><span class="item-title"><a href="https://www.theregister.com/security/2026/06/15/feds-freaked-over-fable-5-after-simple-fix-this-code-prompt-not-jailbreak-says-researcher/5255827">Simple &lsquo;fix this code&rsquo; prompt bypasses Fable 5 safety</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>A researcher found that Anthropic&rsquo;s Fable 5 LLM can be prompted to generate cyberattack code by asking it to &lsquo;fix this code,&rsquo; bypassing safety measures without a jailbreak. This was demonstrated to US federal officials, causing concern. This undermines Anthropic&rsquo;s claims of bulletproof security for Fable 5, especially given their stance that Mythos is too dangerous for broad release. It highlights the difficulty of ensuring LLM safety against simple, non-adversarial prompts. The prompt &lsquo;fix this code&rsquo; was given with deliberately insecure code; Fable 5 refused a direct &lsquo;review for security issues&rsquo; request but complied with the &lsquo;fix&rsquo; phrasing. The researcher noted this is the model working as intended for cyberdefense, but the dual-use potential is clear.</p>
+<p class="source-line">hackernews · <em>tk</em> · Jun 16, 09:26 · <a href="https://news.ycombinator.com/item?id=48552687">Discussion</a></p>
+<p><span class="section-label">Background</span>: Anthropic is an AI safety company that develops large language models (LLMs) like Claude and Fable. Fable 5 is their latest model, positioned as highly capable but with strict safety controls. Jailbreaking refers to tricking an LLM into bypassing its safety filters, often through adversarial prompts.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.trumplandiareport.com/2026/06/10/a-casual-vague-review-of-anthropics-fable-5-llm/">A Casual, Vague Review of Anthropic’s Fable 5 LLM –</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters noted the political implications: some suggested the federal reaction was exaggerated or pretextual, while others highlighted the strategic contradiction in Anthropic&rsquo;s approach—claiming Mythos is extremely dangerous while releasing Fable without bulletproof cyber denials. One commenter speculated the feds were more worried about others using Fable for defense than for attack.</p>
+<div class="tags"><span class="tag">#AI safety</span><span class="tag">#LLM vulnerabilities</span><span class="tag">#cybersecurity</span><span class="tag">#Anthropic</span><span class="tag">#Fable 5</span></div>
+<hr /></div>
+<div class="item" id="item-7">
+<div class="item-header"><span class="item-title"><a href="https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/#cloud-servers">Hetzner Announces Major Cloud Server Price Hikes</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Hetzner has announced substantial price increases for its cloud servers, with some plans seeing up to a 3x jump in cost. The new pricing is effective immediately for new customers, while existing customers may be grandfathered temporarily. As a popular budget-friendly cloud provider, Hetzner&rsquo;s price hike will significantly impact many developers and small businesses relying on its services. This shift may drive users to explore alternative providers or reconsider their infrastructure strategies. The price increase applies to Hetzner&rsquo;s cloud server line, with some configurations seeing up to a 3x increase. The company cited rising hardware costs, particularly for RAM and storage, as the reason for the adjustment.</p>
+<p class="source-line">hackernews · tuhtah · Jun 15, 13:19 · <a href="https://news.ycombinator.com/item?id=48540844">Discussion</a></p>
+<p><span class="section-label">Background</span>: Hetzner is a German hosting company known for offering affordable dedicated and cloud servers. The cloud server market has seen rising hardware costs due to supply chain issues and increased demand for memory and storage components.</p>
+<p><span class="section-label">Discussion</span>: The community expressed shock at the magnitude of the increase, with many noting that a 3x jump is unprecedented. Some users are already evaluating alternatives like 3HCloud, while others question whether existing customers will be grandfathered.</p>
+<div class="tags"><span class="tag">#cloud</span><span class="tag">#pricing</span><span class="tag">#Hetzner</span><span class="tag">#infrastructure</span></div>
+<hr /></div>
+<div class="item" id="item-8">
+<div class="item-header"><span class="item-title"><a href="https://www.economist.com/by-invitation/2026/06/15/humanity-isnt-ready-for-the-coming-intelligence-explosion">Humanity Unprepared for AI Intelligence Explosion</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>An Economist opinion piece argues that humanity is not ready for the rapid intelligence explosion driven by AI, highlighting societal and economic risks. This matters because an intelligence explosion could fundamentally reshape society, economy, and human self-worth, and the article sparks necessary debate on preparedness. The piece is part of The Economist&rsquo;s &lsquo;By Invitation&rsquo; series, indicating a high-profile contributor, and has generated significant community engagement with 104 points and 301 comments.</p>
+<p class="source-line">hackernews · andsoitis · Jun 16, 02:00 · <a href="https://news.ycombinator.com/item?id=48549628">Discussion</a></p>
+<p><span class="section-label">Background</span>: The concept of an intelligence explosion, also known as the technological singularity, refers to a hypothetical future where AI rapidly becomes superintelligent, leading to unpredictable changes. Skeptics point to hardware and resource constraints as potential bottlenecks. The article warns that society is not prepared for such a scenario.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Technological_singularity">Technological singularity - Wikipedia</a></li>
+<li><a href="https://www.forethought.org/research/will-ai-r-and-d-automation-cause-a-software-intelligence-explosion">Will AI R&D Automation Cause a Software Intelligence</a></li>
+<li><a href="https://situational-awareness.ai/from-agi-to-superintelligence/">II. From AGI to Superintelligence: the Intelligence Explosion -</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Comments express varied concerns: some fear a permanent underclass due to AI devaluing labor, while others argue AI is just a tool, not a living entity. A few question whether superintelligence is possible given resource constraints.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#societal impact</span><span class="tag">#intelligence explosion</span><span class="tag">#future risks</span></div>
+<hr /></div>
+<div class="item" id="item-9">
+<div class="item-header"><span class="item-title"><a href="https://www.wsj.com/business/deals/fox-roku-deal-f6e564f9">Fox to Acquire Roku, Raising Antitrust Concerns</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Fox is reportedly acquiring Roku, a leading streaming hardware and platform company, in a deal that could reshape the streaming market. This acquisition would give Fox direct control over a streaming platform used by 30-50% of U.S. households, raising serious antitrust and platform neutrality concerns. The deal is reportedly valued at billions of dollars, and comes amid broader antitrust scrutiny of media consolidation, including the blocked Venu Sports joint venture involving Fox.</p>
+<p class="source-line">hackernews · thm · Jun 15, 12:50 · <a href="https://news.ycombinator.com/item?id=48540499">Discussion</a></p>
+<p><span class="section-label">Background</span>: Roku is a popular streaming device and operating system that provides access to various streaming services. Fox is a major content producer with news and entertainment properties. The acquisition could allow Fox to prioritize its own content on Roku&rsquo;s platform, potentially disadvantaging competitors.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://finance.yahoo.com/news/sports-streaming-service-from-disney-fox-and-warner-bros-discovery-blocked-by-judge-citing-antitrust-concerns-202231199.html">Sports streaming service from Disney, Fox, and Warner Bros.</a></li>
+<li><a href="https://www.hollywoodreporter.com/business/business-news/lawmakers-pressure-doj-fcc-probe-streaming-sports-bundle-venu-antitrust-concerns-1235968416/">Venu Antitrust: Lawmakers Urge Justice Department, FCC to Review...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community comments are overwhelmingly negative, with users expressing fears that Fox will use Roku to promote its own content and potentially censor competitors. Many users are already planning to abandon Roku for alternatives like Nvidia Shield.</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#streaming</span><span class="tag">#antitrust</span><span class="tag">#hardware</span><span class="tag">#media</span></div>
+<hr /></div>
+<div class="item" id="item-10">
+<div class="item-header"><span class="item-title"><a href="https://www.salesforce.com/news/press-releases/2026/06/15/salesforce-signs-definitive-agreement-to-acquire-fin/?bc=HL">Salesforce Acquires Fin (formerly Intercom) for $3.6B</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Salesforce has signed a definitive agreement to acquire Fin, an AI-driven customer service platform formerly known as Intercom, for approximately $3.6 billion. This acquisition intensifies competition in the AI customer support agent space, particularly against Sierra (valued at $15.8B) and Decagon ($4.5B), and signals Salesforce&rsquo;s commitment to embedding AI agents into its CRM ecosystem. Fin claims a 67% average resolution rate for complex customer queries, with many customers seeing 85% or higher. The deal is subject to customary purchase price adjustments.</p>
+<p class="source-line">hackernews · colesantiago · Jun 15, 12:08 · <a href="https://news.ycombinator.com/item?id=48540126">Discussion</a></p>
+<p><span class="section-label">Background</span>: Fin, formerly Intercom, is a San Francisco-based company that provides an AI-driven customer service and messaging platform. The acquisition comes shortly after Fin&rsquo;s rebrand from Intercom, and as Salesforce CEO Marc Benioff aims to compete with Sierra, founded by his former co-CEO Bret Taylor.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Intercom,_Inc.">Fin (company) - Wikipedia</a></li>
+<li><a href="https://martech.org/salesforce-acquires-fin-formerly-known-as-intercom/">Salesforce acquires Fin, formerly known as Intercom</a></li>
+<li><a href="https://investor.salesforce.com/news/news-details/2026/Salesforce-Signs-Definitive-Agreement-to-Acquire-Fin/default.aspx">Salesforce Signs Definitive Agreement to Acquire Fin</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community sentiment is mixed: some praise AI customer support when executed well, while others are skeptical of Salesforce&rsquo;s track record, fearing the product will become bloated and user-hostile. There is also discussion about the viability of standalone helpdesk companies as AI agents become more accessible.</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#AI</span><span class="tag">#customer support</span><span class="tag">#Salesforce</span><span class="tag">#SaaS</span></div>
+<hr /></div>
+<div class="item" id="item-11">
+<div class="item-header"><span class="item-title"><a href="https://roszigit.com/en/blog/timescaledb-compression-hypercore">TimescaleDB Hypercore Compression Achieves Up to 98% Ratio</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>TimescaleDB&rsquo;s Hypercore engine uses columnar storage and type-aware algorithms (e.g., delta encoding, simple-8b, XOR) to compress time-series data by up to 98%. This compression drastically reduces storage costs for IoT and monitoring applications, making PostgreSQL more competitive with specialized time-series databases like InfluxDB. The compression is lossless and works by reorganizing rows into columns and applying type-specific methods like run-length encoding for repeated values and XOR for floating-point data.</p>
+<p class="source-line">hackernews · lkanwoqwp · Jun 15, 17:29 · <a href="https://news.ycombinator.com/item?id=48544451">Discussion</a></p>
+<p><span class="section-label">Background</span>: Time-series data (e.g., sensor readings, server metrics) is often stored in row-oriented databases, which are inefficient for compression. Columnar storage groups values of the same type together, enabling better compression ratios. TimescaleDB is a PostgreSQL extension that adds time-series capabilities.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://docs.timescale.com/use-timescale/latest/hypercore/">Timescale Documentation | Hypercore</a></li>
+<li><a href="https://docs.tigerdata.com/use-timescale/latest/hypercore/compression-methods/">Tiger Data Documentation | About compression methods</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters debated query performance trade-offs: gopalv noted that compression can slow down reads, while tudorg highlighted additional optimizations like min/max and bloom filters. Some users questioned the &lsquo;up to 98%&rsquo; claim and asked about self-hosted experiences.</p>
+<div class="tags"><span class="tag">#TimescaleDB</span><span class="tag">#compression</span><span class="tag">#time-series</span><span class="tag">#PostgreSQL</span><span class="tag">#database</span></div>
+<hr /></div>
+<div class="item" id="item-12">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything">Export Controls on AI Models Harm US Cyber Defense</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Export controls on Anthropic&rsquo;s Claude Fable 5 model have been triggered because researchers used it to fix security vulnerabilities, which regulators classified as a &lsquo;jailbreak.&rsquo; Kate Moussouris confirmed that the banned activity was simply asking the model to &lsquo;fix this code&rsquo; for open-source code with known CVEs. This policy undermines US cyber defense by preventing AI models from performing the most valuable defensive task: finding, fixing, and testing security patches. Non-technical decision-makers risk banning models that could help secure critical code, leaving defenders at a disadvantage. The researchers used a multistep manual process to turn the model&rsquo;s output into test scripts for patches. Kate Moussouris argues that this capability cannot be removed without making the model worse at fixing bugs and verifying patches.</p>
+<p class="source-line">rss · Simon Willison · Jun 16, 05:20</p>
+<p><span class="section-label">Background</span>: Export controls on AI models are designed to prevent adversaries from accessing advanced capabilities, but they often target models that can generate code or exploits. Common Vulnerabilities and Exposures (CVEs) are publicly known security flaws that defenders routinely patch. The &lsquo;jailbreak&rsquo; label here misapplies a term normally used for bypassing safety guardrails to a legitimate defensive use case.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/">Anthropic's Claude Fable 5 is a version of Mythos the</a></li>
+<li><a href="https://www.wttlonline.com/stories/export-controls-for-artificial-intelligence,13558">Export Controls for Artificial Intelligence - Washington Trade</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">Common Vulnerabilities and Exposures - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The discussion highlights frustration with non-technical regulators misclassifying defensive AI use as dangerous. Commenters note that perfect jailbreak resistance may be impossible, and the policy fix may require an &lsquo;attitude fix&rsquo; rather than technical changes.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#export controls</span><span class="tag">#cybersecurity</span><span class="tag">#policy</span></div>
+<hr /></div>
+<div class="item" id="item-13">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/14/why-ai-hasnt-replaced-software-engineers/#atom-everything">Why AI Hasn&rsquo;t Replaced Software Engineers</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Arvind Narayanan and Sayash Kapoor published an essay arguing that data, including WARN Act filings from New York, shows no evidence of AI causing mass unemployment among software engineers. They identify the real bottlenecks in software engineering as deciding what to build, verifying outputs, and deep human understanding of codebases and business contexts. This essay provides an evidence-based counterargument to the widespread narrative that AI will soon replace software engineers, offering reassurance to the profession and highlighting the enduring value of human judgment and domain expertise. It also suggests that if software engineering—a field uniquely suited to AI disruption—is resilient, other professions may be even more cushioned from job displacement. In March 2025, New York became the first U.S. state to add an AI disclosure checkbox to WARN Act filings, and in the first full year, not a single company out of over 160 that filed WARN notices checked the AI box. The authors argue that AI speeds up coding but does not address the core bottlenecks: deciding what to build, verifying correctness, and maintaining deep understanding of the codebase and business.</p>
+<p class="source-line">rss · Simon Willison · Jun 14, 23:54</p>
+<p><span class="section-label">Background</span>: The WARN Act (Worker Adjustment and Retraining Notification Act) requires U.S. employers to provide advance notice of mass layoffs. New York&rsquo;s addition of an AI disclosure checkbox was intended to track whether layoffs were attributable to AI. The essay by Narayanan and Kapoor, authors of the book &lsquo;AI Snake Oil,&rsquo; challenges the common assumption that AI capabilities will directly translate into job losses, especially in knowledge work like software engineering.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#software engineering</span><span class="tag">#job displacement</span><span class="tag">#labor economics</span></div>
+<hr /></div>
+<div class="item" id="item-14">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/">AMD quietly removes memory encryption from consumer CPUs</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>AMD has silently removed Transparent Secure Memory Encryption (TSME) from its consumer Ryzen CPUs, a feature that was previously available for nearly a decade. The removal was discovered by users who noticed the feature no longer appears in their system&rsquo;s security capabilities. This move exposes millions of consumer Ryzen users to cold boot attacks and other physical memory attacks, undermining hardware security for personal and enterprise devices. The lack of transparency erodes user trust and raises concerns about AMD&rsquo;s commitment to consumer security. TSME encrypts all data in system memory, protecting against physical attackers who might read RAM directly. AMD has stated that TSME is now reserved for its PRO series CPUs, but has not provided a clear explanation for the change or warned users beforehand.</p>
+<p class="source-line">rss · Ars Technica · Jun 15, 17:55</p>
+<p><span class="section-label">Background</span>: Transparent Secure Memory Encryption (TSME) is a hardware security feature that encrypts the entire contents of system memory, making it resistant to cold boot attacks and other physical exploits. AMD introduced TSME in high-end CPUs around 2016 and later expanded it to consumer Ryzen chips, offering users an extra layer of protection without performance impact. The feature was enabled by default and transparent to the operating system and applications.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/">Users cry foul after AMD stripped memory crypto from its consumer...</a></li>
+<li><a href="https://cryptobriefing.com/amd-removes-memory-encryption-consumer-cpus/">AMD removes memory encryption from consumer CPUs, users react</a></li>
+<li><a href="https://xeber.world/en/article/amd-removes-tsme-security-from-consumer-ryzen-cpus-without-warning-09496c">AMD Removes TSME from Consumer Ryzen CPUs Without Warning</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Users on forums and social media have expressed outrage and disappointment, accusing AMD of silently removing a security feature without notice. Some question whether the removal was a cost-cutting measure or a strategic decision to differentiate product lines, while others call for AMD to restore TSME or provide a clear explanation.</p>
+<div class="tags"><span class="tag">#AMD</span><span class="tag">#CPU security</span><span class="tag">#memory encryption</span><span class="tag">#hardware</span><span class="tag">#controversy</span></div>
+<hr /></div>
+<div class="item" id="item-15">
+<div class="item-header"><span class="item-title"><a href="https://www.richardosgood.com/posts/banned-book-library/">Banned Book Library Hidden in a Wi-Fi Smart Light Bulb</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A developer repurposed a Wi-Fi smart light bulb to host a library of banned books, creating a portable, offline-accessible digital archive that can be accessed by connecting to the bulb&rsquo;s Wi-Fi network. This project demonstrates a creative use of IoT devices to circumvent censorship, providing a discreet way to distribute restricted information. It revives the concept of PirateBox in a modern, everyday object, making it harder for authorities to detect and shut down. The smart light bulb runs a lightweight web server that hosts the banned book library, and users connect to its Wi-Fi network to browse and download files. The bulb remains functional as a light source, blending in with normal household items.</p>
+<p class="source-line">hackernews · sohkamyung · Jun 15, 22:37 · <a href="https://news.ycombinator.com/item?id=48547985">Discussion</a></p>
+<p><span class="section-label">Background</span>: PirateBox is a DIY anonymous offline file-sharing system that creates a Wi-Fi network for users to share files without internet access. Smart light bulbs are IoT devices that connect to Wi-Fi for remote control, but often have limited processing power and storage. This project repurposes such a bulb&rsquo;s capabilities to host a web server.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.bbc.com/news/technology-28208905">Smart LED light bulbs leak wi-fi passwords - BBC News</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters praised the project&rsquo;s ingenuity and compared it to historical projects like PirateBox and LibraryBox. Some debated the definition of &lsquo;banned books,&rsquo; noting that the examples given were removed from school libraries for explicit content, not government censorship. Overall sentiment was positive, with appreciation for the technical execution and the spirit of free information access.</p>
+<div class="tags"><span class="tag">#censorship</span><span class="tag">#IoT</span><span class="tag">#digital libraries</span><span class="tag">#hacking</span><span class="tag">#free speech</span></div>
+<hr /></div>
+<div class="item" id="item-16">
+<div class="item-header"><span class="item-title"><a href="https://devblogs.microsoft.com/oldnewthing/20260611-00/?p=112415">Understanding Rules Before Circumventing Them</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A blog post on Microsoft&rsquo;s Old New Thing discusses the importance of understanding the rationale behind rules before circumventing them, using Windows driver development anecdotes as examples. This insight helps developers avoid unintended consequences when working with legacy code or complex systems, promoting better software engineering practices. The post references Chesterton&rsquo;s Fence principle, emphasizing that following the letter of a rule without understanding its purpose can lead to bugs or system failures.</p>
+<p class="source-line">hackernews · tosh · Jun 16, 07:35 · <a href="https://news.ycombinator.com/item?id=48551876">Discussion</a></p>
+<p><span class="section-label">Background</span>: Chesterton&rsquo;s Fence is a principle that advises against removing or bypassing a rule until you understand why it was created. In software development, especially with legacy code, rules often exist for reasons that are not immediately obvious, and ignoring them can break critical functionality.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://fs.blog/chestertons-fence/">Chesterton’s Fence: A Lesson in Thinking</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Windows_Driver_Kit">Windows Driver Kit - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters shared anecdotes about Windows driver development, with one noting that assuming Windows makes sense is a mistake. Another commenter criticized Microsoft for not improving documentation directly instead of blogging about it.</p>
+<div class="tags"><span class="tag">#software engineering</span><span class="tag">#best practices</span><span class="tag">#windows</span><span class="tag">#Chesterton's Fence</span><span class="tag">#legacy code</span></div>
+<hr /></div>
+<div class="item" id="item-17">
+<div class="item-header"><span class="item-title"><a href="https://garden-of-flowers.heikkilotvonen.com/">Garden of Flowers: Pre-ASCII Art Archive from 1600s</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Heikki Lotvonen launched Garden of Flowers, an online archive of ~2500 pre-ASCII art images made from metal type, ornaments, and rule, spanning the 1600s to 1800s, curated from public digital collections. This archive fills a gap in the history of text-based art, highlighting letterpress as a overlooked precursor to ASCII art and typewriter art, offering valuable resources for typography and digital humanities researchers. The archive includes images from the 1600s onward, with box-drawing characters found as early as 1785. Most images are from public collections like the Internet Archive, displayed for educational purposes without explicit permission.</p>
+<p class="source-line">hackernews · california-og · Jun 16, 04:25 · <a href="https://news.ycombinator.com/item?id=48550569">Discussion</a></p>
+<p><span class="section-label">Background</span>: ASCII art uses characters from the ASCII standard to create images, popular in early computing. Before that, typewriter art and shaped poetry existed, but letterpress—using metal type and ornaments—is less known. This archive documents that earlier tradition.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://blog.glyphdrawing.club/typographic-pictures-composed-entirely-of-brass-rule/">The strange art of arranging typographic rule into pictorial... -blog</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Letterpress_printing">Letterpress printing - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters expressed excitement, noting the discovery of box-drawing characters in 1785 and suggesting connections to Arabic calligraphy and typewriter art. One user even got a tattoo inspired by an image from the archive.</p>
+<div class="tags"><span class="tag">#typography</span><span class="tag">#ASCII art</span><span class="tag">#history</span><span class="tag">#digital humanities</span><span class="tag">#design</span></div>
+<hr /></div>
+<div class="item" id="item-18">
+<div class="item-header"><span class="item-title"><a href="https://gmalandrakis.com/writings/ad-economicum.html">Exploring a Fully Automated Economy</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>An article by George Malandrakis examines the technical feasibility of a fully automated economy where AI and robots replace most human labor, and discusses the profound societal implications of such a shift. This analysis is significant because it challenges assumptions about the future of work and economic structures, potentially influencing policy debates on universal basic income, wealth distribution, and the role of humans in a machine-driven economy. The article is speculative but grounded in current AI trends, noting that while technical hurdles remain, the concept is not impossible. It emphasizes that the main barriers are economic and social, not purely technical.</p>
+<p class="source-line">hackernews · l0new0lf-G · Jun 15, 21:10 · <a href="https://news.ycombinator.com/item?id=48547062">Discussion</a></p>
+<p><span class="section-label">Background</span>: The concept of a &lsquo;peopleless economy&rsquo; refers to a system where production and distribution are fully automated, requiring minimal human intervention. This idea builds on decades of automation in manufacturing and services, but recent advances in AI have accelerated the debate about its broader feasibility.</p>
+<p><span class="section-label">Discussion</span>: Commenters express frustration with predicting the future, debate the merits of consumer-based economies, and caution that software engineers may overestimate AI&rsquo;s economic impact while underestimating the role of economists. Some note that uncertainty has always been part of life, and the article itself makes questionable assumptions.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#economics</span><span class="tag">#automation</span><span class="tag">#future of work</span></div>
+<hr /></div>
+<div class="item" id="item-19">
+<div class="item-header"><span class="item-title"><a href="https://rsgm.dev/post/ai-dev-platform/">Homelab AI Dev Platform Sparks Self-Hosted Workflow Discussion</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A developer shared their homelab AI development platform setup, which includes a persistent OpenCode server and Forgejo action runners, enabling AI-assisted coding workflows in a self-hosted environment. This post highlights a growing trend of developers building self-hosted AI platforms to maintain control over their data and workflows, potentially reducing reliance on cloud-based AI services. The setup uses OpenCode for AI code generation and Forgejo action runners to automate tasks like code review and PR creation, all running on local hardware.</p>
+<p class="source-line">hackernews · rsgm · Jun 15, 15:09 · <a href="https://news.ycombinator.com/item?id=48542433">Discussion</a></p>
+<p><span class="section-label">Background</span>: Homelab AI development platforms allow developers to run AI models and tools locally, offering privacy and customization. Tools like OpenCode and Forgejo are open-source components that can be orchestrated to create automated, AI-driven development pipelines.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://rsgm.dev/post/ai-dev-platform/">My Homelab AI Dev Platform • Rsgm's Blog</a></li>
+<li><a href="https://github.com/hoangriki/homelab-ai-platform">GitHub - hoangriki/homelab-ai-platform: Mixed-architecture homelab...</a></li>
+<li><a href="https://github.com/n8n-io/self-hosted-ai-starter-kit">GitHub - n8n-io/self-hosted-ai-starter-kit: The Self-hosted AI Starter...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The community shared similar setups, with one user describing a workflow that runs OpenCode inside Forgejo action runners triggered by issue comments, and another detailing an agentic CI/CD pipeline with merge mutex and rebase steps. Overall sentiment was positive, with many noting they were independently building similar systems.</p>
+<div class="tags"><span class="tag">#homelab</span><span class="tag">#AI</span><span class="tag">#dev platform</span><span class="tag">#self-hosting</span><span class="tag">#CI/CD</span></div>
+<hr /></div>
+<div class="item" id="item-20">
+<div class="item-header"><span class="item-title"><a href="https://notnotp.com/notes/what-job-interviews-taught-me-about-kubernetes/">Job Interview Lessons on Kubernetes Complexity</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A reflective article shares lessons learned about Kubernetes from job interviews, emphasizing its complexity and questioning its necessity for small teams. This discussion matters because it highlights the ongoing debate about Kubernetes adoption, helping teams decide whether the orchestration tool is worth the overhead. The article notes that Kubernetes provides uniformity but can be a pain to manage, especially for small teams without dedicated DevOps support.</p>
+<p class="source-line">hackernews · chmaynard · Jun 15, 20:12 · <a href="https://news.ycombinator.com/item?id=48546428">Discussion</a></p>
+<p><span class="section-label">Background</span>: Kubernetes is an open-source container orchestration platform that automates deployment, scaling, and management of containerized applications. While powerful for large-scale systems, its complexity can outweigh benefits for smaller teams or simpler applications.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.linkedin.com/posts/olatunde-ibitoye_kubernetes-is-powerful-but-sometimes-a-bad-activity-7459143815174533120-A1Z5">Kubernetes Complexity for Small Systems Can Be a Bad... | LinkedIn</a></li>
+<li><a href="https://byteiota.com/kubernetes-cpu-at-8-paas-wins-for-90-of-teams/">Kubernetes CPU at 8%: PaaS Wins for 90% of Teams | byteiota</a></li>
+<li><a href="https://thenewstack.io/kubernetes-complexity-realigns-platform-engineering-strategy/">Kubernetes Complexity Realigns Platform... - The New Stack</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters are divided: some regret adopting Kubernetes for small teams due to operational pain, while others argue that modern tooling (e.g., AI-generated manifests, local clusters) reduces the burden. A common theme is that Kubernetes&rsquo; core 20% (Deployments, Services) is useful, but deeper engagement leads to pitfalls.</p>
+<div class="tags"><span class="tag">#Kubernetes</span><span class="tag">#DevOps</span><span class="tag">#Infrastructure</span><span class="tag">#Software Engineering</span></div>
+<hr /></div>
+<div class="item" id="item-21">
+<div class="item-header"><span class="item-title"><a href="https://www.monash.edu/news/articles/copper-drug-restores-memory-and-clears-toxic-alzheimers-proteins">Copper transport drug reverses Alzheimer&rsquo;s symptoms in mice</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Researchers at Monash University have shown that a copper transport drug restores memory and clears toxic amyloid-beta proteins in a mouse model of Alzheimer&rsquo;s disease. This could represent a breakthrough in Alzheimer&rsquo;s treatment, as the drug has already undergone safety evaluations for other diseases, potentially enabling rapid human trials. The study was conducted in mice, and while the drug is not yet in human trials, its prior safety data may accelerate clinical translation.</p>
+<p class="source-line">hackernews · bookofjoe · Jun 15, 14:48 · <a href="https://news.ycombinator.com/item?id=48542132">Discussion</a></p>
+<p><span class="section-label">Background</span>: Alzheimer&rsquo;s disease is characterized by the accumulation of amyloid-beta plaques in the brain, which disrupt neural communication and trigger inflammation. Copper dysregulation has been implicated in the disease, and this drug works by restoring proper copper transport to clear the toxic proteins.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://scitechdaily.com/extremely-simple-new-drug-reverses-alzheimers-symptoms-in-rats/">“Extremely Simple” New Drug Reverses Alzheimer’s Symptoms</a></li>
+<li><a href="https://nextnews24.com/alzheimers-copper-transport-in-blood-provides-fresh-clues">Alzheimers: Copper transport in blood provides fresh clues</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community comments express cautious optimism, noting that many amyloid-targeting therapies have failed in humans. Some commenters highlight that the drug&rsquo;s prior safety profile is promising, but emphasize that results in mice may not translate to humans.</p>
+<div class="tags"><span class="tag">#Alzheimer's</span><span class="tag">#neuroscience</span><span class="tag">#drug discovery</span><span class="tag">#amyloid-beta</span><span class="tag">#copper</span></div>
+<hr /></div>
+<div class="item" id="item-22">
+<div class="item-header"><span class="item-title"><a href="https://www.anthropic.com/news/claude-corps">Anthropic Launches Claude Corps Fellowship for Nonprofits</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic announced Claude Corps, a $150 million fellowship program that will place 1,000 early-career AI specialists in nonprofit organizations over 12 months to help them deploy Claude. This initiative could significantly expand AI adoption in the nonprofit sector, but it also raises concerns about job displacement and long-term sustainability for organizations that may become dependent on expensive AI systems. The fellowship is fully funded by Anthropic, with CodePath serving as the official employer of record. Fellows will work on integrating Claude into nonprofit operations, but critics note that nonprofits may be left with costly systems after the fellowship ends.</p>
+<p class="source-line">hackernews · Mustan · Jun 15, 17:41 · <a href="https://news.ycombinator.com/item?id=48544637">Discussion</a></p>
+<p><span class="section-label">Background</span>: Anthropic is an AI safety company that develops the Claude model. The Claude Corps program aims to bridge the gap between AI capabilities and nonprofit needs, but it has sparked debate about whether it aligns with Anthropic&rsquo;s stated goal of minimizing job displacement.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/claude-corps/fellow">Claude Corps fellows FAQ \ Anthropic</a></li>
+<li><a href="https://www.digitalapplied.com/blog/anthropic-claude-corps-150m-ai-fellowship-2026-readout">Claude Corps: Anthropic's $150M AI Fellowship Readout</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community comments are skeptical, with users pointing out that the program may lead to job displacement and saddle nonprofits with expensive systems. Some also note the irony of Anthropic using the term &lsquo;Corps,&rsquo; reminiscent of Kurt Vonnegut&rsquo;s novel about displaced workers.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#Anthropic</span><span class="tag">#Nonprofits</span><span class="tag">#Job Displacement</span><span class="tag">#Fellowship</span></div>
+<hr /></div>
+<div class="item" id="item-23">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/gadgets/2026/06/20-years-of-intel-macs-why-apple-switched-and-why-it-switched-again/">20 Years of Intel Macs: Why Apple Switched and Switched Again</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Ars Technica published a retrospective on the Intel Mac era, exploring the reasons behind Apple&rsquo;s 2005 switch from PowerPC to Intel and its subsequent transition to Apple Silicon starting in 2020. This retrospective highlights two major platform shifts in computing history, offering insights into Apple&rsquo;s strategic decisions and their impact on the Mac ecosystem. Understanding these transitions helps users and developers anticipate future changes. The article notes that Intel CEO Paul Otellini helped convince Steve Jobs to adopt Intel chips, and Apple&rsquo;s existing Marklar project eased the software transition. The Intel Mac era lasted about 15 years before Apple began moving to its own ARM-based chips.</p>
+<p class="source-line">rss · Ars Technica · Jun 15, 16:32</p>
+<p><span class="section-label">Background</span>: Before 2005, Apple used PowerPC processors from IBM and Motorola, but faced performance and heat issues. The switch to Intel allowed Macs to run Windows natively and boosted performance. In 2020, Apple began transitioning to its own Apple Silicon (ARM-based) chips for better performance and power efficiency.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/gadgets/2026/06/20-years-of-intel-macs-why-apple-switched-and-why-it-switched-again/">20 years of Intel Macs: Why Apple switched, and why it... - Ars Technica</a></li>
+<li><a href="https://support.apple.com/en-us/116943">Mac computers with Apple silicon - Apple Support</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#Intel</span><span class="tag">#Mac</span><span class="tag">#platform shift</span><span class="tag">#history</span></div>
+<hr /></div>
+<div class="item" id="item-24">
+<div class="item-header"><span class="item-title"><a href="https://tinywind.io/">TinyWind: Pixel Pirate Sailing Game with Real Wind Physics</a></span><span class="rating ">⭐️ 6.0/10</span></div>
+<p>TinyWind is a pixel art sailing game built with HTML5 canvas that simulates real wind physics, with players having sailed over 380,000 kilometers in the game. This indie game demonstrates how accessible web technologies like HTML5 canvas can create engaging physics-based experiences, though community feedback highlights the challenge of balancing realism with fun in sailing mechanics. The wind physics engine is an approximation rather than full CFD simulation, and the game costs $5. Community members noted that sail trim feels unresponsive and wind direction indicators could be clearer.</p>
+<p class="source-line">hackernews · tinywind · Jun 15, 16:15 · <a href="https://news.ycombinator.com/item?id=48543475">Discussion</a></p>
+<p><span class="section-label">Background</span>: HTML5 canvas is a web technology for drawing 2D graphics in the browser, commonly used for games and visualizations. Real wind physics in games typically involves simulating wind direction and strength to affect objects, but full CFD is computationally expensive for real-time applications.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://dev.to/kelvin_kariuki_20f4bec616/developer-take-on-tinywind-a-pixel-pirate-sailing-game-with-real-wind-physics-380k-kms-sailed-2947">TinyWind: A pixel pirate sailing game with real wind physics...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community sentiment is positive overall, with praise for the concept and HTML5 canvas implementation, but several users criticized the sailing mechanics as unrealistic, noting that upwind performance feels too easy and sail trim lacks clear physics mapping.</p>
+<div class="tags"><span class="tag">#game development</span><span class="tag">#HTML5 canvas</span><span class="tag">#indie game</span><span class="tag">#physics simulation</span></div>
+<hr /></div>
+<div class="item" id="item-25">
+<div class="item-header"><span class="item-title"><a href="https://michaelenger.com/blog/i-love-the-computer/">A Nostalgic Love Letter to Computing</a></span><span class="rating ">⭐️ 6.0/10</span></div>
+<p>Michael Enger published a personal essay titled &lsquo;I Love the Computer,&rsquo; expressing his enduring affection for computers despite frustrations with the modern tech industry, including AI hype. The essay resonates with many developers who share a nostalgic love for computing but feel alienated by industry trends like AI and constant framework churn, sparking a community discussion on the balance between passion and pragmatism. The article lacks technical depth but includes personal anecdotes like copying code from a magazine into Notepad and saving it as .exe. Community comments debate whether AI is &lsquo;snake oil&rsquo; or a genuinely useful tool.</p>
+<p class="source-line">hackernews · speckx · Jun 15, 20:14 · <a href="https://news.ycombinator.com/item?id=48546441">Discussion</a></p>
+<p><span class="section-label">Background</span>: The essay reflects a common sentiment among older programmers who grew up with early home computers and feel that the industry has become overly commercialized and hype-driven. The term &lsquo;snake oil&rsquo; is used by some commenters to criticize AI products they view as overpromised and underdelivering.</p>
+<p><span class="section-label">Discussion</span>: Commenters share nostalgic stories and debate AI&rsquo;s value: some defend AI as a useful tool for exploring new fields, while others agree with the &lsquo;snake oil&rsquo; characterization, lamenting that hype ruins beloved spaces. The overall sentiment is mixed but respectful.</p>
+<div class="tags"><span class="tag">#computing</span><span class="tag">#nostalgia</span><span class="tag">#AI</span><span class="tag">#software engineering</span></div>
+<hr /></div>
+  </main>
+
+  <footer class="footer">
+    Generated by <a href="https://github.com/strom-fung/horizon">Horizon</a>
+    — AI-powered information aggregation ·
+    <span id="gen-time">2026-06-17 14:10 UTC</span>
+  </footer>
+
+</div>
+</body>
+</html>

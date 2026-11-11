@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon Daily — Summaries</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-primary: #0b0b12; --bg-card: #181825; --text-primary: #e8e8ed;
+  --text-secondary: #a0a0b8; --text-muted: #6b6b80; --border: #252540;
+  --accent: #b0a8a0; --gold: #f0b90b;
+  --font-sans: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+}
+body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; }
+.wrapper { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
+h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.025em; margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.subtitle { color: var(--text-secondary); margin-bottom: 40px; }
+.day-group { margin-bottom: 36px; }
+.day-title { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+.link-card {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 20px; margin-bottom: 8px;
+  text-decoration: none; color: var(--text-primary);
+  transition: border-color .15s, box-shadow .15s;
+}
+.link-card:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(108,140,255,.12); }
+.link-card .lang-tag {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 10px;
+  background: #1e1e32; color: var(--accent); border: 1px solid #2a2a50;
+}
+.link-card .lang-tag.zh { color: #a78bfa; border-color: #3a3060; }
+.link-card .name { flex: 1; font-weight: 600; }
+.link-card .arrow { color: var(--text-muted); }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Horizon Daily — Summaries</h1>
+<p class="subtitle">Beautiful HTML editions of daily tech news digests</p>
+<div class="day-group"><div class="day-title">2026-06-17</div><a class="link-card" href="horizon-2026-06-17-en.html"><span class="lang-tag ">EN</span><span class="name">horizon-2026-06-17-en</span><span class="arrow">→</span></a>
+<a class="link-card" href="horizon-2026-06-17-zh.html"><span class="lang-tag zh">ZH</span><span class="name">horizon-2026-06-17-zh</span><span class="arrow">→</span></a></div>
+<div class="day-group"><div class="day-title">2026-06-16</div><a class="link-card" href="horizon-2026-06-16-en.html"><span class="lang-tag ">EN</span><span class="name">horizon-2026-06-16-en</span><span class="arrow">→</span></a>
+<a class="link-card" href="horizon-2026-06-16-zh.html"><span class="lang-tag zh">ZH</span><span class="name">horizon-2026-06-16-zh</span><span class="arrow">→</span></a></div>
+</div>
+</body>
+</html>

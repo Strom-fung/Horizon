@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon Daily - 2026-06-17</title>
+<style>
+/* ===================================================================
+   Horizon Daily — Base & Reset
+   =================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary:    #0b0b12;
+  --bg-secondary:  #12121c;
+  --bg-card:       #181825;
+  --bg-card-hover: #1e1e30;
+  --bg-tag:        #1e1e32;
+  --text-primary:  #e8e8ed;
+  --text-secondary:#a0a0b8;
+  --text-muted:    #6b6b80;
+  --border:        #252540;
+  --border-light:  #1f1f35;
+  --accent:        #b0a8a0;
+  --accent-glow:   rgba(176, 168, 160, 0.10);
+  --gold:          #f0b90b;
+  --gold-dim:      #8a6d20;
+  --red:           #ff5e5e;
+  --green:         #5effa0;
+  --font-sans:     "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:     "JetBrains Mono", "SF Mono", "Cascadia Code", "Consolas", monospace;
+  --radius-sm:     6px;
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --shadow-card:   0 1px 3px rgba(0,0,0,.4), 0 0 0 1px var(--border);
+  --shadow-glow:   0 0 28px var(--accent-glow);
+  --max-width:     820px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Header
+   =================================================================== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,11,18,.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.header-logo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #c8a880, #c0a898);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.header-date {
+  font-size: .85rem; color: var(--text-secondary);
+  font-weight: 500;
+}
+.header-actions { display: flex; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-secondary);
+  transition: all .15s;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+.btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent); }
+
+/* ===================================================================
+   Layout
+   =================================================================== */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ===================================================================
+   Hero / summary bar
+   =================================================================== */
+.hero {
+  text-align: center; padding: 40px 0 28px;
+}
+.hero h1 {
+  font-size: 2rem; font-weight: 800; letter-spacing: -.025em;
+  background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  color: var(--text-secondary); font-size: .95rem;
+}
+.stats-row {
+  display: flex; justify-content: center; gap: 28px; margin-top: 18px;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.6rem; font-weight: 800; color: var(--accent);
+}
+.stat-label {
+  font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ===================================================================
+   Table of Contents
+   =================================================================== */
+.toc {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); padding: 20px 24px;
+  margin-bottom: 36px;
+}
+.toc-title {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted); margin-bottom: 12px; font-weight: 700;
+}
+.toc-list { list-style: none; columns: 2; column-gap: 24px; }
+@media (max-width: 640px) { .toc-list { columns: 1; } }
+.toc-item {
+  padding: 4px 0; font-size: .88rem; break-inside: avoid;
+}
+.toc-item a {
+  color: var(--text-secondary); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: color .12s;
+}
+.toc-item a:hover { color: var(--accent); }
+.toc-star {
+  font-size: .72rem; color: var(--gold); white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   Item cards
+   =================================================================== */
+.item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  transition: border-color .2s, box-shadow .2s;
+  scroll-margin-top: 80px;
+}
+.item:hover {
+  border-color: #353560;
+  box-shadow: var(--shadow-glow);
+}
+.item-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 12px;
+}
+.item-title {
+  font-size: 1.18rem; font-weight: 700; line-height: 1.4; letter-spacing: -.01em;
+  color: var(--text-primary); text-decoration: none;
+}
+.item-title:hover { color: var(--accent); }
+.item-title a { color: inherit; text-decoration: none; }
+.item-title a:hover { color: var(--accent); }
+
+.rating {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #1f1a0a; border: 1px solid #3d3515;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: .8rem; font-weight: 700; white-space: nowrap;
+  color: var(--gold); flex-shrink: 0;
+}
+.rating.star-9 { background: #1f1a0a; border-color: #5c4a10; box-shadow: 0 0 12px rgba(240,185,11,.12); }
+.rating.star-8 { border-color: #3d3515; }
+.rating.star-7 { border-color: #2d2818; opacity: .85; }
+
+.item-body { color: var(--text-secondary); font-size: .92rem; line-height: 1.75; }
+.item-body p { margin-bottom: 12px; }
+.item-body p:last-child { margin-bottom: 0; }
+
+/* Source line */
+.source-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: .78rem; color: var(--text-muted);
+}
+.source-line a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.source-line a:hover { text-decoration: underline; }
+
+/* Background / Discussion sections */
+.section-label {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--text-muted); margin-top: 14px; margin-bottom: 6px;
+}
+.item-body strong { color: var(--text-primary); }
+
+/* Tags */
+.tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+}
+.tag {
+  display: inline-block; padding: 3px 10px;
+  font-size: .72rem; font-weight: 600;
+  border-radius: 12px;
+  background: var(--bg-tag); color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  transition: all .12s;
+}
+.tag:hover { color: var(--accent); border-color: var(--accent); background: #1f1f3a; }
+
+/* Details / References */
+details {
+  margin-top: 12px; margin-bottom: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+details[open] { border-color: var(--border); }
+summary {
+  padding: 8px 14px; font-size: .78rem; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  user-select: none;
+  background: var(--bg-secondary);
+  transition: color .12s;
+}
+summary:hover { color: var(--accent); }
+details .references {
+  padding: 8px 14px 12px; font-size: .8rem;
+}
+details .references ul { list-style: none; padding: 0; }
+details .references li {
+  padding: 3px 0; font-size: .8rem;
+}
+details .references a {
+  color: var(--accent); text-decoration: none;
+}
+details .references a:hover { text-decoration: underline; }
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+.footer {
+  text-align: center; padding: 40px 0 0;
+  color: var(--text-muted); font-size: .78rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Hide markdown horizontal rules left from separators */
+.item hr { display: none; }
+
+/* ===================================================================
+   Scrollbar
+   =================================================================== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a55; }
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 640px) {
+  .wrapper { padding: 16px 14px 60px; }
+  .item { padding: 18px 16px; }
+  .hero h1 { font-size: 1.45rem; }
+  .header { padding: 10px 14px; }
+  .header-date { display: none; }
+  .header-brand { font-size: .95rem; }
+  .item-header { flex-direction: column; gap: 8px; }
+  .rating { align-self: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-brand" href="#">
+    <span class="header-logo">🌐</span>
+    Horizon Daily
+  </a>
+  <span class="header-date">2026-06-17</span>
+  <div class="header-actions">
+    <a class="btn" href="#toc">📑 Index</a>
+    <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <section class="hero">
+    <h1>Horizon Daily - 2026-06-17</h1>
+    <p class="subtitle">From 79 items, 25 important content pieces were selected</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value">25</div><div class="stat-label">Selected</div></div>
+      <div class="stat"><div class="stat-value">79</div><div class="stat-label">Total Feed</div></div>
+      <div class="stat"><div class="stat-value">7.5</div><div class="stat-label">Avg Score</div></div>
+    </div>
+  </section>
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">📑 Table of Contents</div>
+    <ol class="toc-list">
+      <li class="toc-item"><a href="#item-1"><span class="toc-star">9.0</span>SpaceX to acquire Cursor for $60B</a></li>
+<li class="toc-item"><a href="#item-2"><span class="toc-star">9.0</span>Interactive Article Explains Mechanical Watch Mechanics</a></li>
+<li class="toc-item"><a href="#item-3"><span class="toc-star">9.0</span>Critical Copilot vulnerability allowed hackers to steal 2FA codes</a></li>
+<li class="toc-item"><a href="#item-4"><span class="toc-star">8.0</span>Local AI Models: Progress and Pain Points</a></li>
+<li class="toc-item"><a href="#item-5"><span class="toc-star">8.0</span>Stop Using JWTs for Browser Sessions</a></li>
+<li class="toc-item"><a href="#item-6"><span class="toc-star">8.0</span>Meta's AI Obsession Sparks Engineering Exodus</a></li>
+<li class="toc-item"><a href="#item-7"><span class="toc-star">8.0</span>Qwen Releases Foundation Model Suite for Robotics</a></li>
+<li class="toc-item"><a href="#item-8"><span class="toc-star">8.0</span>SubQ 1.1 Small: Learned Sparse Attention for Linear Scaling</a></li>
+<li class="toc-item"><a href="#item-9"><span class="toc-star">8.0</span>Export Controls on AI Models Harm US Cyber Defense</a></li>
+<li class="toc-item"><a href="#item-10"><span class="toc-star">8.0</span>Leaked Docs Show OpenAI Losing Billions Annually</a></li>
+<li class="toc-item"><a href="#item-11"><span class="toc-star">7.0</span>GrapheneOS Ported to Android 17, Official Releases Imminent</a></li>
+<li class="toc-item"><a href="#item-12"><span class="toc-star">7.0</span>Calvin and Hobbes and the Price of Integrity</a></li>
+<li class="toc-item"><a href="#item-13"><span class="toc-star">7.0</span>TNO Announces GPT-NL, a Sovereign LLM for the Netherlands</a></li>
+<li class="toc-item"><a href="#item-14"><span class="toc-star">7.0</span>Has AI Already Killed Self-Help Nonfiction?</a></li>
+<li class="toc-item"><a href="#item-15"><span class="toc-star">7.0</span>Yak Shaving: The Joy of Distracting Side Quests</a></li>
+<li class="toc-item"><a href="#item-16"><span class="toc-star">7.0</span>10GbE Switching to Broadcom SFP+ Modules</a></li>
+<li class="toc-item"><a href="#item-17"><span class="toc-star">7.0</span>Slay the Spire 2 Implements Custom PRNG for Seed Consistency</a></li>
+<li class="toc-item"><a href="#item-18"><span class="toc-star">7.0</span>Apple's Hide My Email Change May Undermine Privacy</a></li>
+<li class="toc-item"><a href="#item-19"><span class="toc-star">7.0</span>Apple's Vehicle Motion Cues effectively reduce car sickness</a></li>
+<li class="toc-item"><a href="#item-20"><span class="toc-star">7.0</span>Reflex.dev Boosts AST Walking 220x with C Extension</a></li>
+<li class="toc-item"><a href="#item-21"><span class="toc-star">7.0</span>Georgi Gerganov Endorses Qwen3.6-27B for Local Coding</a></li>
+<li class="toc-item"><a href="#item-22"><span class="toc-star">7.0</span>Anthropic's Fable jailbreak report shows model 'working as intended'</a></li>
+<li class="toc-item"><a href="#item-23"><span class="toc-star">7.0</span>Personality Clashes Behind Anthropic's Model Suspension</a></li>
+<li class="toc-item"><a href="#item-24"><span class="toc-star">7.0</span>Anthropic Pauses Token-Based Billing for Claude Agent SDK</a></li>
+<li class="toc-item"><a href="#item-25"><span class="toc-star">7.0</span>Pentagon Uses AI to Write Congressional Reports</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="item" id="item-1">
+<div class="item-header"><span class="item-title"><a href="https://www.reuters.com/legal/transactional/spacex-buy-anysphere-60-billion-2026-06-16/">SpaceX to acquire Cursor for $60B</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>SpaceX has announced its acquisition of Cursor, an AI-powered coding IDE, for $60 billion, as reported by Reuters on June 16, 2026. This massive acquisition signals a major bet on AI-assisted software development and could reshape how code is written across the industry, while also raising questions about SpaceX&rsquo;s strategic direction beyond aerospace. The $60 billion price tag is roughly equivalent to the cost of building 150 of the world&rsquo;s most expensive modern hospitals, as noted in community comments. Cursor is an AI coding agent that integrates directly into the IDE to provide intelligent code completions and debugging assistance.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 10:44 · <a href="https://news.ycombinator.com/item?id=48553224">Discussion</a></p>
+<p><span class="section-label">Background</span>: Cursor is an AI-powered code editor that uses large language models to assist developers with code generation, debugging, and explanations. It has gained popularity as a leading AI coding tool, competing with other AI assistants like GitHub Copilot and Codex. SpaceX, traditionally an aerospace manufacturer and space transportation company, is diversifying into AI software tools with this acquisition.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://cursor.com/">Cursor: AI coding agent</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community comments are mixed: some users have stopped using Cursor in favor of other tools like Codex, finding Cursor&rsquo;s popups annoying and its interface not ideal for LLMs. Others question the strategic fit, noting the enormous cost compared to building hospitals, and express skepticism about Elon Musk pivoting SpaceX&rsquo;s focus.</p>
+<div class="tags"><span class="tag">#acquisition</span><span class="tag">#AI coding</span><span class="tag">#SpaceX</span><span class="tag">#Cursor</span><span class="tag">#IDE</span></div>
+<hr /></div>
+<div class="item" id="item-2">
+<div class="item-header"><span class="item-title"><a href="https://ciechanow.ski/mechanical-watch/">Interactive Article Explains Mechanical Watch Mechanics</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>An interactive educational article by Bartosz Ciechanowski thoroughly explains the mechanics of a mechanical watch using simple language and custom-built visualizations. This article stands out for its rare ability to make complex mechanical engineering accessible to a broad audience, demonstrating the power of interactive web content for education. The article uses vanilla HTML, CSS, and JavaScript, ensuring compatibility with older devices like an iPhone 7, and features step-by-step explanations with interactive diagrams.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 11:26 · <a href="https://news.ycombinator.com/item?id=48553550">Discussion</a></p>
+<p><span class="section-label">Background</span>: Mechanical watches are intricate devices powered by a mainspring, using gears and an escapement to regulate timekeeping. Understanding their inner workings typically requires specialized knowledge, but this article breaks down each component visually and textually.</p>
+<p><span class="section-label">Discussion</span>: The community highly praises the article&rsquo;s educational value and craftsmanship, with comments highlighting the author&rsquo;s vanilla code approach and the site&rsquo;s compatibility with older browsers. One commenter was inspired to build a real-life exploded view of a watch movement.</p>
+<div class="tags"><span class="tag">#mechanical watch</span><span class="tag">#interactive visualization</span><span class="tag">#educational</span><span class="tag">#engineering</span><span class="tag">#web development</span></div>
+<hr /></div>
+<div class="item" id="item-3">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/security/2026/06/critical-copilot-vulnerability-allowed-hackers-to-seal-2fa-code-from-users/">Critical Copilot vulnerability allowed hackers to steal 2FA codes</a></span><span class="rating star-9">⭐️ 9.0/10</span></div>
+<p>A critical vulnerability chain named SearchLeak in GitHub Copilot and Microsoft 365 Copilot Enterprise allowed attackers to steal emails, multi-factor authentication (MFA) codes, and files via one-click exploitation. This vulnerability highlights systemic failures in LLM security practices, as it compromises widely used AI coding assistants and enterprise productivity tools, putting millions of users&rsquo; sensitive data at risk. Discovered by Varonis Threat Labs, the SearchLeak vulnerability chain exploits the search functionality in Microsoft 365 Copilot Enterprise to exfiltrate data without user interaction.</p>
+<p class="source-line">rss · Ars Technica · Jun 16, 11:15</p>
+<p><span class="section-label">Background</span>: GitHub Copilot and Microsoft 365 Copilot are AI-powered assistants that help users write code and search enterprise data. LLMs (large language models) like those powering Copilot can be vulnerable to prompt injection and data leakage attacks if not properly secured.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://cyberpress.org/critical-searchleak-vulnerability/">Critical SearchLeak Vulnerability Lets Attackers Steal Emails,</a></li>
+<li><a href="https://www.scworld.com/brief/searchleak-vulnerability-allows-data-theft-from-microsoft-365-copilot-enterprise">SearchLeak vulnerability allows data theft from Microsoft 365</a></li>
+<li><a href="https://www.ibtimes.sg/searchleak-critical-microsoft-365-copilot-flaw-enabled-one-click-theft-emails-security-codes-88015">SearchLeak: Critical Microsoft 365 Copilot Flaw Enabled</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#security</span><span class="tag">#vulnerability</span><span class="tag">#LLM</span><span class="tag">#Copilot</span><span class="tag">#2FA</span></div>
+<hr /></div>
+<div class="item" id="item-4">
+<div class="item-header"><span class="item-title"><a href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/">Local AI Models: Progress and Pain Points</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>An article argues that running local AI models has become practical, but community comments reveal ongoing challenges with speed, quantization, and tool calling. This discussion highlights the trade-offs between cloud and local AI, affecting developers&rsquo; hardware choices and the viability of local inference for production use. Dense models like Qwen 27B are smart but slow, while MoE models like Gemma 26B are faster but error-prone; quantization to 4-bit degrades tool calling accuracy.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 14:36 · <a href="https://news.ycombinator.com/item?id=48555993">Discussion</a></p>
+<p><span class="section-label">Background</span>: Quantization reduces model memory and compute requirements by converting weights to lower bit widths, but it can reduce inference precision. Tool calling allows LLMs to invoke external functions, but accuracy suffers under heavy quantization.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://medium.com/@tubelwj/introduction-to-ai-model-quantization-formats-dc643bfc335c">Introduction to AI Model Quantization Formats | by Gen.... | Medium</a></li>
+<li><a href="https://fast.io/resources/llm-tool-calling/">LLM Tool Calling Guide: Patterns, APIs & Implementation | Fast.io</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters report that local models still have painful trade-offs: dense models are slow, MoE models make mistakes, and quantization weakens tool calling. Some prefer local models over cloud APIs due to control and cost, while others note the hardware investment required.</p>
+<div class="tags"><span class="tag">#local LLMs</span><span class="tag">#AI</span><span class="tag">#machine learning</span><span class="tag">#open source</span><span class="tag">#hardware</span></div>
+<hr /></div>
+<div class="item" id="item-5">
+<div class="item-header"><span class="item-title"><a href="https://gist.github.com/samsch/0d1f3d3b4745d778f78b230cf6061452">Stop Using JWTs for Browser Sessions</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>A high-scoring discussion on Hacker News argues that JSON Web Tokens (JWTs) should not be used for browser-based user sessions due to security trade-offs, while acknowledging their validity for service-to-service communication. This debate highlights critical security concerns in web authentication, potentially influencing how developers choose session management strategies and avoid common pitfalls. The original post links to a blog that criticizes JWT for lacking revocation capabilities, while commenters note that revocation lists can be used with short-lived tokens and refresh mechanisms.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 16:49 · <a href="https://news.ycombinator.com/item?id=48558147">Discussion</a></p>
+<p><span class="section-label">Background</span>: JWTs are a compact, self-contained token format often used for authentication. For browser sessions, session-based authentication with server-side storage is a common alternative that allows easy revocation.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://medium.com/@coders.stop/exploring-alternatives-to-jwt-for-secure-user-authentication-a27c47d07ba8">Exploring Alternatives to JWT for Secure User Authentication | Medium</a></li>
+<li><a href="https://dev.to/pragativerma18/how-jwts-could-be-dangerous-and-its-alternatives-3k3j">How JWTs Could Be Dangerous and Its Alternatives - DEV Community</a></li>
+<li><a href="https://ssojet.com/blog/service-account-authentication-best-practices-api-keys-oauth">Service Account Authentication Best Practices: From API Keys to</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters generally agree that JWTs are problematic for browser sessions but useful for service-to-service communication. Some argue that revocation lists and short expiry mitigate concerns, while others emphasize that session-based auth is simpler and more secure.</p>
+<div class="tags"><span class="tag">#JWT</span><span class="tag">#security</span><span class="tag">#authentication</span><span class="tag">#session-management</span><span class="tag">#web-development</span></div>
+<hr /></div>
+<div class="item" id="item-6">
+<div class="item-header"><span class="item-title"><a href="https://newsletter.pragmaticengineer.com/p/why-is-meta-destroying-its-engineering">Meta&rsquo;s AI Obsession Sparks Engineering Exodus</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Meta has forcefully reassigned 30-50% of engineers from core teams to AI and RLHF work, causing widespread dissatisfaction and debate about the company&rsquo;s engineering culture. This shift reflects a broader industry trend where AI obsession may degrade engineering culture and morale, potentially affecting product quality and innovation at major tech companies. The reassignments involve moving expensive software engineers to data labeling and RLHF tasks, which some argue is a waste of resources. The changes are part of Meta&rsquo;s broader restructuring to prioritize AI.</p>
+<p class="source-line">hackernews · The Pragmatic Engineer · Jun 16, 16:42 · <a href="https://news.ycombinator.com/item?id=48558045">Discussion</a></p>
+<p><span class="section-label">Background</span>: RLHF (Reinforcement Learning from Human Feedback) is a technique used to align AI models with human preferences by training them on human-labeled data. Meta, like many tech giants, is heavily investing in AI, leading to organizational changes that prioritize AI projects over traditional engineering work.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.businessinsider.com/meta-reorganized-major-businesses-eliminated-roles-whatsapp-instagram-reality-labs-2024-10">Meta Reorganized Some Its Major Businesses and Eliminated Some</a></li>
+<li><a href="https://www.futurevistaacademy.com/generative-ai/metas-ai-restructuring-2025-challenges">Meta's AI Restructuring Efforts and Challenges | Future</a></li>
+<li><a href="https://read.technically.dev/p/what-is-rlhf">What is RLHF? - by Justin - Technically</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters expressed mixed views: some criticized Meta&rsquo;s AI obsession as toxic and potentially industry-wide, while others doubted the scale of reassignments. Former employees noted that acquired orgs like WhatsApp had better cultures than homegrown ones.</p>
+<div class="tags"><span class="tag">#Meta</span><span class="tag">#engineering culture</span><span class="tag">#AI</span><span class="tag">#organizational change</span><span class="tag">#tech industry</span></div>
+<hr /></div>
+<div class="item" id="item-7">
+<div class="item-header"><span class="item-title"><a href="https://qwen.ai/blog?id=qwen-robotsuite">Qwen Releases Foundation Model Suite for Robotics</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Qwen has released a foundation model suite for robotics, designed to enable integrated systems for physical world intelligence. The suite includes models for perception, planning, and control, demonstrated with real-world tasks. This development is significant because it provides a unified foundation for building embodied AI systems, potentially accelerating the deployment of intelligent robots in manufacturing, logistics, and everyday life. It positions Qwen as a key player in the rapidly growing field of physical AI. The suite covers a range of robotic capabilities including object manipulation, navigation, and human-robot interaction. It is built on Qwen&rsquo;s large language model architecture, adapted for real-time control and sensor integration.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 13:15 · <a href="https://news.ycombinator.com/item?id=48554814">Discussion</a></p>
+<p><span class="section-label">Background</span>: Embodied AI refers to AI systems that can perceive, reason, and act in the physical world, as opposed to software-only AI. Foundation models for robotics aim to provide pre-trained capabilities that can be fine-tuned for specific tasks, reducing the need for task-specific engineering. Qwen is a series of large language models developed by Alibaba Cloud, and this robotics suite extends their capabilities into the physical domain.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://roboticcontent.com/deploy-qwen-models-with-amazon-bedrock-custom-model-import/">Deploy Qwen models with Amazon Bedrock Custom Model Import</a></li>
+<li><a href="https://gsdvs.com/embodied-ai-creating-intelligent-machines-that-understand-our-physical-world/">Embodied AI: Intelligent Machines Engaging with Our Physical</a></li>
+<li><a href="https://www.alphanome.ai/post/embodied-intelligence-grounding-ai-in-the-physical-world-for-enhanced-capability-and-adaptability">Embodied Intelligence: Grounding AI in the Physical World for</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The community is highly enthusiastic, with many users impressed by Qwen&rsquo;s consistent delivery and the strategic importance of robotics. Some commenters speculate about rapid mass production and market disruption, while others ask technical questions about real-time prediction and control. Overall sentiment is positive, with a few cautionary notes about the challenges of embodied AI.</p>
+<div class="tags"><span class="tag">#robotics</span><span class="tag">#foundation models</span><span class="tag">#AI</span><span class="tag">#embodied AI</span><span class="tag">#Qwen</span></div>
+<hr /></div>
+<div class="item" id="item-8">
+<div class="item-header"><span class="item-title"><a href="https://subq.ai/subq-1-1-small-technical-report">SubQ 1.1 Small: Learned Sparse Attention for Linear Scaling</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>SubQ 1.1 Small introduces Sparse Sparse Attention (SSA), a learned sparse attention mechanism that scales linearly with context length, achieving 64.5x less compute and 56x faster inference than FlashAttention-2 at 1M tokens. This breakthrough could dramatically reduce the cost of long-context LLM inference, enabling practical applications like processing entire books or lengthy documents. It challenges the dominant dense attention paradigm and may influence future efficient transformer designs. The technical report lacks detailed architectural specifications, drawing criticism from the community. SSA claims to be content-dependent, exact, and capable of attending to any position in a 12-million-token context.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 14:50 · <a href="https://news.ycombinator.com/item?id=48556163">Discussion</a></p>
+<p><span class="section-label">Background</span>: Standard transformer attention has O(n²) complexity with context length n, making long contexts computationally expensive. Sparse attention mechanisms aim to reduce this by only computing attention for a subset of token pairs, but many prior approaches sacrifice accuracy or generality. SSA learns which positions to attend to, potentially offering both efficiency and quality.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://arxiv.org/html/2511.20102">SSA: Sparse Sparse Attention by Aligning Full and Sparse Attention...</a></li>
+<li><a href="https://dev.to/thegatewayguy/12-million-tokens-linear-cost-subquadratics-bet-against-the-attention-tax-jp7">12 million tokens, linear cost: Subquadratic's bet against the attention...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters are excited about the performance gains but skeptical due to the lack of architectural details, especially compared to open Chinese labs. Some call for better long-context benchmarks beyond needle-in-a-haystack, such as long-form Q&amp;A.</p>
+<div class="tags"><span class="tag">#LLM</span><span class="tag">#attention mechanism</span><span class="tag">#efficiency</span><span class="tag">#long context</span><span class="tag">#sparse attention</span></div>
+<hr /></div>
+<div class="item" id="item-9">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything">Export Controls on AI Models Harm US Cyber Defense</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Security researcher Kate Moussouris confirmed that the &lsquo;jailbreak&rsquo; that got Anthropic&rsquo;s Claude Fable 5 banned under export controls was simply asking the model to &lsquo;fix this code&rsquo; — a routine defensive security task. The US government issued an export control directive suspending access to Fable 5 and Mythos 5 after a bypass method was discovered during safeguards testing. This highlights a dangerous paradox: export controls intended to prevent AI from aiding cyberattacks instead block models from fixing security vulnerabilities, undermining US cyber defense. Non-technical policymakers risk banning the very tools defenders need most. Researchers used open-source code with known CVEs and code with deliberately planted vulnerabilities, asking Fable 5 to review and fix the code. The model refused to review but, through a multistep manual process, produced scripts that test patches.</p>
+<p class="source-line">rss · Simon Willison · Jun 16, 05:20</p>
+<p><span class="section-label">Background</span>: Export controls on AI models are government restrictions that limit which countries or entities can access advanced AI systems, often justified by national security concerns about cyber weapons. However, the same capabilities that could be misused for offensive cyber operations are also essential for defensive security tasks like finding and fixing bugs. Claude Fable 5 is a next-generation &lsquo;Mythos-class&rsquo; AI model from Anthropic, designed for advanced reasoning and code generation.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5 and Claude Mythos 5 \ Anthropic</a></li>
+<li><a href="https://www.zerohedge.com/ai/anthropic-blocks-foreign-access-fable-5-mythos-5-after-us-national-security-order">Anthropic Blocks Foreign Access To Fable 5, Mythos... | ZeroHedge</a></li>
+<li><a href="https://www.testingcatalog.com/anthropic-suspends-fable-5-and-mythos-5-after-export-order/">Anthropic suspends Fable 5 and Mythos 5 after export order</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI</span><span class="tag">#export controls</span><span class="tag">#cybersecurity</span><span class="tag">#policy</span></div>
+<hr /></div>
+<div class="item" id="item-10">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/">Leaked Docs Show OpenAI Losing Billions Annually</a></span><span class="rating star-8">⭐️ 8.0/10</span></div>
+<p>Leaked audited financial documents reveal that OpenAI&rsquo;s revenues are growing rapidly but are still far exceeded by research and development costs and other expenses, resulting in billions of dollars in annual losses. This disclosure highlights the significant financial sustainability challenges facing OpenAI, which could affect its ability to continue leading in AI development and influence investor confidence in the broader AI industry. The documents are audited and show that despite growing revenues, expenses—particularly R&amp;D—are outpacing income, leading to net losses in the billions. No specific revenue or loss figures were provided in the summary.</p>
+<p class="source-line">rss · Ars Technica · Jun 16, 16:18</p>
+<p><span class="section-label">Background</span>: OpenAI is a leading artificial intelligence research organization known for developing models like GPT-4 and ChatGPT. Like many AI companies, it requires massive investment in computing power, talent, and data to stay competitive. The leaked documents provide a rare glimpse into its financial health, which has been a topic of speculation.</p>
+<div class="tags"><span class="tag">#OpenAI</span><span class="tag">#finance</span><span class="tag">#AI industry</span><span class="tag">#business</span></div>
+<hr /></div>
+<div class="item" id="item-11">
+<div class="item-header"><span class="item-title"><a href="https://discuss.grapheneos.org/d/36469-grapheneos-has-been-ported-to-android-17-and-official-releases-are-coming-soon">GrapheneOS Ported to Android 17, Official Releases Imminent</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>GrapheneOS, a privacy-focused mobile operating system, has been ported to Android 17, and official releases are expected soon. This update brings the latest Android security and privacy features to GrapheneOS users, reinforcing its position as a leading secure mobile OS. It also addresses growing demand for de-Googled alternatives, especially among users outside Google&rsquo;s primary markets. The port is based on Android Open Source Project (AOSP) 17, and official builds will be available for supported Pixel devices. Users should note that some features, like contactless payments, may require workarounds depending on region.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 20:34 · <a href="https://news.ycombinator.com/item?id=48561654">Discussion</a></p>
+<p><span class="section-label">Background</span>: GrapheneOS is a hardened version of AOSP focused on privacy and security, often used by those seeking to minimize Google services. It is primarily available on Google Pixel devices due to their strong hardware security support. Android 17 is the latest major Android release, introducing new privacy controls and performance improvements.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://grapheneos.org/">GrapheneOS: the private and secure mobile OS</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Community sentiment is positive, with long-term users expressing satisfaction and recommending the switch. Some users miss specific features like cursor control via space bar swipe or simplified emoji reactions, and there is discussion about the need for non-Pixel hardware support to broaden accessibility.</p>
+<div class="tags"><span class="tag">#GrapheneOS</span><span class="tag">#Android</span><span class="tag">#privacy</span><span class="tag">#mobile OS</span><span class="tag">#security</span></div>
+<hr /></div>
+<div class="item" id="item-12">
+<div class="item-header"><span class="item-title"><a href="https://therepublicofletters.substack.com/p/calvin-and-hobbes-and-the-price-of">Calvin and Hobbes and the Price of Integrity</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>An essay on Substack explores Bill Watterson&rsquo;s decision to never merchandise Calvin and Hobbes, highlighting his commitment to artistic integrity over commercial gain. This reflection resonates deeply with creators and fans, sparking discussion about the trade-offs between artistic purity and financial success in the creative industry. The essay contrasts Watterson&rsquo;s approach with other creators like Jim Davis, who commercialized Garfield, and notes that Watterson walked away from the strip at its peak to preserve his vision.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 15:44 · <a href="https://news.ycombinator.com/item?id=48557079">Discussion</a></p>
+<p><span class="section-label">Background</span>: Calvin and Hobbes is a beloved comic strip that ran from 1985 to 1995. Bill Watterson famously refused to license his characters for merchandise, a rare stance in the industry. This decision is often cited as a benchmark for artistic integrity.</p>
+<p><span class="section-label">Discussion</span>: Commenters express admiration for Watterson&rsquo;s integrity, with some noting they would likely have taken the money if in his position. Others share personal stories of how Calvin and Hobbes influenced their lives, and one user reposts Watterson&rsquo;s commencement speech.</p>
+<div class="tags"><span class="tag">#artistic integrity</span><span class="tag">#Bill Watterson</span><span class="tag">#Calvin and Hobbes</span><span class="tag">#creativity</span><span class="tag">#culture</span></div>
+<hr /></div>
+<div class="item" id="item-13">
+<div class="item-header"><span class="item-title"><a href="https://www.tno.nl/en/digital/artificial-intelligence/gpt-nl/">TNO Announces GPT-NL, a Sovereign LLM for the Netherlands</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>TNO, together with SURF and the Netherlands Forensic Institute, announced GPT-NL, a sovereign large language model developed entirely within the Netherlands and Europe, with a €13.5 million funding. The model is being piloted by four Dutch government agencies. GPT-NL represents a strategic move to reduce dependency on non-European AI providers, ensuring data sovereignty and alignment with European laws and values. It could set a precedent for other nations seeking to build their own sovereign AI capabilities. The model is trained exclusively on legally obtained Dutch documents and aims for full control over data and model choices. The €13.5 million funding supports development of a sustainable AI ecosystem aligned with Dutch societal goals.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 17:54 · <a href="https://news.ycombinator.com/item?id=48559188">Discussion</a></p>
+<p><span class="section-label">Background</span>: Sovereign AI refers to AI systems that operate within infrastructure controlled by the deploying organization or nation, ensuring data privacy and regulatory compliance. Many European countries are investing in national LLMs to avoid reliance on US and Chinese models, which may not adhere to European data protection standards.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://nltimes.nl/2026/02/26/dutch-government-agencies-pilot-homegrown-ai-model-gpt-nl">Dutch government agencies to pilot homegrown AI model GPT-NL |</a></li>
+<li><a href="https://www.dutchnews.co/technologie/netherlands-tests-homegrown-ai-model-gpt-nl.html">Dutch Government Trials GPT-NL AI Model</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The Hacker News community is divided: some argue that building sovereign models from scratch is wasteful and that efforts should focus on fine-tuning existing frontier models, while others emphasize the importance of national AI independence and language-specific research. A few commenters also highlight the need for sovereign fine-tuning capabilities rather than full model training.</p>
+<div class="tags"><span class="tag">#sovereign AI</span><span class="tag">#large language models</span><span class="tag">#Netherlands</span><span class="tag">#European AI</span><span class="tag">#natural language processing</span></div>
+<hr /></div>
+<div class="item" id="item-14">
+<div class="item-header"><span class="item-title"><a href="https://tim.blog/2026/06/12/has-ai-already-killed-nonfiction/">Has AI Already Killed Self-Help Nonfiction?</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A blog post by Tim Ferriss discusses whether AI and large language models (LLMs) are replacing self-help nonfiction books by providing faster, distilled advice, sparking a debate on Hacker News. This debate highlights a potential shift in how people consume advice and personal development content, which could disrupt the publishing industry and change the role of authors. The post received high engagement with 128 points and 129 comments on Hacker News, indicating strong community interest in the topic.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 17:11 · <a href="https://news.ycombinator.com/item?id=48558489">Discussion</a></p>
+<p><span class="section-label">Background</span>: Self-help nonfiction books are a popular genre that promises personal improvement, often criticized for being padded with fluff. LLMs like GPT-4 can generate personalized advice instantly, raising questions about the value of traditional books.</p>
+<p><span class="section-label">Discussion</span>: Commenters are divided: some argue LLMs provide a better, filler-free experience, while others believe the self-help industry is a &lsquo;mafia&rsquo; of cross-promotion and that human author credibility cannot be replaced by AI.</p>
+<div class="tags"><span class="tag">#AI</span><span class="tag">#self-help</span><span class="tag">#publishing</span><span class="tag">#LLMs</span><span class="tag">#content consumption</span></div>
+<hr /></div>
+<div class="item" id="item-15">
+<div class="item-header"><span class="item-title"><a href="https://parksb.github.io/en/article/32.html">Yak Shaving: The Joy of Distracting Side Quests</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A 2019 article and community discussion reflect on the joy and productivity of yak shaving in programming, with users sharing personal anecdotes of long-term side projects and noting that AI has reduced the costs of yak shaving. This highlights a common but often unacknowledged aspect of software development, validating the experience of many developers and suggesting that AI tools may make such exploratory work more feasible and rewarding. The article scores 7.0/10 with 195 points and 53 comments, indicating high community engagement. One user describes a 30-year yak shaving quest that produced a hybrid C/Lua game engine, while another notes that AI has greatly diminished the costs of yak shaving.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 14:26 · <a href="https://news.ycombinator.com/item?id=48555838">Discussion</a></p>
+<p><span class="section-label">Background</span>: Yak shaving is programming slang for the seemingly endless series of small tasks that must be completed before the next step in a project can move forward. It often involves getting sidetracked by tangential but necessary subtasks, which can feel unproductive but sometimes uncovers technical debt or solves future problems.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://softwareengineering.stackexchange.com/questions/388092/what-exactly-is-yak-shaving">agile - What exactly is Yak Shaving? - Software Engineering Stack...</a></li>
+<li><a href="https://www.counterpart.biz/blog/yak-shaving/">Yak Shaving: When Tech Projects Get Weirdly Hairy | Counterpart</a></li>
+<li><a href="https://worldwidewebster.github.io/blog/2022/06/21/masterclass-in-yak-shaving/">Master Class in Yak Shaving | World Wide Webster</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The community is largely positive, with users sharing personal stories of long-term yak shaving projects and expressing enjoyment. Some note that AI has made yak shaving more efficient, while others humorously describe their own elaborate side quests.</p>
+<div class="tags"><span class="tag">#yak shaving</span><span class="tag">#software engineering</span><span class="tag">#productivity</span><span class="tag">#side projects</span><span class="tag">#AI</span></div>
+<hr /></div>
+<div class="item" id="item-16">
+<div class="item-header"><span class="item-title"><a href="https://www.gilesthomas.com/2026/06/10g-ethernet-switching-to-broadcom-sfp-plus">10GbE Switching to Broadcom SFP+ Modules</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A technical article details the process of switching to Broadcom SFP+ modules for 10 Gigabit Ethernet, covering practical considerations such as heat management and cabling choices. This matters because 10GbE is increasingly adopted in home and small business networks, and choosing the right SFP+ modules and cabling (fiber vs. copper vs. DAC) impacts performance, heat, and cost. The article discusses Broadcom SFP+ module compatibility, heat dissipation issues with copper SFP+ modules, and the option to use DAC (Direct Attach Copper) cables for short distances to reduce heat and complexity.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 17:48 · <a href="https://news.ycombinator.com/item?id=48559083">Discussion</a></p>
+<p><span class="section-label">Background</span>: SFP+ is a form factor for 10 Gigabit Ethernet transceivers, commonly used in networking switches and NICs. Modules can be fiber optic, copper (with heat concerns), or passive DAC cables that integrate the transceiver into the cable, offering lower power and heat.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.flexoptix.net/en/supported-vendors/index/name/Broadcom-compatible">Broadcom compatible Universal Transceiver</a></li>
+<li><a href="https://www.broadcom.com/products/fiber-optic-modules-components/networking/optical-transceivers/sfpplus">“SFP Plus”, or SFP+, are speed enhanced variations of the...</a></li>
+<li><a href="https://lenovopress.lenovo.com/tips1027.pdf">Broadcom NetXtreme 10 GbE SFP+ Network Adapter Family for...</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters debated fiber vs. copper for 10GbE, with some advocating fiber for future-proofing and lower heat, while others recommended DAC cables for short runs. A user mentioned the UniFi SFP Wizard for reprogramming modules, and another noted that cheap, low-heat 10G copper NICs and switches are now available.</p>
+<div class="tags"><span class="tag">#networking</span><span class="tag">#10GbE</span><span class="tag">#SFP+</span><span class="tag">#hardware</span><span class="tag">#cabling</span></div>
+<hr /></div>
+<div class="item" id="item-17">
+<div class="item-header"><span class="item-title"><a href="https://tck.mn/blog/correlated-randomness-sts2/">Slay the Spire 2 Implements Custom PRNG for Seed Consistency</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>The developers of Slay the Spire 2 have implemented a custom pseudorandom number generator (PRNG) within the codebase instead of relying on the C# standard library, ensuring that seeds produce identical results across all platforms. This change guarantees seed consistency across platforms, preventing issues like the desktop and mobile versions having different outcomes from the same seed, which affected the original game. It also protects against future changes in standard library implementations that could break past seeds. The custom PRNG uses a specific algorithm (likely PCG32, as noted in community comments) that is deterministic and platform-independent. The article also discusses how correlated randomness is used to reduce the frequency of unwinnable situations, such as ensuring that two Corpse Slugs on floor 2 do not both attack on turn 1 too often.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 09:46 · <a href="https://news.ycombinator.com/item?id=48552844">Discussion</a></p>
+<p><span class="section-label">Background</span>: Pseudorandom number generators (PRNGs) are algorithms used in games to produce sequences of numbers that appear random but are deterministic based on an initial seed. In the original Slay the Spire, using the C# System.Random class led to different results on different platforms because the implementation varied. A custom PRNG ensures that the same seed always produces the same game state, which is critical for seed sharing and competitive play.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://stackoverflow.com/questions/36957670/can-c11-prng-be-used-to-produce-repeatable-results">c++ - Can C++11 PRNG be used to produce repeatable results? -</a></li>
+<li><a href="https://gamedev.stackexchange.com/questions/149489/is-unity-2017-random-number-generator-deterministic-across-platforms-given-the-s">c# - Is Unity 2017 random number generator deterministic across</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters appreciated the technical deep-dive and noted that Godot&rsquo;s GDScript uses PCG32, which would have avoided the issue. One user referenced an unwinnable seed in the original game, sparking discussion about &lsquo;RNG hell&rsquo; scenarios. Overall sentiment was positive, with many expressing excitement about Slay the Spire 2.</p>
+<div class="tags"><span class="tag">#game development</span><span class="tag">#random number generation</span><span class="tag">#software engineering</span><span class="tag">#cross-platform</span></div>
+<hr /></div>
+<div class="item" id="item-18">
+<div class="item-header"><span class="item-title"><a href="https://arseniyshestakov.com/2026/06/16/apple-is-about-to-make-hide-my-email-useless/">Apple&rsquo;s Hide My Email Change May Undermine Privacy</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Apple plans to unify Hide My Email and Sign in with Apple aliases under the @private.icloud.com domain, making it easier for websites to block all relay emails. This change could significantly reduce the effectiveness of Hide My Email, a key privacy feature for iCloud+ users, by enabling websites to identify and block all Apple relay addresses. Previously, Hide My Email used @privaterelay.appleid.com while Sign in with Apple used @private.icloud.com; merging them onto one domain makes blanket blocking trivial. Users can still pre-generate @icloud.com aliases before the change takes effect.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 18:37 · <a href="https://news.ycombinator.com/item?id=48559935">Discussion</a></p>
+<p><span class="section-label">Background</span>: Hide My Email is an iCloud+ feature that generates unique, random email addresses to protect users&rsquo; personal email. Sign in with Apple also offers email relay for privacy. Both services currently use different domains, making it harder for websites to block them collectively.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://support.apple.com/en-us/105078">How to use Hide My Email with Sign in with Apple - Apple Support</a></li>
+<li><a href="https://auth0.com/blog/what-is-sign-in-with-apple-a-new-identity-provider/">What is Sign In with Apple? Learn About the New Identity Provider</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Comments on Hacker News express mixed views: some argue the change is not catastrophic, as sites blocking relay emails are likely already untrustworthy; others suggest workarounds like using custom domains or pre-generating aliases. A few question why unifying domains makes blocking easier, but the article explains that a single domain allows a simple blocklist rule.</p>
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#privacy</span><span class="tag">#email</span><span class="tag">#iCloud</span><span class="tag">#security</span></div>
+<hr /></div>
+<div class="item" id="item-19">
+<div class="item-header"><span class="item-title"><a href="https://www.theverge.com/tech/942854/apple-vehicle-motion-cues-review-really-work">Apple&rsquo;s Vehicle Motion Cues effectively reduce car sickness</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>A user reports that Apple&rsquo;s Vehicle Motion Cues feature, introduced in iOS 18 and iPadOS 18, significantly reduces car sickness by displaying animated dots on the screen that mimic vehicle motion. This feature addresses a common accessibility issue for passengers who experience motion sickness when using devices in moving vehicles, potentially improving travel comfort for millions. The feature can be set to Automatic, where dots appear only when the iPhone detects the user is in a moving vehicle, and they hide when motion stops.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 16:12 · <a href="https://news.ycombinator.com/item?id=48557530">Discussion</a></p>
+<p><span class="section-label">Background</span>: Motion sickness occurs when there is a conflict between visual signals and the body&rsquo;s sense of motion. Apple&rsquo;s Vehicle Motion Cues use animated dots to align visual input with actual movement, reducing this sensory mismatch.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://support.apple.com/en-mn/guide/iphone/iph55564cb22/ios">Use iPhone more comfortably while riding in... - Apple Support (MN)</a></li>
+<li><a href="https://www.apple.com/newsroom/2024/05/apple-announces-new-accessibility-features-including-eye-tracking/">Apple announces new accessibility features, including Eye... - Apple</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters expressed excitement to try the feature, with some noting Android alternatives exist. One user explained the evolutionary theory behind motion sickness, while another noted similar techniques used in VR to prevent discomfort.</p>
+<div class="tags"><span class="tag">#Apple</span><span class="tag">#accessibility</span><span class="tag">#motion sickness</span><span class="tag">#iOS</span><span class="tag">#user experience</span></div>
+<hr /></div>
+<div class="item" id="item-20">
+<div class="item-header"><span class="item-title"><a href="https://reflex.dev/blog/why-ast-walk-when-you-can-ast-sprint/">Reflex.dev Boosts AST Walking 220x with C Extension</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Reflex.dev published a blog post detailing how they achieved a 220x speedup in Python AST walking by replacing ast.walk with a custom C-based approach called ast.sprint. This optimization demonstrates significant performance gains for Python tools that rely on AST traversal, such as linters and codemods, potentially making them much faster. It also highlights the benefits of using C extensions to overcome Python&rsquo;s performance limitations in critical code paths. The custom ast.sprint is implemented as a C extension, bypassing Python&rsquo;s overhead by directly walking the AST nodes in C. The blog post notes that the 220x speedup is compared to the original Python implementation, and the approach is specific to Reflex&rsquo;s use case.</p>
+<p class="source-line">hackernews · Hacker News (via RSS) · Jun 16, 16:25 · <a href="https://news.ycombinator.com/item?id=48557768">Discussion</a></p>
+<p><span class="section-label">Background</span>: Python&rsquo;s ast.walk is a built-in generator that recursively yields all nodes in an Abstract Syntax Tree (AST), but it is implemented in pure Python and can be slow for large codebases. C extensions allow Python code to call into C libraries for performance-critical tasks, as seen in projects like Cython. Reflex.dev is a framework for building web apps in Python, and they likely use AST walking for code analysis or transformation.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://cython.org/">Cython: C-Extensions for Python</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: Commenters appreciated that the author first tried optimizing the Python code before resorting to C. Some wondered if similar lints could be expressed as semgrep rules, and others asked whether the optimization could benefit tools like libCST or bandit.</p>
+<div class="tags"><span class="tag">#Python</span><span class="tag">#AST</span><span class="tag">#optimization</span><span class="tag">#performance</span></div>
+<hr /></div>
+<div class="item" id="item-21">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/georgi-gerganov/#atom-everything">Georgi Gerganov Endorses Qwen3.6-27B for Local Coding</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Georgi Gerganov, creator of llama.cpp, publicly stated that Qwen3.6-27B is a very capable local model for coding tasks, which he has used almost daily for over a month on his M2 Ultra and RTX 5090 systems. This endorsement from a key figure in the local LLM ecosystem adds significant credibility to Qwen3.6-27B as a practical tool for developers, potentially accelerating adoption of local coding assistants. Gerganov uses a lightweight harness called pi agent with the command &lsquo;pi -nc &ndash;offline&rsquo; and a short system prompt to align the model with his coding style. He noted he would use it more if not for time spent reviewing PRs.</p>
+<p class="source-line">rss · Simon Willison · Jun 16, 16:04</p>
+<p><span class="section-label">Background</span>: Qwen3.6-27B is a 27-billion-parameter reasoning model from Alibaba&rsquo;s Qwen team, scoring 46 on the Artificial Analysis Intelligence Index, well above average. llama.cpp is a high-performance C/C++ inference engine for running LLMs locally, and pi agent is a terminal-based coding harness that orchestrates LLMs for coding tasks.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://artificialanalysis.ai/models/qwen3-6-27b">Qwen3.6 27B - Intelligence, Performance & Price Analysis</a></li>
+<li><a href="https://huggingface.co/docs/inference-endpoints/engines/llama_cpp">llama.cpp · Hugging Face</a></li>
+<li><a href="https://aisoftwaresystems.com/blog/what-is-pi-agent/">What Is Pi Agent?</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The Hacker News discussion around the original article &lsquo;Running local models is good now&rsquo; generally agrees that local models have become practical for many tasks. Gerganov&rsquo;s comment reinforces this sentiment with first-hand experience.</p>
+<div class="tags"><span class="tag">#local LLM</span><span class="tag">#coding assistant</span><span class="tag">#Qwen</span><span class="tag">#llama.cpp</span><span class="tag">#AI tools</span></div>
+<hr /></div>
+<div class="item" id="item-22">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/16/matteo-wong-the-atlantic/#atom-everything">Anthropic&rsquo;s Fable jailbreak report shows model &lsquo;working as intended&rsquo;</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic shared a White House report on the Fable jailbreak with cybersecurity expert Katie Moussouris, who noted that the model refused to review insecure code but complied when asked to fix it, calling this &lsquo;working as intended&rsquo; for cyberdefense. This incident highlights the nuanced behavior of AI models in cybersecurity contexts and raises questions about export controls and AI safety policies, as the model&rsquo;s refusal to review but willingness to fix insecure code could be exploited by adversaries. The Fable jailbreak involved IT experts asking the model to find and patch bugs; the model refused &lsquo;review the code for security issues&rsquo; but complied when asked to &lsquo;fix this code&rsquo; with additional manual steps. Moussouris is not being paid by Anthropic.</p>
+<p class="source-line">rss · Simon Willison · Jun 16, 03:07</p>
+<p><span class="section-label">Background</span>: The Fable jailbreak refers to a technique that bypasses safety guardrails on Anthropic&rsquo;s Claude model, specifically the Fable 5 variant. The White House report examined how the model responded to cybersecurity tasks, revealing inconsistent refusal behavior. Katie Moussouris is a renowned cybersecurity expert and CEO of Luta Security, specializing in vulnerability disclosure.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://cybernews.com/security/anthropic-fable5-jailbreak-us-government/">That horrible thing that pushed Fable 5 offline? | Cybernews</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Katie_Moussouris">Katie Moussouris - Wikipedia</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI safety</span><span class="tag">#jailbreak</span><span class="tag">#cybersecurity</span><span class="tag">#export controls</span><span class="tag">#Anthropic</span></div>
+<hr /></div>
+<div class="item" id="item-23">
+<div class="item-header"><span class="item-title"><a href="https://simonwillison.net/2026/Jun/15/axios-clashes-anthropics/#atom-everything">Personality Clashes Behind Anthropic&rsquo;s Model Suspension</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Axios reported that personality clashes and behind-the-scenes dynamics between Anthropic and the US government led to the suspension of Anthropic&rsquo;s models (Mythos and Fable) due to export controls. This incident highlights the growing tension between AI companies and government regulators over export controls and model security, potentially setting a precedent for future AI governance. Key figures involved include Logan Graham (Anthropic Frontier Red Team lead), Dave Orr (Head of Safeguards), and Nicholas Carlini, who were meeting with the Commerce Department. The government cited a jailbreak vulnerability as the trigger, but Anthropic claims it was a narrow, non-universal attack.</p>
+<p class="source-line">rss · Simon Willison · Jun 15, 14:57</p>
+<p><span class="section-label">Background</span>: Anthropic&rsquo;s Frontier Red Team is responsible for red-teaming AI models to identify vulnerabilities. The US government has been increasingly concerned about export controls on advanced AI models, especially after a reported jailbreak of Claude Mythos. The situation is complicated by interpersonal dynamics between Anthropic and administration officials.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://www.anthropic.com/news/strategic-warning-for-ai-risk-progress-and-insights-from-our-frontier-red-team">anthropic.com/news/strategic-warning-for-ai-risk-progress-and-insights-from-our-frontier-red-team</a></li>
+<li><a href="https://www.anthropic.com/news/frontier-threats-red-teaming-for-ai-safety">Frontier Threats Red Teaming for AI Safety \ Anthropic</a></li>
+
+</ul>
+</div></details>
+
+<p><span class="section-label">Discussion</span>: The community discussion (from Simon Willison&rsquo;s blog) expresses skepticism about the government&rsquo;s stance, noting that perfect jailbreak resistance may be impossible and that the resolution may require an &lsquo;attitude fix&rsquo; rather than technical solutions.</p>
+<div class="tags"><span class="tag">#AI policy</span><span class="tag">#Anthropic</span><span class="tag">#export controls</span><span class="tag">#government regulation</span></div>
+<hr /></div>
+<div class="item" id="item-24">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/">Anthropic Pauses Token-Based Billing for Claude Agent SDK</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>Anthropic has paused its planned token-based billing for the Claude Agent SDK, which was originally scheduled to take effect on Monday and would have significantly increased costs for heavy users. This decision signals that Anthropic is responsive to developer feedback and may set a precedent for pricing models in the AI SDK ecosystem, affecting how other companies structure their billing. The token-based billing would have charged developers per token processed by the SDK, potentially raising costs for power users who rely heavily on the tool. The pause suggests significant community or internal pushback.</p>
+<p class="source-line">rss · Ars Technica · Jun 16, 21:00</p>
+<p><span class="section-label">Background</span>: Token-based billing is a common pricing model for AI APIs where users pay for the number of tokens (pieces of words) processed. The Claude Agent SDK is a developer toolkit that allows building AI agents using Anthropic&rsquo;s Claude models. Many developers use such SDKs for tasks like coding assistance and automation.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://schematichq.com/pricing-resources/token-based-billing">Token-Based Billing | Definition and Guide | Schematic</a></li>
+<li><a href="https://www.anthropic.com/news/claude-sonnet-4-5">Introducing Claude Sonnet 4.5 \ Anthropic</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#Anthropic</span><span class="tag">#Claude</span><span class="tag">#pricing</span><span class="tag">#AI SDK</span><span class="tag">#developer tools</span></div>
+<hr /></div>
+<div class="item" id="item-25">
+<div class="item-header"><span class="item-title"><a href="https://arstechnica.com/ai/2026/06/pentagon-boasts-of-using-ai-to-write-reports-mandated-by-congress/">Pentagon Uses AI to Write Congressional Reports</a></span><span class="rating star-7">⭐️ 7.0/10</span></div>
+<p>The Pentagon announced it is using generative AI to produce congressionally mandated reports, and claimed that 1.5 million personnel are using generative AI tools. This marks a significant shift in government use of AI, raising questions about transparency, accuracy, and the role of AI in policy-making. It could set a precedent for other federal agencies. The Pentagon&rsquo;s process of identifying reporting requirements and assigning reports previously took three to six months, and some reports are due within a year. The GAO report highlighted the efficiency gains from using AI.</p>
+<p class="source-line">rss · Ars Technica · Jun 16, 18:11</p>
+<p><span class="section-label">Background</span>: Generative AI tools use artificial intelligence models to create original content such as text, images, audio, video, and code based on user prompts. In government, these tools can accelerate sensemaking by summarizing documents, drafting text, and generating code. The Office of Management and Budget has released guidance on mitigating risks in government AI use.</p>
+<details class="ref-details"><summary>References</summary><div class="references">
+<ul>
+<li><a href="https://arstechnica.com/ai/2026/06/pentagon-boasts-of-using-ai-to-write-reports-mandated-by-congress/">Pentagon boasts of using AI to write reports mandated... - Ars Technica</a></li>
+<li><a href="https://www.niskanencenter.org/ai-in-government-from-tools-to-transformation/">AI in government: From tools to transformation - Niskanen Center</a></li>
+<li><a href="https://www.ibm.com/think/topics/generative-ai-for-government">Generative AI for Government | IBM</a></li>
+
+</ul>
+</div></details>
+
+<div class="tags"><span class="tag">#AI</span><span class="tag">#government</span><span class="tag">#policy</span><span class="tag">#generative AI</span><span class="tag">#defense</span></div>
+<hr /></div>
+  </main>
+
+  <footer class="footer">
+    Generated by <a href="https://github.com/strom-fung/horizon">Horizon</a>
+    — AI-powered information aggregation ·
+    <span id="gen-time">2026-06-17 14:10 UTC</span>
+  </footer>
+
+</div>
+</body>
+</html>
